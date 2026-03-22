@@ -1,0 +1,61 @@
+name: 🎬 Render Happy & Healthy Pets Video
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  render:
+    name: Render MP4
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: 📦 Install dependencies
+        run: npm install
+
+      - name: 🎨 Install Chrome & dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            chromium-browser \
+            libgbm-dev \
+            libnss3 \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libxkbcommon0 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxfixes3 \
+            libxrandr2 \
+            libgbm1 \
+            libasound2 \
+            fonts-liberation \
+            xvfb
+
+      - name: 📁 Create output folder
+        run: mkdir -p out
+
+      - name: 🎬 Render video
+        run: |
+          npx remotion render HappyPetsPromo out/happy-healthy-pets-promo.mp4 \
+            --gl=swiftshader \
+            --log=verbose
+
+      - name: 📤 Upload MP4 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: happy-healthy-pets-promo
+          path: out/happy-healthy-pets-promo.mp4
+          retention-days: 30
