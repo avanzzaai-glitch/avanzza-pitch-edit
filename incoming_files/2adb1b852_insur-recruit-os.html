@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sistema para Aseguradoras — Avanzza AI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B2D3E;--teal:#2BA99B;--teal-d:#1e7a6f;--teal-l:#e1f5ee;--teal-ll:rgba(43,169,155,0.08);
+  --bg:#F8FAFC;--card:#ffffff;
+  --border:#E2E8F0;--border2:#CBD5E1;
+  --t1:#1E293B;--t2:#64748B;--t3:#94A3B8;
+  --r:8px;--rl:12px;
+  --db:#FEF2F2;--dt:#991B1B;
+  --wb:#FFFBEB;--wt:#92400E;
+  --ob:#F0FDF4;--ot:#166534;
+  --ib:#EFF6FF;--it:#1D4ED8;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t1)}
+.app{display:flex;height:100vh;overflow:hidden}
+.sb{width:200px;background:var(--navy);display:flex;flex-direction:column;flex-shrink:0}
+.sb-logo{padding:16px 14px 13px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-brand{color:var(--teal);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+.sb-name{color:rgba(255,255,255,0.9);font-size:13px;font-weight:500;margin-top:2px}
+.nav{flex:1;padding:8px 6px;display:flex;flex-direction:column;overflow-y:auto}
+.nav-sep{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,0.2);padding:10px 10px 4px;flex-shrink:0}
+.ni{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;color:rgba(255,255,255,0.45);font-size:12px;transition:all .15s;user-select:none;flex-shrink:0}
+.ni:hover{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.8)}
+.ni.on{background:var(--teal);color:#fff}
+.ni-ic{font-size:12px;width:15px;text-align:center;flex-shrink:0}
+.sb-foot{padding:11px 13px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:9px}
+.av{width:30px;height:30px;border-radius:50%;background:rgba(43,169,155,0.25);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--teal);flex-shrink:0}
+.un{font-size:12px;color:rgba(255,255,255,0.85)}
+.ur{font-size:10px;color:rgba(255,255,255,0.3)}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{background:var(--card);border-bottom:1px solid var(--border);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-title{font-size:15px;font-weight:600;color:var(--t1)}
+.tb-sub{font-size:11px;color:var(--t2);margin-top:1px}
+.content{flex:1;overflow-y:auto;padding:15px 18px;display:flex;flex-direction:column;gap:12px}
+.btn{border:none;padding:7px 14px;border-radius:var(--r);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:5px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:active:not(:disabled){transform:scale(.97)}
+.btn-navy{background:var(--navy);color:#fff}.btn-navy:hover:not(:disabled){background:#243d52}
+.btn-teal{background:var(--teal);color:#fff}.btn-teal:hover:not(:disabled){background:var(--teal-d)}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--t2)}.btn-ghost:hover:not(:disabled){background:var(--bg)}
+.btn-sm{padding:5px 10px;font-size:11px}
+.btn-xs{padding:3px 8px;font-size:10px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl)}
+.ch{padding:11px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ct{font-size:13px;font-weight:600;color:var(--t1)}
+.cl{font-size:11px;color:var(--teal);cursor:pointer;font-weight:500}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:13px}
+.kpi.ac{background:var(--navy);border-color:var(--navy)}
+.kl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--t3)}
+.ac .kl{color:var(--teal)}
+.kv{font-size:24px;font-weight:600;color:var(--t1);margin-top:3px;line-height:1}
+.ac .kv{color:#fff}
+.ks{font-size:10px;color:var(--t3);margin-top:2px}
+.ac .ks{color:rgba(255,255,255,0.3)}
+.row2{display:grid;grid-template-columns:1fr 265px;gap:12px}
+.fr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.fl{font-size:11px;color:var(--t2);width:86px;text-align:right;flex-shrink:0}
+.fb{flex:1;height:20px;background:var(--bg);border-radius:3px;overflow:hidden}
+.fbi{height:100%;border-radius:3px;display:flex;align-items:center;justify-content:flex-end;padding-right:7px}
+.fc{font-size:10px;font-weight:600;color:#fff}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600}
+.score-b{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-weight:600;font-family:monospace}
+.sh{background:var(--ob);color:var(--ot)}
+.sm{background:var(--wb);color:var(--wt)}
+.sl{background:var(--bg);color:var(--t3)}
+.ep-e{background:var(--ob);color:var(--ot)}
+.ep-c{background:var(--ib);color:var(--it)}
+.ep-p{background:var(--bg);color:var(--t3)}
+.ep-d{background:var(--wb);color:var(--wt)}
+.ep-r{background:var(--db);color:var(--dt)}
+.dt{width:100%;border-collapse:collapse;font-size:12px}
+.dt th{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--t3);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);background:var(--bg)}
+.dt td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--t1);vertical-align:middle}
+.dt tr:last-child td{border-bottom:none}
+.dt tr:hover td{background:var(--bg)}
+.cita{display:flex;align-items:center;gap:8px;padding:8px 9px;border-radius:8px;border:1px solid var(--border);margin-bottom:6px}
+.cita.hoy{border-color:rgba(43,169,155,0.4);background:var(--teal-ll)}
+.cd{width:34px;height:34px;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;font-weight:600}
+.cd.t{background:var(--teal);color:#fff}
+.cd.o{background:var(--bg);color:var(--t2)}
+.cname{font-size:12px;font-weight:500;color:var(--t1)}
+.cmeta{font-size:10px;color:var(--t3);margin-top:1px}
+.ab{border-radius:var(--r);padding:9px 12px;display:flex;align-items:center;gap:8px;font-size:12px}
+.ab-d{background:var(--db);border:1px solid #FECACA;color:var(--dt)}
+.ab-w{background:var(--wb);border:1px solid #FDE68A;color:var(--wt)}
+.ab-i{background:var(--ib);border:1px solid #BFDBFE;color:var(--it)}
+.ab-s{background:var(--ob);border:1px solid #BBF7D0;color:var(--ot)}
+.ai-out{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:12px;font-size:12px;color:var(--t1);line-height:1.65;white-space:pre-wrap;max-height:300px;overflow-y:auto}
+.ai-out.streaming::after{content:'▋';animation:blink .7s infinite;color:var(--teal)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.tag{display:inline-block;background:var(--teal-l);color:var(--teal-d);font-size:10px;padding:2px 7px;border-radius:4px;margin:2px;font-family:monospace}
+.fl-label{font-size:11px;color:var(--t2);margin-bottom:4px;font-weight:500}
+input[type=text],input[type=number],input[type=password],textarea,select{font-size:12px;padding:7px 10px;border:1px solid var(--border2);border-radius:var(--r);background:var(--card);color:var(--t1);width:100%}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 2px rgba(43,169,155,0.15)}
+textarea{resize:vertical;min-height:80px;font-family:inherit}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:20px;font-size:11px;background:var(--bg);border:1px solid var(--border2);color:var(--t1);cursor:pointer;transition:all .15s}
+.pill:hover{border-color:var(--teal)}
+.pill.on{background:var(--teal-l);border-color:var(--teal);color:var(--teal-d)}
+.pill-group{display:flex;flex-wrap:wrap;gap:5px}
+.hint{background:var(--bg);border-radius:var(--r);padding:10px 12px;font-size:11px;color:var(--t2);line-height:1.6}
+code{background:var(--card);border:1px solid var(--border);padding:1px 5px;border-radius:4px;font-family:monospace;font-size:10px}
+.status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-ok{background:#10B981}
+.dot-err{background:#EF4444}
+.dot-off{background:var(--t3)}
+.dot-blink{background:var(--teal);animation:dotblink 1s infinite}
+@keyframes dotblink{0%,100%{opacity:1}50%{opacity:.3}}
+.p-av{width:38px;height:38px;border-radius:50%;background:var(--ib);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--it);flex-shrink:0}
+.p-name{font-size:13px;font-weight:500;color:var(--t1)}
+.p-title{font-size:11px;color:var(--t2);margin-top:2px}
+.progress-bar{height:5px;background:var(--bg);border-radius:3px;overflow:hidden;margin:6px 0}
+.progress-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s ease}
+.sec-title{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--t3)}
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 13px}
+.tab{padding:9px 12px;font-size:12px;cursor:pointer;color:var(--t2);border-bottom:2px solid transparent;transition:all .15s}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal);font-weight:600}
+.view{display:none;flex-direction:column;flex:1;overflow:hidden}
+.view.active{display:flex}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:12px}
+.wd{border:1px solid var(--border);border-radius:8px;padding:8px 4px;text-align:center;background:var(--card)}
+.wd.hoy{background:var(--teal);border-color:var(--teal)}
+.wd-n{font-size:8px;font-weight:600;text-transform:uppercase;color:var(--t3)}
+.wd.hoy .wd-n{color:rgba(255,255,255,0.7)}
+.wd-d{font-size:16px;font-weight:600;color:var(--t1);margin:2px 0}
+.wd.hoy .wd-d{color:#fff}
+.wd-dot{font-size:9px;color:var(--teal)}
+.wd.hoy .wd-dot{color:rgba(255,255,255,0.85)}
+.doc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:13px}
+.doc-dz{border:2px dashed var(--border2);border-radius:var(--r);padding:18px;text-align:center;cursor:pointer;transition:all .15s;font-size:11px;color:var(--t2);position:relative}
+.doc-dz:hover{border-color:var(--teal);background:rgba(43,169,155,0.04)}
+.doc-dz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.range-row{display:flex;align-items:center;gap:8px}
+.range-val{min-width:30px;text-align:right;font-size:12px;font-weight:600;color:var(--t1);font-family:monospace}
+.toggle{position:relative;width:36px;height:20px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-sl{position:absolute;inset:0;background:var(--border2);border-radius:20px;cursor:pointer;transition:.2s}
+.toggle input:checked+.toggle-sl{background:var(--teal)}
+.toggle-sl:before{content:'';position:absolute;width:14px;height:14px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+.toggle input:checked+.toggle-sl:before{transform:translateX(16px)}
+.api-row{display:flex;align-items:center;gap:8px;padding:7px 11px;background:var(--bg);border-radius:var(--r);font-size:12px}
+.profile-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:12px;display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.profile-card.importing{border-color:var(--teal);background:var(--teal-ll)}
+.loading-dots span{display:inline-block;animation:ld .8s infinite both}
+.loading-dots span:nth-child(2){animation-delay:.15s}
+.loading-dots span:nth-child(3){animation-delay:.3s}
+@keyframes ld{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+/* Email modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--card);border-radius:var(--rl);width:580px;max-width:95vw;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.modal-head{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-body{flex:1;overflow-y:auto;padding:16px}
+.modal-foot{padding:12px 16px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.email-preview{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:14px}
+.email-subject{font-size:14px;font-weight:600;color:var(--t1);margin-bottom:4px}
+.email-to{font-size:11px;color:var(--t3);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.email-body{font-size:12px;color:var(--t1);line-height:1.7;white-space:pre-wrap}
+.email-sig{margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--t2)}
+/* Doc upload area */
+.upload-zone{border:2px dashed var(--border2);border-radius:var(--r);padding:24px;text-align:center;cursor:pointer;transition:all .15s;position:relative}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--teal);background:rgba(43,169,155,0.04)}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sb">
+    <div class="sb-logo">
+      <div class="sb-brand">Avanzza AI</div>
+      <div class="sb-name">Sistema para Aseguradoras</div>
+    </div>
+    <nav class="nav">
+      <div class="nav-sep">Principal</div>
+      <div class="ni on" onclick="go('dashboard')"><span class="ni-ic">◼</span>Dashboard</div>
+      <div class="ni" onclick="go('prospectos')"><span class="ni-ic">◈</span>Prospectos</div>
+      <div class="ni" onclick="go('agentes')"><span class="ni-ic">✓</span>Agentes</div>
+      <div class="ni" onclick="go('citas')"><span class="ni-ic">▣</span>Agenda</div>
+      <div class="nav-sep">Agentes IA</div>
+      <div class="ni" onclick="go('linkedin')"><span class="ni-ic">&#9679;</span>Busqueda LinkedIn</div>
+      <div class="ni" onclick="go('scoring')"><span class="ni-ic">★</span>Scoring IA</div>
+      <div class="ni" onclick="go('email')"><span class="ni-ic">✉</span>Email IA</div>
+      <div class="ni" onclick="go('docs')"><span class="ni-ic">▤</span>Documentos IA</div>
+      <div class="nav-sep">Config</div>
+      <div class="ni" onclick="go('config')"><span class="ni-ic">⚙</span>Configuracion</div>
+    </nav>
+    <div class="sb-foot">
+      <div class="av">DV</div>
+      <div><div class="un">Diego Vargas</div><div class="ur">admin</div></div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div id="v-dashboard" class="view active">
+      <div class="topbar">
+        <div><div class="tb-title">Dashboard</div><div class="tb-sub">Reclutamiento de agentes · Avanzza Seguros</div></div>
+        <button class="btn btn-navy" onclick="go('linkedin')">+ Buscar en LinkedIn</button>
+      </div>
+      <div class="content">
+        <div class="ab ab-d">
+          <span style="font-size:13px">&#9888;</span>
+          <span style="flex:1"><strong>Jorge Hernandez Salinas</strong> — Cedula CNSF vence en <strong>25 dias</strong></span>
+          <span style="text-decoration:underline;cursor:pointer;font-size:11px" onclick="go('agentes')">Ver →</span>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi"><div class="kl">Total prospectos</div><div class="kv">10</div></div>
+          <div class="kpi ac"><div class="kl">Agentes activos</div><div class="kv">2</div></div>
+          <div class="kpi"><div class="kl">En entrevista</div><div class="kv">2</div></div>
+          <div class="kpi"><div class="kl">Alta calificacion</div><div class="kv">5</div><div class="ks">Score ≥ 7</div></div>
+          <div class="kpi"><div class="kl">Score prom IA</div><div class="kv">7.1</div></div>
+          <div class="kpi"><div class="kl">Citas pendientes</div><div class="kv">3</div></div>
+          <div class="kpi"><div class="kl">Alertas criticas</div><div class="kv" style="color:var(--dt)">1</div><div class="ks">≤ 30 dias</div></div>
+          <div class="kpi"><div class="kl">Emails semana</div><div class="kv">3</div></div>
+        </div>
+        <div class="row2">
+          <div class="card">
+            <div class="ch"><div class="ct">Embudo de reclutamiento</div><span class="cl" onclick="go('prospectos')">Ver todos →</span></div>
+            <div style="padding:12px 14px" id="funnel-wrap"></div>
+          </div>
+          <div class="card">
+            <div class="ch"><div class="ct">Proximas citas</div><span class="cl" onclick="go('citas')">Agenda →</span></div>
+            <div style="padding:9px 10px 4px">
+              <div class="cita hoy"><div class="cd t"><span>HOY</span><span style="font-size:14px;font-weight:600">17</span></div><div style="flex:1"><div class="cname">Jorge Hernandez</div><div class="cmeta">Zoom · 16:00 · Seguimiento</div></div><span class="badge" style="background:var(--ob);color:var(--ot)">OK</span></div>
+              <div class="cita"><div class="cd o"><span>MAR</span><span style="font-size:14px;font-weight:600">18</span></div><div style="flex:1"><div class="cname">Patricia Moreno</div><div class="cmeta">Presencial · 10:00</div></div><span class="badge" style="background:var(--bg);color:var(--t3)">?</span></div>
+              <div class="cita"><div class="cd o"><span>VIE</span><span style="font-size:14px;font-weight:600">21</span></div><div style="flex:1"><div class="cname">Maria Fernandez</div><div class="cmeta">Zoom · 11:00</div></div><span class="badge" style="background:var(--ob);color:var(--ot)">OK</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROSPECTOS -->
+    <div id="v-prospectos" class="view">
+      <div class="topbar">
+        <div><div class="tb-title">Prospectos</div><div class="tb-sub" id="p-count">10 candidatos</div></div>
+        <button class="btn btn-navy btn-sm" onclick="go('linkedin')">+ Buscar LinkedIn</button>
+      </div>
+      <div class="content">
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <input type="text" id="p-search" placeholder="Buscar nombre, empresa..." style="flex:1;min-width:160px" oninput="renderProspects()"/>
+          <select id="p-estado" onchange="renderProspects()" style="width:140px">
+            <option value="">Todos estados</option>
+            <option value="prospecto">Prospecto</option>
+            <option value="contactado">Contactado</option>
+            <option value="entrevista">Entrevista</option>
+            <option value="documentacion">Documentacion</option>
+            <option value="activo">Activo</option>
+            <option value="rechazado">Rechazado</option>
+          </select>
+          <select id="p-score" onchange="renderProspects()" style="width:130px">
+            <option value="">Todo score</option>
+            <option value="9">Score ≥ 9</option>
+            <option value="7">Score ≥ 7</option>
+            <option value="5">Score ≥ 5</option>
+          </select>
+          <select id="p-ciudad" onchange="renderProspects()" style="width:130px">
+            <option value="">Todas ciudades</option>
+            <option value="CDMX">CDMX</option>
+            <option value="Monterrey">Monterrey</option>
+            <option value="Guadalajara">Guadalajara</option>
+          </select>
+        </div>
+        <div class="card" style="overflow:auto"><table class="dt" id="p-table"></table></div>
+      </div>
+    </div>
+
+    <!-- AGENTES -->
+    <div id="v-agentes" class="view">
+      <div class="topbar"><div><div class="tb-title">Agentes activos</div><div class="tb-sub">2 agentes · 1 alerta critica</div></div></div>
+      <div class="content">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+          <div class="ab ab-d" style="border-radius:var(--rl)"><span style="font-size:22px;font-weight:600">1</span><div><div style="font-weight:600">Vencen en ≤ 30 dias</div><div style="font-size:10px;margin-top:2px">Accion inmediata</div></div></div>
+          <div class="ab ab-w" style="border-radius:var(--rl)"><span style="font-size:22px;font-weight:600">2</span><div><div style="font-weight:600">Vencen en 31–60 dias</div><div style="font-size:10px;margin-top:2px">Programar renovacion</div></div></div>
+        </div>
+        <div class="card" style="overflow:auto">
+          <table class="dt">
+            <thead><tr><th>Agente</th><th>RFC</th><th>Cedula</th><th>Vigencia</th><th>Estado</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><div style="font-weight:500">Jorge Hernandez Salinas</div><div style="font-size:10px;color:var(--t3)">jhernandez.asesor@gmail.com</div></td><td style="font-family:monospace;font-size:10px;color:var(--t2)">HESJ800915HDF</td><td style="font-family:monospace;font-size:10px">CNSF-12345678</td><td><div style="font-size:10px;color:var(--dt);font-weight:600">25 dias</div><div style="margin-top:3px;height:4px;background:var(--bg);border-radius:2px"><div style="width:7%;height:100%;background:#EF4444;border-radius:2px"></div></div></td><td><span class="badge" style="background:var(--db);color:var(--dt)">Critica</span></td><td><span class="cl" onclick="go('docs')">Docs</span></td></tr>
+              <tr><td><div style="font-weight:500">Patricia Moreno Ibanez</div><div style="font-size:10px;color:var(--t3)">patricia.moreno.ventas@gmail.com</div></td><td style="font-family:monospace;font-size:10px;color:var(--t2)">MOIP720310MDF</td><td style="font-family:monospace;font-size:10px">CNSF-87654321</td><td><div style="font-size:10px;color:var(--wt);font-weight:600">55 dias</div><div style="margin-top:3px;height:4px;background:var(--bg);border-radius:2px"><div style="width:15%;height:100%;background:#F59E0B;border-radius:2px"></div></div></td><td><span class="badge" style="background:var(--wb);color:var(--wt)">Proxima</span></td><td><span class="cl" onclick="go('docs')">Docs</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CITAS -->
+    <div id="v-citas" class="view">
+      <div class="topbar"><div><div class="tb-title">Agenda</div><div class="tb-sub">Proximos 7 dias</div></div></div>
+      <div class="content">
+        <div class="wk">
+          <div class="wd hoy"><div class="wd-n">LUN</div><div class="wd-d">17</div><div class="wd-dot">1</div></div>
+          <div class="wd"><div class="wd-n">MAR</div><div class="wd-d">18</div><div class="wd-dot">1</div></div>
+          <div class="wd"><div class="wd-n">MIE</div><div class="wd-d">19</div></div>
+          <div class="wd"><div class="wd-n">JUE</div><div class="wd-d">20</div></div>
+          <div class="wd"><div class="wd-n">VIE</div><div class="wd-d">21</div><div class="wd-dot">1</div></div>
+          <div class="wd"><div class="wd-n">SAB</div><div class="wd-d">22</div></div>
+          <div class="wd"><div class="wd-n">DOM</div><div class="wd-d">23</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:var(--card);border:1px solid rgba(43,169,155,0.4);border-radius:var(--rl);padding:13px;display:flex;align-items:center;gap:12px"><div style="width:44px;height:44px;background:var(--teal);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:8px;font-weight:600;color:rgba(255,255,255,.7)">HOY</span><span style="font-size:17px;font-weight:600;color:#fff">17</span></div><div style="flex:1"><div style="font-size:13px;font-weight:500">Jorge Hernandez Salinas</div><div style="font-size:11px;color:var(--t2);margin-top:2px">Zoom · 16:00 · Seguimiento · 30 min</div></div><span class="badge" style="background:var(--ob);color:var(--ot)">Confirmada</span></div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:13px;display:flex;align-items:center;gap:12px"><div style="width:44px;height:44px;background:var(--bg);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:8px;font-weight:600;color:var(--t3)">MAR</span><span style="font-size:17px;font-weight:600;color:var(--t1)">18</span></div><div style="flex:1"><div style="font-size:13px;font-weight:500">Patricia Moreno Ibanez</div><div style="font-size:11px;color:var(--t2);margin-top:2px">Presencial · 10:00 · Entrevista · 90 min</div></div><span class="badge" style="background:var(--bg);color:var(--t3)">Sin confirmar</span></div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:13px;display:flex;align-items:center;gap:12px"><div style="width:44px;height:44px;background:var(--bg);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:8px;font-weight:600;color:var(--t3)">VIE</span><span style="font-size:17px;font-weight:600;color:var(--t1)">21</span></div><div style="flex:1"><div style="font-size:13px;font-weight:500">Maria Fernandez Garcia</div><div style="font-size:11px;color:var(--t2);margin-top:2px">Zoom · 11:00 · Entrevista · 45 min</div></div><span class="badge" style="background:var(--ob);color:var(--ot)">Confirmada</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKEDIN -->
+    <div id="v-linkedin" class="view">
+      <div class="topbar">
+        <div><div class="tb-title">Busqueda LinkedIn</div><div class="tb-sub">Busqueda automatizada + scoring IA</div></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="api-row" style="padding:5px 10px;gap:6px">
+            <div class="status-dot dot-off" id="api-dot"></div>
+            <span style="font-size:11px;color:var(--t2)" id="api-label">Sin configurar</span>
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="go('config')">Configurar →</button>
+        </div>
+      </div>
+      <div class="content">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="card">
+            <div class="ch"><div class="ct">Criterios de busqueda</div><button class="btn btn-xs btn-ghost" onclick="resetCriteria()">Resetear</button></div>
+            <div style="padding:12px;display:flex;flex-direction:column;gap:10px">
+              <div><div class="fl-label">Palabras clave / Titulos</div><input type="text" id="li-keywords" value="agente de seguros, asesor financiero, promotor de seguros"/></div>
+              <div>
+                <div class="fl-label">Ubicaciones</div>
+                <div class="pill-group" id="locations-pills">
+                  <span class="pill on" onclick="this.classList.toggle('on')">Ciudad de Mexico</span>
+                  <span class="pill on" onclick="this.classList.toggle('on')">Monterrey</span>
+                  <span class="pill on" onclick="this.classList.toggle('on')">Guadalajara</span>
+                  <span class="pill" onclick="this.classList.toggle('on')">Puebla</span>
+                  <span class="pill" onclick="this.classList.toggle('on')">Tijuana</span>
+                </div>
+              </div>
+              <div class="grid2">
+                <div><div class="fl-label">Exp. min <span id="exp-min-val" style="color:var(--teal);font-family:monospace">3</span> años</div><input type="range" min="0" max="20" value="3" step="1" oninput="document.getElementById('exp-min-val').textContent=this.value"/></div>
+                <div><div class="fl-label">Score umbral <span id="score-th-val" style="color:var(--teal);font-family:monospace">7.0</span></div><input type="range" id="score-threshold" min="1" max="10" value="7" step="0.5" oninput="document.getElementById('score-th-val').textContent=parseFloat(this.value).toFixed(1)"/></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="display:flex;align-items:center;gap:8px"><label class="toggle"><input type="checkbox" id="auto-score" checked><span class="toggle-sl"></span></label><span style="font-size:11px">Auto-scoring</span></div>
+                <div style="display:flex;align-items:center;gap:8px"><label class="toggle"><input type="checkbox" id="auto-import" checked><span class="toggle-sl"></span></label><span style="font-size:11px">Auto-importar</span></div>
+                <select id="li-limit" style="width:80px"><option value="10">10</option><option value="25" selected>25</option><option value="50">50</option></select>
+              </div>
+              <button class="btn btn-teal" id="li-search-btn" onclick="runLinkedInSearch()" style="width:100%;justify-content:center">Ejecutar busqueda automatizada</button>
+            </div>
+          </div>
+          <div class="card" style="display:flex;flex-direction:column">
+            <div class="ch"><div class="ct">Resultados</div><span id="li-result-count" style="font-size:11px;color:var(--t2)">—</span></div>
+            <div id="li-results" style="flex:1;overflow-y:auto;padding:10px 12px">
+              <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--t3);text-align:center">
+                <div style="font-size:28px">◈</div>
+                <div style="font-size:12px">Configura los criterios y ejecuta la busqueda</div>
+                <div style="font-size:11px">Requiere clave Apify en Configuracion</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCORING IA -->
+    <div id="v-scoring" class="view">
+      <div class="topbar"><div><div class="tb-title">Scoring IA</div><div class="tb-sub">Agente 1 — evalua perfiles en tiempo real</div></div></div>
+      <div class="content">
+        <div class="card" style="padding:13px">
+          <div class="sec-title" style="margin-bottom:10px">Perfil del candidato</div>
+          <div class="grid2" style="gap:9px;margin-bottom:10px">
+            <div><div class="fl-label">Nombre</div><input type="text" id="sc-nombre" value="Carlos Mendoza Ruiz"/></div>
+            <div><div class="fl-label">Cargo actual</div><input type="text" id="sc-cargo" value="Gerente de Ventas en GNP Seguros"/></div>
+            <div><div class="fl-label">Empresa</div><input type="text" id="sc-empresa" value="GNP Seguros"/></div>
+            <div><div class="fl-label">Anos de experiencia</div><input type="text" id="sc-anios" value="12"/></div>
+            <div><div class="fl-label">Ciudad</div><input type="text" id="sc-ciudad" value="Ciudad de Mexico"/></div>
+            <div><div class="fl-label">Sector</div><input type="text" id="sc-sector" value="Seguros"/></div>
+          </div>
+          <button class="btn btn-teal" id="sc-btn" onclick="runScoring()">Evaluar con IA</button>
+        </div>
+        <div id="sc-result"></div>
+        <div class="hint">Edita los campos con datos reales. La IA evalua experiencia comercial, sector, trayectoria y ubicacion para asignar score 1–10 con justificacion detallada.</div>
+      </div>
+    </div>
+
+    <!-- EMAIL IA -->
+    <div id="v-email" class="view">
+      <div class="topbar"><div><div class="tb-title">Email IA</div><div class="tb-sub">Agente 2 — redacta emails personalizados de invitacion</div></div></div>
+      <div class="content">
+        <div class="card" style="padding:13px">
+          <div class="sec-title" style="margin-bottom:10px">Datos del candidato</div>
+          <div class="grid2" style="gap:9px;margin-bottom:10px">
+            <div><div class="fl-label">Nombre</div><input type="text" id="em-nombre" value="Maria Fernandez Garcia"/></div>
+            <div><div class="fl-label">Cargo actual</div><input type="text" id="em-cargo" value="Asesora Patrimonial en Banorte"/></div>
+            <div><div class="fl-label">Empresa</div><input type="text" id="em-empresa" value="Banorte"/></div>
+            <div><div class="fl-label">Anos de experiencia</div><input type="text" id="em-anios" value="8"/></div>
+          </div>
+          <div class="grid2" style="gap:9px;margin-bottom:10px">
+            <div>
+              <div class="fl-label">Tono del email</div>
+              <select id="em-tono">
+                <option value="formal">Formal — Ejecutivo</option>
+                <option value="cercano">Cercano — Profesional</option>
+                <option value="directo">Directo — Conciso</option>
+              </select>
+            </div>
+            <div>
+              <div class="fl-label">Extension</div>
+              <select id="em-largo">
+                <option value="corto">Corto (~120 palabras)</option>
+                <option value="medio" selected>Medio (~180 palabras)</option>
+                <option value="largo">Largo (~250 palabras)</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-teal" id="em-btn" onclick="runEmail()">✉ Redactar email con IA</button>
+        </div>
+        <div id="em-result"></div>
+        <div class="hint">La IA redacta un email profesional en espanol mexicano, personalizado al cargo y empresa del candidato. Incluye invitacion a videollamada de 30 min con tu enlace de Calendly.</div>
+      </div>
+    </div>
+
+    <!-- DOCS IA -->
+    <div id="v-docs" class="view">
+      <div class="topbar"><div><div class="tb-title">Documentos IA</div><div class="tb-sub">Agente 3 — extrae datos de documentos oficiales automaticamente</div></div></div>
+      <div class="content">
+        <!-- Upload real -->
+        <div class="card" style="padding:14px">
+          <div class="sec-title" style="margin-bottom:10px">Subir documento real (PDF o imagen)</div>
+          <div class="upload-zone" id="upload-zone" ondragover="this.classList.add('drag');event.preventDefault()" ondragleave="this.classList.remove('drag')" ondrop="handleFileDrop(event)">
+            <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileUpload(this.files[0])"/>
+            <div style="font-size:24px;margin-bottom:8px">📄</div>
+            <div style="font-size:13px;font-weight:500;color:var(--t1)">Arrastra o haz clic para subir</div>
+            <div style="font-size:11px;color:var(--t3);margin-top:4px">PDF, JPG o PNG — Cedula CNSF, INE, comprobante domicilio</div>
+          </div>
+          <div id="upload-status" style="margin-top:8px"></div>
+          <div id="doc-result-upload" style="margin-top:10px"></div>
+        </div>
+
+        <!-- Simular -->
+        <div class="grid3">
+          <div class="doc-card"><div class="sec-title" style="margin-bottom:9px">Cedula CNSF</div><div class="doc-dz" onclick="simDoc('cedula')"><div style="font-size:22px;margin-bottom:5px">▲</div><div>Simular extraccion</div><div style="font-size:10px;color:var(--t3);margin-top:1px">Datos de prueba</div></div><div id="r-cedula" style="margin-top:8px;font-size:11px;line-height:1.6"></div></div>
+          <div class="doc-card"><div class="sec-title" style="margin-bottom:9px">Identificacion oficial</div><div class="doc-dz" onclick="simDoc('ine')"><div style="font-size:22px;margin-bottom:5px">▲</div><div>Simular extraccion</div><div style="font-size:10px;color:var(--t3);margin-top:1px">Datos de prueba</div></div><div id="r-ine" style="margin-top:8px;font-size:11px;line-height:1.6"></div></div>
+          <div class="doc-card"><div class="sec-title" style="margin-bottom:9px">Comprobante domicilio</div><div class="doc-dz" onclick="simDoc('comp')"><div style="font-size:22px;margin-bottom:5px">▲</div><div>Simular extraccion</div><div style="font-size:10px;color:var(--t3);margin-top:1px">Datos de prueba</div></div><div id="r-comp" style="margin-top:8px;font-size:11px;line-height:1.6"></div></div>
+        </div>
+
+        <!-- Manual -->
+        <div class="card" style="padding:13px">
+          <div class="sec-title" style="margin-bottom:9px">Extraccion manual — pega texto del PDF</div>
+          <textarea id="doc-texto" placeholder="Ej: CNSF · Nombre: Jorge Hernandez · RFC: HESJ800915HDF · Cedula: 12345678 · Vigencia: 10 abril 2025"></textarea>
+          <button class="btn btn-teal btn-sm" id="doc-btn" onclick="runDocExtract('doc-result')" style="margin-top:8px">Extraer datos con IA</button>
+          <div id="doc-result" style="margin-top:10px"></div>
+        </div>
+        <div class="hint">Sube el archivo real o pega el texto. La IA extrae nombre, RFC, numero de cedula y fecha de vigencia. Activa alertas automaticas si la vigencia es menor a 60 dias.</div>
+      </div>
+    </div>
+
+    <!-- CONFIGURACION -->
+    <div id="v-config" class="view">
+      <div class="topbar"><div><div class="tb-title">Configuracion</div><div class="tb-sub">Conexiones y criterios de evaluacion</div></div></div>
+      <div class="content">
+        <div class="tabs">
+          <div class="tab on" onclick="switchTab(this,'tab-apis')">Conexiones</div>
+          <div class="tab" onclick="switchTab(this,'tab-criterios')">Criterios scoring</div>
+          <div class="tab" onclick="switchTab(this,'tab-despacho')">Datos del despacho</div>
+        </div>
+        <div id="tab-apis">
+          <div class="card" style="padding:14px;margin-top:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px">
+              <div class="sec-title">Busqueda automatizada — Apify</div>
+              <div class="api-row" style="padding:5px 10px;gap:6px"><div class="status-dot" id="cfg-dot"></div><span style="font-size:11px;color:var(--t2)" id="cfg-status">Sin configurar</span></div>
+            </div>
+            <div style="margin-bottom:10px">
+              <div class="fl-label">Clave de acceso Apify</div>
+              <div style="display:flex;gap:8px"><input type="password" id="apify-key" placeholder="apify_api_xxxx..."/><button class="btn btn-ghost btn-sm" onclick="toggleVis('apify-key')">Ver</button></div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-teal" onclick="saveApiKey()">Guardar y conectar</button>
+              <button class="btn btn-ghost" onclick="testApi()">Probar conexion</button>
+            </div>
+            <div id="api-test-result" style="margin-top:10px"></div>
+          </div>
+          <div class="card" style="padding:14px;margin-top:10px">
+            <div class="sec-title" style="margin-bottom:12px">Motor de IA (Claude)</div>
+            <div class="api-row" style="margin-bottom:8px"><div class="status-dot dot-ok"></div><span style="font-size:12px;color:var(--t1)">Conectado y activo — listo para usar</span></div>
+            <div style="font-size:11px;color:var(--t2)">Scoring, redaccion de emails y extraccion de documentos disponibles.</div>
+          </div>
+          <div class="card" style="padding:14px;margin-top:10px">
+            <div class="sec-title" style="margin-bottom:12px">Envio de emails</div>
+            <div class="grid2" style="gap:9px;margin-bottom:10px">
+              <div><div class="fl-label">Clave SendGrid / Brevo</div><input type="password" id="sg-key" placeholder="Ingresa la clave"/></div>
+              <div><div class="fl-label">Email remitente</div><input type="text" id="sg-from" value="reclutamiento@avanzza.mx"/></div>
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="alert('Configuracion guardada')">Guardar</button>
+          </div>
+        </div>
+        <div id="tab-criterios" style="display:none">
+          <div class="card" style="padding:14px;margin-top:12px">
+            <div class="sec-title" style="margin-bottom:14px">Pesos del scoring IA</div>
+            <div style="display:flex;flex-direction:column;gap:13px">
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><div class="fl-label">Experiencia en seguros/finanzas</div><span style="font-size:12px;font-weight:600;color:var(--teal);font-family:monospace" id="w1-val">40%</span></div><input type="range" id="w1" min="10" max="60" value="40" step="5" oninput="updateWeights()"/></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><div class="fl-label">Anos de trayectoria comercial</div><span style="font-size:12px;font-weight:600;color:var(--teal);font-family:monospace" id="w2-val">30%</span></div><input type="range" id="w2" min="10" max="50" value="30" step="5" oninput="updateWeights()"/></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><div class="fl-label">Nivel de responsabilidad</div><span style="font-size:12px;font-weight:600;color:var(--teal);font-family:monospace" id="w3-val">20%</span></div><input type="range" id="w3" min="5" max="40" value="20" step="5" oninput="updateWeights()"/></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><div class="fl-label">Ubicacion estrategica</div><span style="font-size:12px;font-weight:600;color:var(--teal);font-family:monospace" id="w4-val">10%</span></div><input type="range" id="w4" min="5" max="30" value="10" step="5" oninput="updateWeights()"/></div>
+              <div id="weights-total" class="ab ab-s"><span style="font-size:13px;font-weight:600">Total: 100%</span><span style="font-size:11px">Pesos balanceados</span></div>
+            </div>
+          </div>
+          <button class="btn btn-teal" style="margin-top:10px" onclick="saveWeights()">Guardar criterios</button>
+        </div>
+        <div id="tab-despacho" style="display:none">
+          <div class="card" style="padding:14px;margin-top:12px">
+            <div class="sec-title" style="margin-bottom:12px">Informacion del despacho</div>
+            <div class="grid2" style="gap:10px;margin-bottom:10px">
+              <div><div class="fl-label">Nombre del despacho</div><input type="text" id="dep-nombre" value="Avanzza Seguros"/></div>
+              <div><div class="fl-label">Reclutador responsable</div><input type="text" id="dep-reclutador" value="Diego Vargas"/></div>
+              <div><div class="fl-label">Email de reclutamiento</div><input type="text" id="dep-email" value="reclutamiento@avanzza.mx"/></div>
+              <div><div class="fl-label">Enlace de agenda (Calendly)</div><input type="text" id="dep-calendly" value="calendly.com/avanzza/entrevista"/></div>
+            </div>
+            <div style="margin-bottom:10px">
+              <div class="fl-label">Propuesta de valor (para emails IA)</div>
+              <textarea id="dep-propuesta">Acceso a multiples aseguradoras, respaldo tecnologico completo, esquema de comisiones competitivo y capacitacion continua.</textarea>
+            </div>
+            <button class="btn btn-teal" onclick="saveDespacho()">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EMAIL MODAL -->
+<div class="modal-overlay" id="email-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--t1)" id="modal-title">Email generado</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:2px" id="modal-subtitle"></div>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="closeEmailModal()">✕ Cerrar</button>
+    </div>
+    <div class="modal-body">
+      <div class="email-preview" id="modal-email-preview"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost btn-sm" onclick="copyEmail()">📋 Copiar texto</button>
+      <button class="btn btn-ghost btn-sm" onclick="copySubject()">Copiar asunto</button>
+      <button class="btn btn-teal btn-sm" onclick="openMailto()">✉ Abrir en correo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const PROSPECTS=[
+  {name:'Patricia Moreno Ibanez',hl:'Directora Comercial · Zurich Mexico',emp:'Zurich Mexico',ciudad:'CDMX',score:9.8,estado:'entrevista'},
+  {name:'Jorge Hernandez Salinas',hl:'Agente CNSF · AXA Seguros',emp:'AXA Seguros',ciudad:'CDMX',score:9.5,estado:'documentacion'},
+  {name:'Carlos Mendoza Ruiz',hl:'Gerente Ventas · GNP Seguros',emp:'GNP Seguros',ciudad:'CDMX',score:9.2,estado:'contactado'},
+  {name:'Lucia Torres Espinosa',hl:'Asesora Patrimonial Senior · BBVA',emp:'BBVA Mexico',ciudad:'Monterrey',score:8.9,estado:'prospecto'},
+  {name:'Maria Fernandez Garcia',hl:'Asesora Patrimonial · Banorte',emp:'Banorte',ciudad:'Monterrey',score:8.7,estado:'entrevista'},
+  {name:'Roberto Castillo Vega',hl:'Ejecutivo B2B · FINSUS',emp:'FINSUS',ciudad:'Guadalajara',score:7.4,estado:'prospecto'},
+  {name:'Sofia Ramirez Delgado',hl:'Gestora Junior · Actinver',emp:'Actinver',ciudad:'Monterrey',score:6.8,estado:'contactado'},
+  {name:'Diego Sanchez Torres',hl:'Marketing Manager · ML',emp:'MercadoLibre',ciudad:'Guadalajara',score:5.3,estado:'prospecto'},
+  {name:'Fernando Lopez Acosta',hl:'Ejecutivo Comercial · Telcel',emp:'Telcel',ciudad:'Ecatepec',score:5.8,estado:'prospecto'},
+  {name:'Ana Laura Martinez',hl:'Contadora Independiente',emp:'Independiente',ciudad:'CDMX',score:4.1,estado:'rechazado'},
+]
+const FUNNEL=[
+  {l:'Prospectos',n:10,c:'#94A3B8'},{l:'Contactados',n:3,c:'#60A5FA'},
+  {l:'Entrevista',n:2,c:'#2BA99B'},{l:'Documentacion',n:1,c:'#F59E0B'},{l:'Activos',n:2,c:'#10B981'},
+]
+const EC={entrevista:'ep-e',contactado:'ep-c',prospecto:'ep-p',documentacion:'ep-d',rechazado:'ep-r',activo:'ep-e'}
+const EL={entrevista:'Entrevista',contactado:'Contactado',prospecto:'Prospecto',documentacion:'Docs',rechazado:'Rechazado',activo:'Activo'}
+let liResults=[]
+let apiKey=''
+let currentEmail={asunto:'',cuerpo:'',destinatario:'',depEmail:''}
+
+function go(v){
+  document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'))
+  document.getElementById('v-'+v).classList.add('active')
+  const views=['dashboard','prospectos','agentes','citas','linkedin','scoring','email','docs','config']
+  document.querySelectorAll('.ni').forEach((el,i)=>el.classList.toggle('on',views[i]===v))
+  if(v==='prospectos') renderProspects()
+}
+
+function switchTab(tab,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'))
+  tab.classList.add('on')
+  document.querySelectorAll('[id^=tab-]').forEach(el=>el.style.display='none')
+  document.getElementById(id).style.display='block'
+}
+
+function buildFunnel(){
+  const w=document.getElementById('funnel-wrap');if(!w)return
+  w.innerHTML=FUNNEL.map(f=>`<div class="fr"><span class="fl">${f.l}</span><div class="fb"><div class="fbi" style="width:${Math.round(f.n/10*100)}%;background:${f.c}"><span class="fc">${f.n}</span></div></div></div>`).join('')
+}
+
+function renderProspects(){
+  const s=(document.getElementById('p-search')||{value:''}).value.toLowerCase()
+  const e=(document.getElementById('p-estado')||{value:''}).value
+  const sm=parseFloat((document.getElementById('p-score')||{value:''}).value)||0
+  const c=(document.getElementById('p-ciudad')||{value:''}).value
+  const data=PROSPECTS.filter(p=>(!e||p.estado===e)&&(!sm||p.score>=sm)&&(!c||p.ciudad===c)&&(!s||p.name.toLowerCase().includes(s)||p.emp.toLowerCase().includes(s)))
+  const pc=document.getElementById('p-count');if(pc)pc.textContent=data.length+' candidatos'
+  const t=document.getElementById('p-table');if(!t)return
+  t.innerHTML='<thead><tr><th>Candidato</th><th>Score</th><th>Estado</th><th>Empresa</th><th>Ciudad</th><th></th></tr></thead><tbody>'+
+  data.map(p=>{
+    const sc=p.score>=8?'sh':p.score>=6?'sm':'sl'
+    return`<tr><td><div style="font-weight:500">${p.name}</div><div style="font-size:10px;color:var(--t3)">${p.hl}</div></td><td><span class="score-b ${sc}" style="width:30px;height:30px;font-size:10px">${p.score.toFixed(1)}</span></td><td><span class="badge ${EC[p.estado]||'ep-p'}">${EL[p.estado]||p.estado}</span></td><td style="color:var(--t2)">${p.emp}</td><td style="color:var(--t2)">${p.ciudad}</td><td><button class="btn btn-xs btn-ghost" onclick="prefillEmailFromProspect('${esc(p.name)}','${esc(p.hl)}','${esc(p.emp)}')">Email</button></td></tr>`
+  }).join('')+'</tbody>'
+}
+
+function prefillEmailFromProspect(nombre,cargo,empresa){
+  document.getElementById('em-nombre').value=nombre
+  document.getElementById('em-cargo').value=cargo
+  document.getElementById('em-empresa').value=empresa
+  document.getElementById('em-anios').value='—'
+  go('email')
+}
+
+function toggleVis(id){const el=document.getElementById(id);el.type=el.type==='password'?'text':'password'}
+
+function resetCriteria(){
+  document.getElementById('li-keywords').value='agente de seguros, asesor financiero, promotor de seguros'
+  document.getElementById('score-threshold').value=7;document.getElementById('score-th-val').textContent='7.0'
+  document.getElementById('li-limit').value='25'
+  document.getElementById('auto-score').checked=true;document.getElementById('auto-import').checked=true
+}
+
+function updateWeights(){
+  const w=[+document.getElementById('w1').value,+document.getElementById('w2').value,+document.getElementById('w3').value,+document.getElementById('w4').value]
+  ;['w1','w2','w3','w4'].forEach((id,i)=>document.getElementById(id+'-val').textContent=w[i]+'%')
+  const total=w.reduce((a,b)=>a+b,0)
+  const row=document.getElementById('weights-total')
+  row.className='ab '+(total===100?'ab-s':total>100?'ab-d':'ab-w')
+  row.innerHTML=`<span style="font-size:13px;font-weight:600">Total: ${total}%</span><span style="font-size:11px">${total===100?'Pesos balanceados — guardados al hacer clic':total>100?'Reduce los pesos':'Aumenta los pesos'}</span>`
+}
+
+function saveWeights(){
+  const w=[+document.getElementById('w1').value,+document.getElementById('w2').value,+document.getElementById('w3').value,+document.getElementById('w4').value]
+  localStorage.setItem('scoring_weights',JSON.stringify(w))
+  alert('Criterios guardados.')
+}
+
+function saveDespacho(){
+  const dep={
+    nombre:document.getElementById('dep-nombre').value,
+    reclutador:document.getElementById('dep-reclutador').value,
+    email:document.getElementById('dep-email').value,
+    calendly:document.getElementById('dep-calendly').value,
+    propuesta:document.getElementById('dep-propuesta').value
+  }
+  localStorage.setItem('despacho',JSON.stringify(dep))
+  alert('Datos del despacho guardados.')
+}
+
+function getDespacho(){
+  try{const d=localStorage.getItem('despacho');if(d)return JSON.parse(d)}catch{}
+  return{nombre:'Avanzza Seguros',reclutador:'Diego Vargas',email:'reclutamiento@avanzza.mx',calendly:'calendly.com/avanzza/entrevista',propuesta:'multiples aseguradoras, respaldo tecnologico y comisiones competitivas'}
+}
+
+function saveApiKey(){
+  const key=document.getElementById('apify-key').value.trim()
+  if(!key){alert('Ingresa una clave valida');return}
+  apiKey=key
+  localStorage.setItem('api_key',key)
+  setApiStatus('ok','Conectado y listo')
+}
+
+function setApiStatus(state,msg){
+  const cls={ok:'dot-ok',error:'dot-err',loading:'dot-blink'}[state]||'dot-off'
+  ;['api-dot','cfg-dot'].forEach(id=>{const el=document.getElementById(id);if(el)el.className='status-dot '+cls})
+  ;['api-label','cfg-status'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=msg})
+}
+
+async function testApi(){
+  const key=document.getElementById('apify-key').value.trim()||apiKey
+  if(!key){alert('Ingresa primero la clave de acceso');return}
+  const res=document.getElementById('api-test-result')
+  res.innerHTML='<div class="ab ab-i" style="font-size:11px">Probando conexion...</div>'
+  try{
+    const r=await fetch(`https://api.apify.com/v2/users/me?token=${key}`)
+    if(r.ok){const d=await r.json();apiKey=key;setApiStatus('ok','Conectado — '+(d.data?.username||'usuario'));res.innerHTML=`<div class="ab ab-s" style="font-size:11px">Exito · <strong>${d.data?.username||'—'}</strong></div>`}
+    else{setApiStatus('error','Clave invalida');res.innerHTML='<div class="ab ab-d" style="font-size:11px">Clave invalida o sin permisos</div>'}
+  }catch(e){setApiStatus('error','Error de red');res.innerHTML=`<div class="ab ab-w" style="font-size:11px">Error: ${e.message}</div>`}
+}
+
+async function callClaude(system,userMsg){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system,messages:[{role:'user',content:userMsg}]})})
+  const d=await r.json();return d.content?.[0]?.text||''
+}
+
+async function callClaudeWithImage(system,userMsg,imageData,mediaType){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:mediaType,data:imageData}},{type:'text',text:userMsg}]}]})})
+  const d=await r.json();return d.content?.[0]?.text||''
+}
+
+async function callClaudeWithPDF(system,userMsg,pdfData){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system,messages:[{role:'user',content:[{type:'document',source:{type:'base64',media_type:'application/pdf',data:pdfData}},{type:'text',text:userMsg}]}]})})
+  const d=await r.json();return d.content?.[0]?.text||''
+}
+
+function getWeights(){try{return JSON.parse(localStorage.getItem('scoring_weights'))||[40,30,20,10]}catch{return[40,30,20,10]}}
+
+// ——— FILE UPLOAD ———
+async function handleFileDrop(e){
+  e.preventDefault()
+  document.getElementById('upload-zone').classList.remove('drag')
+  const file=e.dataTransfer?.files?.[0]
+  if(file) await handleFileUpload(file)
+}
+
+async function handleFileUpload(file){
+  if(!file)return
+  const status=document.getElementById('upload-status')
+  const result=document.getElementById('doc-result-upload')
+  const allowed=['application/pdf','image/jpeg','image/png','image/jpg']
+  if(!allowed.includes(file.type)){status.innerHTML='<div class="ab ab-d" style="font-size:11px">Formato no soportado. Usa PDF, JPG o PNG.</div>';return}
+  status.innerHTML=`<div class="ab ab-i" style="font-size:11px"><span class="loading-dots"><span>.</span><span>.</span><span>.</span></span> Leyendo ${file.name}...</div>`
+  result.innerHTML=''
+  try{
+    const base64=await fileToBase64(file)
+    status.innerHTML=`<div class="ab ab-i" style="font-size:11px">Analizando con IA...</div>`
+    const system='Eres experto en documentos oficiales mexicanos CNSF. Responde SOLO JSON sin markdown: {"nombre_completo":"...","rfc":"...","cedula_numero":"...","vigencia_fecha":"YYYY-MM-DD","cedula_tipo":"...","tipo_doc":"cedula_cnsf|identificacion|comprobante|otro","confianza":0.95,"advertencias":[]}'
+    const prompt='Extrae todos los datos disponibles de este documento oficial mexicano.'
+    let txt
+    if(file.type==='application/pdf') txt=await callClaudeWithPDF(system,prompt,base64)
+    else txt=await callClaudeWithImage(system,prompt,base64,file.type)
+    let d;try{d=JSON.parse(txt.replace(/```json|```/g,'').trim())}catch{d={nombre_completo:'No detectado',confianza:.4,advertencias:['No se pudo parsear la respuesta']}}
+    status.innerHTML=`<div class="ab ab-s" style="font-size:11px">✓ Archivo procesado: <strong>${file.name}</strong></div>`
+    renderDocResult(d,'doc-result-upload')
+  }catch(e){
+    status.innerHTML=`<div class="ab ab-d" style="font-size:11px">Error: ${e.message}</div>`
+  }
+}
+
+function fileToBase64(file){
+  return new Promise((res,rej)=>{
+    const r=new FileReader()
+    r.onload=()=>res(r.result.split(',')[1])
+    r.onerror=()=>rej(new Error('Error al leer archivo'))
+    r.readAsDataURL(file)
+  })
+}
+
+// ——— SCORING ———
+async function runScoring(){
+  const nombre=document.getElementById('sc-nombre').value
+  const cargo=document.getElementById('sc-cargo').value
+  const empresa=document.getElementById('sc-empresa').value
+  const anios=document.getElementById('sc-anios').value
+  const ciudad=document.getElementById('sc-ciudad').value
+  const sector=document.getElementById('sc-sector').value
+  const btn=document.getElementById('sc-btn');const res=document.getElementById('sc-result')
+  btn.disabled=true;btn.textContent='Evaluando...'
+  res.innerHTML='<div class="ai-out streaming" style="margin-top:0">Analizando perfil...</div>'
+  try{
+    const w=getWeights()
+    const txt=await callClaude(
+      `Eres experto reclutador de agentes de seguros en Mexico. Responde SOLO con JSON valido sin markdown: {"score":7.5,"razon":"max 120 palabras","flags":["flag1"],"recomendacion":"contactar|revisar|descartar"}`,
+      `Evalua (pesos: sector ${w[0]}%, trayectoria ${w[1]}%, responsabilidad ${w[2]}%, ubicacion ${w[3]}%):\nNombre: ${nombre}\nCargo: ${cargo}\nEmpresa: ${empresa}\nAnos: ${anios}\nCiudad: ${ciudad}\nSector: ${sector}`)
+    let d;try{d=JSON.parse(txt.replace(/```json|```/g,'').trim())}catch{d={score:7,razon:txt,flags:[],recomendacion:'revisar'}}
+    const sc=d.score>=8?'sh':d.score>=6?'sm':'sl'
+    const rc=d.recomendacion==='contactar'?['ob','ot']:d.recomendacion==='descartar'?['db','dt']:['wb','wt']
+    const flagsH=(d.flags||[]).map(f=>'<span class="tag">'+f.replace(/_/g,' ')+'</span>').join('')
+    const emailBtnH=d.score>=7?`<div style="margin-top:10px"><button class="btn btn-teal btn-sm" onclick="prefillEmailFromScoring('${esc(nombre)}','${esc(cargo)}','${esc(empresa)}','${esc(anios)}')">✉ Generar email →</button></div>`:''
+    res.innerHTML=`<div class="card" style="padding:13px;margin-top:0">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <span class="score-b ${sc}" style="width:50px;height:50px;font-size:18px">${(+d.score).toFixed(1)}</span>
+        <div style="flex:1"><div style="font-size:14px;font-weight:600">${nombre}</div><div style="font-size:11px;color:var(--t2)">${cargo} · ${empresa}</div></div>
+        <span class="badge" style="background:var(--${rc[0]});color:var(--${rc[1]})">${d.recomendacion||'revisar'}</span>
+      </div>
+      <div class="ai-out" style="margin-bottom:9px">${d.razon||''}</div>
+      <div>${flagsH}</div>${emailBtnH}</div>`
+  }catch(e){res.innerHTML=`<div class="ai-out">Error: ${e.message}</div>`}
+  btn.disabled=false;btn.textContent='Evaluar con IA'
+}
+
+function prefillEmailFromScoring(n,c,e,a){
+  document.getElementById('em-nombre').value=n
+  document.getElementById('em-cargo').value=c
+  document.getElementById('em-empresa').value=e
+  document.getElementById('em-anios').value=a
+  go('email')
+}
+
+// ——— EMAIL IA ———
+async function runEmail(){
+  const nombre=document.getElementById('em-nombre').value
+  const cargo=document.getElementById('em-cargo').value
+  const empresa=document.getElementById('em-empresa').value
+  const anios=document.getElementById('em-anios').value
+  const tono=document.getElementById('em-tono').value
+  const largo=document.getElementById('em-largo').value
+  const btn=document.getElementById('em-btn');const res=document.getElementById('em-result')
+  btn.disabled=true;btn.textContent='Redactando...'
+  res.innerHTML='<div class="ai-out streaming" style="margin-top:0">Redactando email personalizado...</div>'
+  try{
+    const dep=getDespacho()
+    const palabras={corto:'110-130',medio:'160-200',largo:'230-260'}[largo]||'160-200'
+    const tonoDesc={formal:'espanol mexicano muy formal, usted',cercano:'profesional pero cercano, tuteo respetuoso',directo:'directo y conciso, sin rodeos, usted'}[tono]||'formal'
+    const txt=await callClaude(
+      `Eres director de reclutamiento de ${dep.nombre}. Tono: ${tonoDesc}. ${palabras} palabras exactas. Sin cliches como "mundo de las finanzas". Responde SOLO JSON sin markdown: {"asunto":"...","cuerpo":"parrafo1\\n\\nparrafo2\\n\\nparrafo3"}`,
+      `Email de invitacion para:\nNombre: ${nombre}\nCargo: ${cargo}\nEmpresa: ${empresa}\nAnos: ${anios}\nPropuesta de valor: ${dep.propuesta}\nCTA: videollamada 30 min · ${dep.calendly}\nFirma: ${dep.reclutador}, Director de Reclutamiento`)
+    let d;try{d=JSON.parse(txt.replace(/```json|```/g,'').trim())}catch{d={asunto:'Oportunidad profesional en seguros',cuerpo:txt}}
+    currentEmail={asunto:d.asunto,cuerpo:d.cuerpo,destinatario:nombre,depEmail:dep.email,dep}
+    // Show inline
+    const bodyFormatted=(d.cuerpo||'').replace(/\\n/g,'\n')
+    res.innerHTML=`<div class="card" style="margin-top:0">
+      <div class="ch">
+        <div><div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.6px">Asunto</div><div style="font-size:13px;font-weight:600;margin-top:2px" id="em-asunto-inline">${d.asunto}</div></div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-ghost btn-sm" onclick="openEmailModal()">🔍 Ver completo</button>
+          <button class="btn btn-ghost btn-sm" onclick="copyEmailInline()">📋 Copiar</button>
+          <button class="btn btn-teal btn-sm" onclick="openMailto()">✉ Abrir correo</button>
+        </div>
+      </div>
+      <div style="padding:13px">
+        <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px">Para: ${nombre}</div>
+        <div class="ai-out" id="em-body-inline" style="max-height:180px">${bodyFormatted}</div>
+        <div style="margin-top:11px;padding-top:11px;border-top:1px solid var(--border);font-size:11px;color:var(--t2)"><strong style="color:var(--t1)">${dep.reclutador}</strong><br>Director de Reclutamiento · ${dep.nombre}<br>${dep.email}</div>
+      </div></div>`
+  }catch(e){res.innerHTML=`<div class="ai-out">Error: ${e.message}</div>`}
+  btn.disabled=false;btn.textContent='✉ Redactar email con IA'
+}
+
+function openEmailModal(){
+  if(!currentEmail.asunto) return
+  const dep=currentEmail.dep||getDespacho()
+  const body=(currentEmail.cuerpo||'').replace(/\\n/g,'\n')
+  document.getElementById('modal-title').textContent='Email para '+currentEmail.destinatario
+  document.getElementById('modal-subtitle').textContent='Asunto: '+currentEmail.asunto
+  document.getElementById('modal-email-preview').innerHTML=`
+    <div class="email-subject">${currentEmail.asunto}</div>
+    <div class="email-to">Para: ${currentEmail.destinatario}</div>
+    <div class="email-body">${body}</div>
+    <div class="email-sig"><strong>${dep.reclutador||'Diego Vargas'}</strong><br>Director de Reclutamiento · ${dep.nombre||'Avanzza Seguros'}<br>${dep.email||'reclutamiento@avanzza.mx'}</div>`
+  document.getElementById('email-modal').classList.add('open')
+}
+
+function closeEmailModal(){document.getElementById('email-modal').classList.remove('open')}
+
+function copyEmail(){
+  const dep=currentEmail.dep||getDespacho()
+  const body=(currentEmail.cuerpo||'').replace(/\\n/g,'\n')
+  const full=`Asunto: ${currentEmail.asunto}\n\n${body}\n\n-- \n${dep.reclutador||'Diego Vargas'}\nDirector de Reclutamiento · ${dep.nombre||'Avanzza Seguros'}\n${dep.email||'reclutamiento@avanzza.mx'}`
+  navigator.clipboard.writeText(full).then(()=>alert('Email copiado al portapapeles')).catch(()=>alert('No se pudo copiar'))
+}
+
+function copyEmailInline(){
+  const body=document.getElementById('em-body-inline')?.textContent||''
+  const asunto=document.getElementById('em-asunto-inline')?.textContent||''
+  const dep=currentEmail.dep||getDespacho()
+  const full=`Asunto: ${asunto}\n\n${body}\n\n-- \n${dep.reclutador||'Diego Vargas'}\nDirector de Reclutamiento · ${dep.nombre||'Avanzza Seguros'}\n${dep.email||'reclutamiento@avanzza.mx'}`
+  navigator.clipboard.writeText(full).then(()=>alert('Copiado')).catch(()=>alert('Error'))
+}
+
+function copySubject(){
+  navigator.clipboard.writeText(currentEmail.asunto).then(()=>alert('Asunto copiado')).catch(()=>alert('Error'))
+}
+
+function openMailto(){
+  const dep=currentEmail.dep||getDespacho()
+  const body=(currentEmail.cuerpo||'').replace(/\\n/g,'\n')+`\n\n-- \n${dep.reclutador||'Diego Vargas'}\nDirector de Reclutamiento · ${dep.nombre||'Avanzza Seguros'}\n${dep.email||'reclutamiento@avanzza.mx'}`
+  const url=`mailto:?subject=${encodeURIComponent(currentEmail.asunto||'')}&body=${encodeURIComponent(body)}`
+  window.open(url,'_blank')
+}
+
+// ——— DOCS IA ———
+function renderDocResult(d, containerId){
+  const res=document.getElementById(containerId)
+  if(!res) return
+  const dias=d.vigencia_fecha?Math.floor((new Date(d.vigencia_fecha)-new Date())/86400000):null
+  const ac=dias===null?null:dias<=30?['db','dt']:dias<=60?['wb','wt']:['ob','ot']
+  const vigStyle=ac?(' style="color:var(--'+ac[1]+');font-weight:600"'):''
+  const vigText=(d.vigencia_fecha||'—')+(dias!=null?' ('+dias+' dias)':'')
+  const advH=(d.advertencias||[]).length?'<div style="margin-top:8px">'+d.advertencias.map(a=>'<div class="ab ab-w" style="font-size:11px;padding:6px 10px;margin-bottom:4px">⚠ '+a+'</div>').join('')+'</div>':''
+  const alertCls=ac?(ac[0]==='db'?'ab-d':ac[0]==='wb'?'ab-w':'ab-s'):''
+  const alertH=dias!==null&&dias<=60?`<div class="ab ${alertCls}" style="margin-top:8px;font-size:11px;padding:7px 10px">📅 Cedula vence en ${dias} dias — ${dias<=30?'accion inmediata':'programar renovacion'}</div>`:''
+  const btnSendEmail=d.nombre_completo&&d.nombre_completo!='No detectado'?`<button class="btn btn-teal btn-sm" style="margin-top:10px" onclick="prefillEmailFromDoc('${esc(d.nombre_completo)}')">✉ Generar email para este agente</button>`:''
+  res.innerHTML=`<div class="card" style="padding:13px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div style="font-size:12px;font-weight:600">Datos extraidos</div>
+      <span class="badge" style="background:var(--ob);color:var(--ot)">${Math.round((d.confianza||0)*100)}% confianza</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;font-size:12px">
+      <div><span style="color:var(--t3)">Nombre:</span> <strong>${d.nombre_completo||'—'}</strong></div>
+      <div><span style="color:var(--t3)">RFC:</span> <code>${d.rfc||'—'}</code></div>
+      <div><span style="color:var(--t3)">Cedula:</span> <code>${d.cedula_numero||'—'}</code></div>
+      <div><span style="color:var(--t3)">Tipo:</span> ${d.cedula_tipo||'—'}</div>
+      <div><span style="color:var(--t3)">Vigencia:</span> <span${vigStyle}>${vigText}</span></div>
+      <div><span style="color:var(--t3)">Documento:</span> ${d.tipo_doc||'—'}</div>
+    </div>${advH}${alertH}${btnSendEmail}</div>`
+}
+
+async function runDocExtract(containerId){
+  const id=containerId||'doc-result'
+  const texto=document.getElementById('doc-texto').value
+  if(!texto.trim()){alert('Ingresa el contenido del documento');return}
+  const btn=document.getElementById('doc-btn');const res=document.getElementById(id)
+  btn.disabled=true;btn.textContent='Extrayendo...'
+  res.innerHTML='<div class="ai-out streaming">Analizando documento...</div>'
+  try{
+    const txt=await callClaude(
+      'Experto en documentos oficiales mexicanos CNSF. Responde SOLO JSON sin markdown: {"nombre_completo":"...","rfc":"...","cedula_numero":"...","vigencia_fecha":"YYYY-MM-DD","cedula_tipo":"...","tipo_doc":"cedula_cnsf|identificacion|comprobante","confianza":0.95,"advertencias":[]}',
+      `Extrae datos:\n\n${texto}`)
+    let d;try{d=JSON.parse(txt.replace(/```json|```/g,'').trim())}catch{d={nombre_completo:'No detectado',confianza:.5,advertencias:['No parseable']}}
+    renderDocResult(d,id)
+  }catch(e){res.innerHTML='<div class="ai-out">Error: '+e.message+'</div>'}
+  btn.disabled=false;btn.textContent='Extraer datos con IA'
+}
+
+function prefillEmailFromDoc(nombre){
+  document.getElementById('em-nombre').value=nombre
+  document.getElementById('em-cargo').value='Agente de Seguros CNSF'
+  document.getElementById('em-empresa').value='—'
+  document.getElementById('em-anios').value='—'
+  go('email')
+}
+
+const DOC_SAMPLES={
+  cedula:'COMISION NACIONAL DE SEGUROS Y FIANZAS\nCEDULA DE AGENTE DE SEGUROS\nNombre: Jorge Hernandez Salinas\nRFC: HESJ800915HDF\nNumero de Cedula: 12345678\nVigencia: 10 de abril de 2025\nTipo: Vida y Ahorro',
+  ine:'INSTITUTO NACIONAL ELECTORAL\nCredencial para Votar\nNombre: JORGE HERNANDEZ SALINAS\nCURP: HESJ800915HDFRRN01\nFecha nacimiento: 15/09/1980\nDireccion: Insurgentes Sur 1234, Del Valle, CDMX',
+  comp:'Comision Federal de Electricidad\nFecha: 01/03/2026\nTitular: Jorge Hernandez Salinas\nDireccion: Insurgentes Sur 1234\nColonia: Del Valle\nCP: 03100 Ciudad de Mexico',
+}
+
+async function simDoc(type){
+  const r=document.getElementById('r-'+type)
+  r.innerHTML='<div style="color:var(--teal);font-size:11px;padding:6px 0">Procesando...</div>'
+  document.getElementById('doc-texto').value=DOC_SAMPLES[type]
+  await sleep(400)
+  const btn=document.getElementById('doc-btn')
+  btn.disabled=true;btn.textContent='Extrayendo...'
+  try{
+    const txt=await callClaude(
+      'Experto en documentos oficiales mexicanos CNSF. Responde SOLO JSON sin markdown: {"nombre_completo":"...","rfc":"...","cedula_numero":"...","vigencia_fecha":"YYYY-MM-DD","cedula_tipo":"...","tipo_doc":"cedula_cnsf|identificacion|comprobante","confianza":0.95,"advertencias":[]}',
+      `Extrae datos:\n\n${DOC_SAMPLES[type]}`)
+    let d;try{d=JSON.parse(txt.replace(/```json|```/g,'').trim())}catch{d={nombre_completo:'No detectado',confianza:.5,advertencias:[]}}
+    const dias=d.vigencia_fecha?Math.floor((new Date(d.vigencia_fecha)-new Date())/86400000):null
+    const vigStyle=dias!==null&&dias<=60?' style="color:var(--dt);font-weight:600"':dias!==null&&dias<=90?' style="color:var(--wt);font-weight:600"':''
+    r.innerHTML=`<div style="font-size:11px;color:var(--ot);font-weight:600;margin-bottom:4px">✓ Extraccion exitosa</div>
+      <div style="font-size:10px;line-height:1.8;color:var(--t1)">
+        <div><span style="color:var(--t3)">Nombre:</span> <strong>${d.nombre_completo||'—'}</strong></div>
+        ${d.rfc?'<div><span style="color:var(--t3)">RFC:</span> <code>'+d.rfc+'</code></div>':''}
+        ${d.cedula_numero?'<div><span style="color:var(--t3)">Cedula:</span> <code>'+d.cedula_numero+'</code></div>':''}
+        ${d.vigencia_fecha?'<div><span style="color:var(--t3)">Vigencia:</span> <span'+vigStyle+'>'+d.vigencia_fecha+(dias!==null?' ('+dias+'d)':'')+'</span></div>':''}
+        <div><span style="color:var(--t3)">Confianza:</span> ${Math.round((d.confianza||0)*100)}%</div>
+      </div>`
+    document.getElementById('doc-result').innerHTML=''
+  }catch(e){r.innerHTML='<div style="font-size:10px;color:var(--dt)">Error: '+e.message+'</div>'}
+  btn.disabled=false;btn.textContent='Extraer datos con IA'
+}
+
+// ——— LINKEDIN ———
+async function runLinkedInSearch(){
+  const btn=document.getElementById('li-search-btn')
+  const res=document.getElementById('li-results')
+  const key=apiKey||localStorage.getItem('api_key')||''
+  if(!key){res.innerHTML='<div class="ab ab-d" style="font-size:12px;margin:10px">Configura tu clave Apify en <strong>Configuracion → Conexiones</strong> primero.</div>';return}
+  const keywords=document.getElementById('li-keywords').value
+  const locations=[...document.querySelectorAll('#locations-pills .pill.on')].map(p=>p.textContent).join(', ')
+  const limit=parseInt(document.getElementById('li-limit').value)
+  const autoScore=document.getElementById('auto-score').checked
+  const threshold=parseFloat(document.getElementById('score-threshold').value)
+  btn.disabled=true;btn.textContent='Buscando...'
+  document.getElementById('li-result-count').textContent='Ejecutando...'
+  res.innerHTML=`<div style="padding:20px;text-align:center;color:var(--t2)">
+    <div style="font-size:13px;font-weight:500;margin-bottom:4px">Buscando perfiles en LinkedIn</div>
+    <div class="progress-bar" style="margin:12px 0 4px"><div class="progress-fill" id="li-progress" style="width:0%"></div></div>
+    <div style="font-size:10px;color:var(--t3)" id="li-progress-label">Iniciando...</div></div>`
+  try{
+    let p=0;const pi=setInterval(()=>{p=Math.min(p+1,85);const el=document.getElementById('li-progress');if(el)el.style.width=p+'%';else clearInterval(pi)},200)
+    const runRes=await fetch(`https://api.apify.com/v2/acts/2SyF0bVxmgGr8IVCZ/runs?token=${key}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({searchUrl:`https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(keywords+' '+locations)}`,maxResults:limit,proxyConfiguration:{useApifyProxy:true}})})
+    clearInterval(pi)
+    if(!runRes.ok){const err=await runRes.json();throw new Error(err.error?.message||'Error al iniciar la busqueda')}
+    const runData=await runRes.json()
+    const runId=runData.data?.id
+    if(!runId) throw new Error('No se obtuvo ID de ejecucion')
+    let attempts=0;let items=[]
+    while(attempts<20){
+      await sleep(3000);attempts++
+      const sRes=await fetch(`https://api.apify.com/v2/actor-runs/${runId}?token=${key}`)
+      const sData=await sRes.json()
+      const status=sData.data?.status
+      const pct=Math.min(attempts*5,90)
+      const el=document.getElementById('li-progress');if(el)el.style.width=pct+'%'
+      const lbl=document.getElementById('li-progress-label');if(lbl)lbl.textContent=`Estado: ${status} (${attempts}/20)`
+      if(status==='SUCCEEDED'){
+        const iRes=await fetch(`https://api.apify.com/v2/datasets/${sData.data?.defaultDatasetId}/items?token=${key}&limit=${limit}`)
+        items=await iRes.json();break
+      }
+      if(status==='FAILED'||status==='ABORTED') throw new Error('La busqueda fallo: '+status)
+    }
+    if(autoScore&&items.length>0) await scoreResults(items,threshold)
+    else renderResults(items,threshold,false)
+  }catch(e){
+    res.innerHTML=`<div class="ab ab-d" style="margin:10px;font-size:12px"><strong>Error:</strong> ${e.message}</div>`
+    document.getElementById('li-result-count').textContent='Error'
+  }
+  btn.disabled=false;btn.textContent='Ejecutar busqueda automatizada'
+}
+
+async function scoreResults(items,threshold){
+  const res=document.getElementById('li-results')
+  res.innerHTML=`<div style="padding:16px;text-align:center;color:var(--t2)"><div style="font-size:11px">Evaluando ${items.length} perfiles...</div><div class="progress-bar" style="margin:8px 0"><div class="progress-fill" id="score-progress" style="width:0%"></div></div><div style="font-size:10px;color:var(--t3)" id="score-label">Iniciando...</div></div>`
+  const scored=[]
+  for(let i=0;i<items.length;i++){
+    const item=items[i]
+    const pct=Math.round(((i+1)/items.length)*100)
+    const el=document.getElementById('score-progress');if(el)el.style.width=pct+'%'
+    const lbl=document.getElementById('score-label');if(lbl)lbl.textContent=`${i+1}/${items.length}: ${item.fullName||item.name||'Perfil'}`
+    try{
+      const w=getWeights()
+      const txt=await callClaude(`Eres experto reclutador seguros Mexico. Responde SOLO JSON: {"score":7.5,"razon":"max 60 palabras","flags":[],"recomendacion":"contactar|revisar|descartar"}`,`Evalua (pesos ${w[0]}/${w[1]}/${w[2]}/${w[3]}%):\nNombre: ${item.fullName||item.name||'—'}\nCargo: ${item.headline||'—'}\nEmpresa: ${item.companyName||'—'}\nUbicacion: ${item.location||'—'}`)
+      let d;try{d=JSON.parse(txt.replace(/```json|```/g,'').trim())}catch{d={score:5,razon:txt,flags:[],recomendacion:'revisar'}}
+      scored.push({...item,score_ia:d.score,score_razon:d.razon,score_flags:d.flags,recomendacion:d.recomendacion})
+    }catch{scored.push({...item,score_ia:null,score_razon:'Error',score_flags:[],recomendacion:'revisar'})}
+    await sleep(300)
+  }
+  liResults=scored
+  renderResults(scored,threshold,true)
+}
+
+function renderResults(items,threshold,scored){
+  const res=document.getElementById('li-results')
+  if(!items||!items.length){res.innerHTML='<div style="padding:20px;text-align:center;color:var(--t3);font-size:12px">No se encontraron perfiles.</div>';return}
+  const sorted=[...items].sort((a,b)=>(b.score_ia||0)-(a.score_ia||0))
+  const above=sorted.filter(p=>p.score_ia>=threshold)
+  document.getElementById('li-result-count').textContent=`${items.length} perfiles${scored?' · '+above.length+' sobre umbral':''}`
+  res.innerHTML=sorted.map((p,i)=>{
+    const score=p.score_ia
+    const sc=score>=8?'sh':score>=6?'sm':'sl'
+    const ab=score&&score>=threshold
+    const initials=(p.fullName||p.name||'?').split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase()
+    const rc=p.recomendacion==='contactar'?['ob','ot']:p.recomendacion==='descartar'?['db','dt']:['wb','wt']
+    const scoreHtml=score!=null?`<span class="score-b ${sc}" style="width:32px;height:32px;font-size:11px;flex-shrink:0">${(+score).toFixed(1)}</span>`:''
+    const razonHtml=scored&&p.score_razon?`<div style="font-size:10px;color:var(--t2);margin-top:5px;line-height:1.4">${p.score_razon}</div>`:''
+    const flagsHtml=scored&&p.score_flags?.length?'<div style="margin-top:4px">'+p.score_flags.slice(0,3).map(f=>'<span class="tag" style="font-size:9px">'+f.replace(/_/g,' ')+'</span>').join('')+'</div>':''
+    const actionsHtml=scored?`<div style="display:flex;gap:6px;margin-top:7px;align-items:center"><span class="badge" style="background:var(--${rc[0]});color:var(--${rc[1]})">${p.recomendacion||'revisar'}</span>${ab?`<button class="btn btn-xs btn-teal" onclick="importProfile(${i})">Importar</button>`:''}<button class="btn btn-xs btn-ghost" onclick="prefillEmailFromLI(${i})">Email</button></div>`:''
+    return`<div class="profile-card${ab?' importing':''}" style="margin-bottom:8px"><div class="p-av">${initials}</div><div style="flex:1;min-width:0"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px"><div><div style="font-size:13px;font-weight:500">${p.fullName||p.name||'Perfil '+i}</div><div style="font-size:11px;color:var(--t2)">${p.headline||'—'}</div><div style="font-size:10px;color:var(--t3)">${p.companyName||''} ${p.location?'· '+p.location:''}</div></div>${scoreHtml}</div>${razonHtml}${flagsHtml}${actionsHtml}</div></div>`
+  }).join('')
+}
+
+function importProfile(idx){
+  const sorted=[...liResults].sort((a,b)=>(b.score_ia||0)-(a.score_ia||0))
+  const p=sorted[idx]
+  if(!p)return
+  PROSPECTS.unshift({name:p.fullName||p.name||'—',hl:(p.headline||'—')+' · '+(p.companyName||'—'),emp:p.companyName||'—',ciudad:p.location||'—',score:p.score_ia||5,estado:'prospecto'})
+  alert(`${p.fullName||p.name} importado a prospectos`)
+}
+
+function prefillEmailFromLI(idx){
+  const sorted=[...liResults].sort((a,b)=>(b.score_ia||0)-(a.score_ia||0))
+  const p=sorted[idx]
+  if(p){
+    document.getElementById('em-nombre').value=p.fullName||p.name||''
+    document.getElementById('em-cargo').value=p.headline||p.occupation||''
+    document.getElementById('em-empresa').value=p.companyName||p.company||''
+    document.getElementById('em-anios').value='—'
+    go('email')
+  }
+}
+
+function esc(s){return(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;')}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+
+// Init
+const savedKey=localStorage.getItem('api_key')
+if(savedKey){apiKey=savedKey;const el=document.getElementById('apify-key');if(el)el.value=savedKey;setApiStatus('ok','Token cargado')}
+buildFunnel()
+renderProspects()
+
+// Close modal on overlay click
+document.getElementById('email-modal').addEventListener('click',function(e){if(e.target===this)closeEmailModal()})
+</script>
+</body>
+</html>
