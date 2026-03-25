@@ -1,0 +1,52 @@
+{
+  "type": "object",
+  "properties": {
+    "razon_social": {
+      "type": "string"
+    },
+    "rfc": {
+      "type": "string"
+    },
+    "direccion": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "telefono": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "footer": {
+      "type": "string"
+    },
+    "iva_default": {
+      "type": "number"
+    },
+    "prefijo_folio": {
+      "type": "string"
+    },
+    "siguiente_numero": {
+      "type": "number"
+    },
+    "dias_credito": {
+      "type": "number"
+    },
+    "color_principal": {
+      "type": "string"
+    },
+    "color_acento": {
+      "type": "string"
+    },
+    "plantilla_default": {
+      "type": "string"
+    },
+    "claude_model": {
+      "type": "string"
+    }
+  },
+  "required": [],
+  "name": "InvoiceConfig"
+}

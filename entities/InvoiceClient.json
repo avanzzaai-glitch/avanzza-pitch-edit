@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "nombre": {
+      "type": "string"
+    },
+    "rfc": {
+      "type": "string"
+    },
+    "direccion": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "telefono": {
+      "type": "string"
+    },
+    "limite_credito": {
+      "type": "number"
+    },
+    "notas": {
+      "type": "string"
+    }
+  },
+  "required": [],
+  "name": "InvoiceClient"
+}

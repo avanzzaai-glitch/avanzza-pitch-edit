@@ -1,0 +1,87 @@
+{
+  "type": "object",
+  "properties": {
+    "numero": {
+      "type": "string"
+    },
+    "fecha_emision": {
+      "type": "string"
+    },
+    "fecha_vencimiento": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "borrador",
+        "pendiente",
+        "pagada",
+        "vencida"
+      ]
+    },
+    "moneda": {
+      "type": "string",
+      "enum": [
+        "MXN",
+        "USD",
+        "EUR"
+      ]
+    },
+    "cliente_id": {
+      "type": "string"
+    },
+    "cliente_nombre": {
+      "type": "string"
+    },
+    "cliente_rfc": {
+      "type": "string"
+    },
+    "cliente_direccion": {
+      "type": "string"
+    },
+    "cliente_email": {
+      "type": "string"
+    },
+    "emisor_nombre": {
+      "type": "string"
+    },
+    "emisor_rfc": {
+      "type": "string"
+    },
+    "emisor_direccion": {
+      "type": "string"
+    },
+    "emisor_footer": {
+      "type": "string"
+    },
+    "conceptos": {
+      "type": "string"
+    },
+    "subtotal": {
+      "type": "number"
+    },
+    "iva_porcentaje": {
+      "type": "number"
+    },
+    "iva_monto": {
+      "type": "number"
+    },
+    "total": {
+      "type": "number"
+    },
+    "notas": {
+      "type": "string"
+    },
+    "color_principal": {
+      "type": "string"
+    },
+    "color_acento": {
+      "type": "string"
+    },
+    "plantilla": {
+      "type": "string"
+    }
+  },
+  "required": [],
+  "name": "Invoice"
+}
