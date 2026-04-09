@@ -33,10 +33,10 @@ a{color:inherit;text-decoration:none}
 ul{list-style:none}
 
 /* ─── CURSOR personalizado ───────────────── */
-@media(hover:hover){body{cursor:none}}
+body.has-cursor{cursor:none}
 .cursor{position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference}
-.cursor-dot{width:8px;height:8px;background:var(--white);border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:width .15s,height .15s}
-.cursor-ring{width:36px;height:36px;border:1.5px solid rgba(255,255,255,.7);border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:all .12s var(--ease);pointer-events:none}
+.cursor-dot{width:8px;height:8px;background:var(--white);border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:width .15s,height .15s;opacity:0;pointer-events:none}
+.cursor-ring{width:36px;height:36px;border:1.5px solid rgba(255,255,255,.7);border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s,background .2s;pointer-events:none;opacity:0}
 body:hover .cursor-dot{opacity:1}
 
 /* ─── LOADING SCREEN ─────────────────────── */
@@ -538,7 +538,7 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
     </div>
   </div>
   <div class="hero-right">
-    <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/56bcb494c_generated_image.png" alt="Productos Maxi Ave"/>
+    <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/4824efb81_generated_image.png" alt="Productos Maxi Ave"/>
     <div class="hero-pill">
       <span class="hero-pill-num">24h</span>
       <span class="hero-pill-txt">entrega garantizada</span>
@@ -573,7 +573,7 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
 <!-- NOSOTROS (split) -->
 <div class="split" id="nosotros">
   <div class="split-img r from-left">
-    <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/502f434d9_generated_image.png" alt="Maxi Ave — calidad"/>
+    <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/b50ce1626_generated_image.png" alt="Maxi Ave — calidad"/>
     <div class="float-badge">
       <span class="float-badge-n">15+</span>
       <span class="float-badge-t">años en el mercado</span>
@@ -605,7 +605,7 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
   <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:0">
     <div>
       <div class="label-tag r">Catálogo</div>
-      <h2 class="h2-serif r d1">Todo lo que su negocio<br/><em>necesita</em>, en un solo lugar</h2>
+      <h2 class="h2-serif r d1">Pollo fresco y sus<br/><em>derivados</em>, todo el año</h2>
     </div>
     <a href="#contacto" class="r d2" style="font-family:var(--ff-sans);font-weight:700;font-size:.84rem;color:var(--r);border-bottom:1.5px solid var(--r);padding-bottom:2px;display:inline-flex;align-items:center;gap:6px;transition:gap .2s" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">Solicitar catálogo completo →</a>
   </div>
@@ -613,55 +613,55 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
 
     <!-- Card grande -->
     <div class="cat-card large r d1">
-      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/c444e1a83_generated_image.png" alt="Pollo Fresco"/>
+      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/b90226ba8_generated_image.png" alt="Pollo entero fresco"/>
       <div class="cat-body">
-        <span class="cat-tag">Más vendido</span>
-        <span class="cat-name">Pollo Fresco</span>
+        <span class="cat-tag">El más pedido</span>
+        <span class="cat-name">Pollo entero</span>
         <a href="#contacto" class="cat-cta">Cotizar ahora →</a>
       </div>
     </div>
 
     <div class="cat-card r d2">
-      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/efd585f96_generated_image.png" alt="Cortes de Res"/>
+      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/650902cc4_generated_image.png" alt="Pechuga sin hueso"/>
       <div class="cat-body">
-        <span class="cat-tag">Premium</span>
-        <span class="cat-name">Cortes de Res</span>
+        <span class="cat-tag">Alta rotación</span>
+        <span class="cat-name">Pechuga sin hueso</span>
         <a href="#contacto" class="cat-cta">Cotizar ahora →</a>
       </div>
     </div>
 
     <div class="cat-card r d3">
-      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/45dbb726d_generated_image.png" alt="Piezas de Pollo"/>
+      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/29f57e788_generated_image.png" alt="Pierna y muslo"/>
       <div class="cat-body">
         <span class="cat-tag">Mayoreo</span>
-        <span class="cat-name">Piezas y Cortes</span>
+        <span class="cat-name">Pierna y muslo</span>
         <a href="#contacto" class="cat-cta">Cotizar ahora →</a>
       </div>
     </div>
 
     <div class="cat-card r d2">
-      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/c8cf5762a_generated_image.png" alt="Huevo"/>
+      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/b9cfe6b45_generated_image.png" alt="Alas de pollo"/>
       <div class="cat-body">
-        <span class="cat-tag">Granja directa</span>
-        <span class="cat-name">Huevo</span>
+        <span class="cat-tag">Muy solicitadas</span>
+        <span class="cat-name">Alas</span>
         <a href="#contacto" class="cat-cta">Cotizar ahora →</a>
       </div>
     </div>
 
     <div class="cat-card r d3">
-      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/68619cfb8_generated_image.png" alt="Pavo"/>
+      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/4824efb81_generated_image.png" alt="Menudencias"/>
       <div class="cat-body">
-        <span class="cat-tag">Temporada / Todo el año</span>
-        <span class="cat-name">Pavo</span>
+        <span class="cat-tag">Disponible todo el año</span>
+        <span class="cat-name">Menudencias</span>
         <a href="#contacto" class="cat-cta">Cotizar ahora →</a>
       </div>
     </div>
 
     <div class="cat-card r d4">
-      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/b142cfb56_generated_image.png" alt="Productos variados"/>
+      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/b50ce1626_generated_image.png" alt="Surtido de pollo"/>
       <div class="cat-body">
-        <span class="cat-tag">Complementos</span>
-        <span class="cat-name">Aceites, Aderezos<br/>y más</span>
+        <span class="cat-tag">Paquete</span>
+        <span class="cat-name">Surtido completo</span>
         <a href="#contacto" class="cat-cta">Cotizar ahora →</a>
       </div>
     </div>
@@ -709,8 +709,8 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
             <td style="padding:13px 0;text-align:right;font-size:.82rem;color:var(--fog)">por 360 pzas</td>
           </tr>
           <tr>
-            <td style="padding:13px 0;font-size:.92rem;font-weight:600;color:var(--ink)">Cortes de res</td>
-            <td style="padding:13px 0;text-align:right;font-size:.92rem;color:var(--r);font-weight:700">Desde $95</td>
+            <td style="padding:13px 0;font-size:.92rem;font-weight:600;color:var(--ink)">Menudencias</td>
+            <td style="padding:13px 0;text-align:right;font-size:.92rem;color:var(--r);font-weight:700">$18 – $28</td>
             <td style="padding:13px 0;text-align:right;font-size:.82rem;color:var(--fog)">por kg</td>
           </tr>
         </tbody>
@@ -781,7 +781,7 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
 <!-- PROCESO (split invertido) -->
 <section class="proceso-section" id="distribucion">
   <div class="proc-visual r from-left">
-    <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/4d0d7b3f0_generated_image.png" alt="Distribución Maxi Ave"/>
+    <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/b90226ba8_generated_image.png" alt="Distribución Maxi Ave"/>
     <div class="proc-badge">
       <span class="proc-badge-n">5am</span>
       <span class="proc-badge-l">apertura diaria</span>
@@ -954,10 +954,35 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
 <script>
 /* ── CURSOR ──────────────────────── */
 const dot=document.getElementById('cd'),ring=document.getElementById('cr');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
-(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
-document.querySelectorAll('a,button,[onclick]').forEach(el=>{el.addEventListener('mouseenter',()=>{dot.style.width='14px';dot.style.height='14px';ring.style.width='54px';ring.style.height='54px';ring.style.borderColor='rgba(196,30,58,.7)'});el.addEventListener('mouseleave',()=>{dot.style.width='8px';dot.style.height='8px';ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(255,255,255,.7)'})});
+let mx=0,my=0,rx=0,ry=0,cursorActive=false;
+document.addEventListener('mousemove',e=>{
+  if(!cursorActive){
+    cursorActive=true;
+    document.body.classList.add('has-cursor');
+    dot.style.opacity='1';ring.style.opacity='1';
+  }
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button,[onclick]').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    dot.style.width='14px';dot.style.height='14px';
+    ring.style.width='54px';ring.style.height='54px';
+    ring.style.borderColor='rgba(196,30,58,.8)';
+    ring.style.background='rgba(196,30,58,.06)';
+  });
+  el.addEventListener('mouseleave',()=>{
+    dot.style.width='8px';dot.style.height='8px';
+    ring.style.width='36px';ring.style.height='36px';
+    ring.style.borderColor='rgba(255,255,255,.7)';
+    ring.style.background='transparent';
+  });
+});;
 
 /* ── LOADER ──────────────────────── */
 window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hidden'),1300));
