@@ -351,15 +351,11 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
 .d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
 
 /* ─── MOBILE DRAWER ─────────────────────────── */
-.mobile-overlay{display:none;position:fixed;inset:0;z-index:998;background:rgba(0,0,0,.55);backdrop-filter:blur(4px)}
+.mobile-overlay{display:none;position:fixed;top:70px;left:0;right:0;bottom:0;z-index:995;background:rgba(0,0,0,.55)}
 .mobile-overlay.open{display:block}
-.mobile-drawer{position:fixed;top:0;right:0;bottom:0;z-index:999;width:280px;background:var(--ink2);transform:translateX(100%);transition:transform .38s var(--ease);display:flex;flex-direction:column;padding:0;overflow:hidden}
+.mobile-drawer{position:fixed;top:70px;right:0;bottom:0;z-index:996;width:280px;max-width:85vw;background:var(--ink2);transform:translateX(100%);transition:transform .38s var(--ease);display:flex;flex-direction:column;padding:0;overflow:hidden;box-shadow:-8px 0 32px rgba(0,0,0,.4)}
 .mobile-drawer.open{transform:translateX(0)}
-.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid rgba(255,255,255,.07)}
-.drawer-logo{font-family:var(--ff-sans);font-weight:900;font-size:1.2rem;color:var(--white);letter-spacing:-.5px}
-.drawer-logo b{color:var(--r)}
-.drawer-close{width:36px;height:36px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:rgba(255,255,255,.6);transition:all .2s}
-.drawer-close:hover{background:var(--r);border-color:var(--r);color:var(--white)}
+
 .drawer-links{padding:16px 0;flex:1}
 .drawer-links a{display:flex;align-items:center;padding:15px 22px;font-family:var(--ff-sans);font-weight:600;font-size:1rem;color:rgba(255,255,255,.75);border-bottom:1px solid rgba(255,255,255,.05);transition:all .2s;gap:10px}
 .drawer-links a:hover,.drawer-links a:active{background:rgba(255,255,255,.04);color:var(--white);padding-left:28px}
@@ -791,10 +787,7 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
 <!-- MOBILE OVERLAY + DRAWER -->
 <div class="mobile-overlay" id="mOverlay" onclick="closeNav()"></div>
 <div class="mobile-drawer" id="mDrawer">
-  <div class="drawer-head">
-    <span class="drawer-logo">MAXI<b>AVE</b></span>
-    <div class="drawer-close" onclick="closeNav()">✕</div>
-  </div>
+  <div style="height:4px;background:var(--r);width:100%"></div>
   <div class="drawer-links">
     <a href="#nosotros" onclick="closeNav()">🏢 Nosotros</a>
     <a href="#productos" onclick="closeNav()">🍗 Productos</a>
@@ -838,14 +831,28 @@ window.addEventListener('scroll',()=>{
 
 /* ── NAV MOBILE ──────────────────── */
 function toggleNav(){
-  document.getElementById('mDrawer').classList.add('open');
-  document.getElementById('mOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  const drawer=document.getElementById('mDrawer');
+  const overlay=document.getElementById('mOverlay');
+  const burger=document.getElementById('burger');
+  const isOpen=drawer.classList.contains('open');
+  if(isOpen){
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+    burger.innerHTML='<span></span><span></span><span></span>';
+  } else {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+    burger.innerHTML='<span style="transform:rotate(45deg) translate(4px,4px)"></span><span style="opacity:0"></span><span style="transform:rotate(-45deg) translate(4px,-4px)"></span>';
+  }
 }
 function closeNav(){
   document.getElementById('mDrawer').classList.remove('open');
   document.getElementById('mOverlay').classList.remove('open');
   document.body.style.overflow='';
+  const burger=document.getElementById('burger');
+  if(burger) burger.innerHTML='<span></span><span></span><span></span>';
 }
 
 /* ── COUNTERS ────────────────────── */
