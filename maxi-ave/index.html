@@ -1,1408 +1,694 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maxi Ave — Comercializadora de Alimentos</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --rojo: #C41E3A;
-      --rojo-dark: #9B1530;
-      --dorado: #FFB800;
-      --dorado-dark: #D99B00;
-      --negro: #1A1A1A;
-      --gris: #F5F5F5;
-      --gris-mid: #E0E0E0;
-      --blanco: #FFFFFF;
-      --texto: #333333;
-      --texto-light: #666666;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Open Sans', sans-serif;
-      color: var(--texto);
-      background: var(--blanco);
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(10px);
-      border-bottom: 3px solid var(--rojo);
-      padding: 0 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 72px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .nav-logo-icon {
-      width: 46px;
-      height: 46px;
-      background: var(--rojo);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-    }
-
-    .nav-logo-text {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 1.4rem;
-      color: var(--negro);
-      letter-spacing: -0.5px;
-    }
-
-    .nav-logo-text span { color: var(--rojo); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--texto);
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--rojo); }
-
-    .nav-cta {
-      background: var(--rojo);
-      color: var(--blanco) !important;
-      padding: 10px 22px;
-      border-radius: 8px;
-      transition: background 0.2s !important;
-    }
-
-    .nav-cta:hover { background: var(--rojo-dark) !important; color: var(--blanco) !important; }
-
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-
-    .nav-hamburger span {
-      display: block;
-      width: 26px;
-      height: 2.5px;
-      background: var(--negro);
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      padding-top: 72px;
-      background: linear-gradient(135deg, var(--negro) 0%, #2d0a12 50%, #1a0008 100%);
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('https://media.base44.com/images/public/69bcee79d908094d21d71ce3/e81bbf03a_generated_image.png') center/cover no-repeat;
-      opacity: 0.18;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(26,0,8,0.95) 45%, rgba(26,0,8,0.3) 100%);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 80px 5%;
-      max-width: 680px;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: var(--dorado);
-      color: var(--negro);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 100px;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 900;
-      color: var(--blanco);
-      line-height: 1.1;
-      margin-bottom: 20px;
-      letter-spacing: -1px;
-    }
-
-    .hero h1 span { color: var(--dorado); }
-
-    .hero-desc {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.7;
-      margin-bottom: 40px;
-      max-width: 520px;
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: var(--rojo);
-      color: var(--blanco);
-      padding: 15px 32px;
-      border-radius: 10px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 2px solid var(--rojo);
-    }
-
-    .btn-primary:hover {
-      background: var(--rojo-dark);
-      border-color: var(--rojo-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(196,30,58,0.4);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--blanco);
-      padding: 15px 32px;
-      border-radius: 10px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-decoration: none;
-      border: 2px solid rgba(255,255,255,0.4);
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--dorado);
-      color: var(--dorado);
-      transform: translateY(-2px);
-    }
-
-    .hero-stats {
-      position: absolute;
-      bottom: 48px;
-      left: 5%;
-      z-index: 2;
-      display: flex;
-      gap: 48px;
-    }
-
-    .hero-stat {
-      text-align: left;
-    }
-
-    .hero-stat-num {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 2rem;
-      color: var(--dorado);
-      line-height: 1;
-    }
-
-    .hero-stat-label {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 0.5px;
-      margin-top: 4px;
-    }
-
-    /* ── SECCIÓN GENÉRICA ── */
-    section { padding: 100px 5%; }
-
-    .section-label {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--rojo);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      font-weight: 800;
-      color: var(--negro);
-      line-height: 1.2;
-      margin-bottom: 16px;
-      letter-spacing: -0.5px;
-    }
-
-    .section-title span { color: var(--rojo); }
-
-    .section-desc {
-      font-size: 1.05rem;
-      color: var(--texto-light);
-      line-height: 1.7;
-      max-width: 580px;
-    }
-
-    .section-header { margin-bottom: 60px; }
-
-    /* ── NOSOTROS ── */
-    .nosotros {
-      background: var(--gris);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      padding: 100px 5%;
-    }
-
-    .nosotros-img-wrap {
-      position: relative;
-    }
-
-    .nosotros-img-wrap img {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-    }
-
-    .nosotros-badge {
-      position: absolute;
-      bottom: -20px;
-      right: -20px;
-      background: var(--rojo);
-      color: var(--blanco);
-      padding: 20px 28px;
-      border-radius: 12px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 1.1rem;
-      box-shadow: 0 10px 30px rgba(196,30,58,0.4);
-      line-height: 1.2;
-    }
-
-    .nosotros-badge small {
-      display: block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      opacity: 0.85;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .nosotros-features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 40px;
-    }
-
-    .feature-card {
-      background: var(--blanco);
-      border-radius: 12px;
-      padding: 20px;
-      border-left: 4px solid var(--rojo);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-
-    .feature-card-icon { font-size: 1.6rem; margin-bottom: 8px; }
-
-    .feature-card h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--negro);
-      margin-bottom: 4px;
-    }
-
-    .feature-card p {
-      font-size: 0.82rem;
-      color: var(--texto-light);
-      line-height: 1.5;
-    }
-
-    /* ── PRODUCTOS ── */
-    .productos { background: var(--blanco); }
-
-    .productos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-    }
-
-    .producto-card {
-      background: var(--blanco);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-      border: 1px solid var(--gris-mid);
-    }
-
-    .producto-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.14);
-    }
-
-    .producto-img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background: var(--gris);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-    }
-
-    .producto-body { padding: 24px; }
-
-    .producto-tag {
-      display: inline-block;
-      background: rgba(196,30,58,0.08);
-      color: var(--rojo);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.7rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 100px;
-      margin-bottom: 10px;
-    }
-
-    .producto-body h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--negro);
-      margin-bottom: 8px;
-    }
-
-    .producto-body p {
-      font-size: 0.88rem;
-      color: var(--texto-light);
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .producto-link {
-      color: var(--rojo);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: gap 0.2s;
-    }
-
-    .producto-link:hover { gap: 10px; }
-
-    /* ── POR QUÉ ELEGIRNOS ── */
-    .porque {
-      background: linear-gradient(135deg, var(--rojo) 0%, var(--rojo-dark) 100%);
-      padding: 100px 5%;
-      color: var(--blanco);
-    }
-
-    .porque .section-label { color: var(--dorado); }
-    .porque .section-title { color: var(--blanco); }
-    .porque .section-title span { color: var(--dorado); }
-    .porque .section-desc { color: rgba(255,255,255,0.8); }
-
-    .porque-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      margin-top: 60px;
-    }
-
-    .porque-card {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 16px;
-      padding: 32px;
-      transition: background 0.3s;
-    }
-
-    .porque-card:hover { background: rgba(255,255,255,0.18); }
-
-    .porque-card-icon {
-      width: 56px;
-      height: 56px;
-      background: var(--dorado);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      margin-bottom: 20px;
-    }
-
-    .porque-card h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--blanco);
-      margin-bottom: 10px;
-    }
-
-    .porque-card p {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.6;
-    }
-
-    /* ── DISTRIBUCIÓN ── */
-    .distribucion { background: var(--gris); }
-
-    .distribucion-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .distribucion-img {
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-    }
-
-    .distribucion-img img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .proceso-steps { margin-top: 36px; }
-
-    .paso {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      margin-bottom: 28px;
-    }
-
-    .paso-num {
-      min-width: 44px;
-      height: 44px;
-      background: var(--rojo);
-      color: var(--blanco);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-
-    .paso-content h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--negro);
-      margin-bottom: 4px;
-    }
-
-    .paso-content p {
-      font-size: 0.88rem;
-      color: var(--texto-light);
-      line-height: 1.6;
-    }
-
-    /* ── TESTIMONIOS ── */
-    .testimonios { background: var(--blanco); }
-
-    .testimonios-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
-    }
-
-    .testimonio-card {
-      background: var(--gris);
-      border-radius: 16px;
-      padding: 32px;
-      position: relative;
-    }
-
-    .testimonio-card::before {
-      content: '"';
-      position: absolute;
-      top: 16px;
-      right: 24px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 5rem;
-      font-weight: 900;
-      color: var(--rojo);
-      opacity: 0.15;
-      line-height: 1;
-    }
-
-    .testimonio-stars {
-      color: var(--dorado);
-      font-size: 1rem;
-      margin-bottom: 16px;
-    }
-
-    .testimonio-card p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--texto);
-      margin-bottom: 24px;
-      font-style: italic;
-    }
-
-    .testimonio-author {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .testimonio-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--rojo);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--blanco);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-    }
-
-    .testimonio-info strong {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--negro);
-    }
-
-    .testimonio-info small {
-      font-size: 0.8rem;
-      color: var(--texto-light);
-    }
-
-    /* ── CONTACTO ── */
-    .contacto {
-      background: var(--negro);
-      padding: 100px 5%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .contacto .section-label { color: var(--dorado); }
-    .contacto .section-title { color: var(--blanco); }
-    .contacto .section-desc { color: rgba(255,255,255,0.7); }
-
-    .contacto-info { margin-top: 40px; }
-
-    .contacto-item {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      margin-bottom: 28px;
-    }
-
-    .contacto-item-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--rojo);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-
-    .contacto-item-text strong {
-      display: block;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      color: var(--blanco);
-      font-size: 0.95rem;
-      margin-bottom: 4px;
-    }
-
-    .contacto-item-text span {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.65);
-    }
-
-    /* Formulario */
-    .contacto-form {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 40px;
-    }
-
-    .contacto-form h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--blanco);
-      margin-bottom: 28px;
-    }
-
-    .form-group { margin-bottom: 20px; }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 8px;
-      letter-spacing: 0.3px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 10px;
-      padding: 13px 16px;
-      color: var(--blanco);
-      font-size: 0.95rem;
-      font-family: 'Open Sans', sans-serif;
-      transition: border-color 0.2s;
-      outline: none;
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--dorado);
-    }
-
-    .form-group select option { background: var(--negro); }
-
-    .form-group textarea { resize: vertical; min-height: 120px; }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    .btn-form {
-      width: 100%;
-      background: var(--rojo);
-      color: var(--blanco);
-      border: none;
-      padding: 15px;
-      border-radius: 10px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 8px;
-    }
-
-    .btn-form:hover {
-      background: var(--rojo-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(196,30,58,0.4);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #0f0f0f;
-      padding: 60px 5% 30px;
-      border-top: 3px solid var(--rojo);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 48px;
-    }
-
-    .footer-brand p {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.7;
-      margin-top: 16px;
-      max-width: 280px;
-    }
-
-    .footer-logo-text {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 1.5rem;
-      color: var(--blanco);
-    }
-
-    .footer-logo-text span { color: var(--rojo); }
-
-    .footer-col h4 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.9);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .footer-col ul { list-style: none; }
-
-    .footer-col ul li { margin-bottom: 12px; }
-
-    .footer-col ul li a {
-      text-decoration: none;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .footer-col ul li a:hover { color: var(--dorado); }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-bottom p {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.35);
-    }
-
-    .footer-socials {
-      display: flex;
-      gap: 12px;
-    }
-
-    .footer-social {
-      width: 36px;
-      height: 36px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: background 0.2s;
-    }
-
-    .footer-social:hover { background: var(--rojo); }
-
-    /* ── WHATSAPP FLOAT ── */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 999;
-      background: #25D366;
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      text-decoration: none;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
-      transition: transform 0.3s, box-shadow 0.3s;
-      animation: pulse-wa 2s infinite;
-    }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 32px rgba(37,211,102,0.7);
-      animation: none;
-    }
-
-    @keyframes pulse-wa {
-      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
-      50% { box-shadow: 0 4px 40px rgba(37,211,102,0.8); }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-
-      .nosotros,
-      .distribucion-inner,
-      .contacto {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .nosotros-badge { right: 0; bottom: -16px; }
-
-      .hero-stats { gap: 28px; }
-
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-
-      .form-row { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 600px) {
-      section { padding: 70px 5%; }
-      .hero-stats { flex-wrap: wrap; gap: 20px; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Maxi Ave — Comercializadora Avícola Mayorista</title>
+<meta name="description" content="Distribución mayorista de pollo, pavo y productos avícolas. Entrega 24h, cadena de frío garantizada. 15+ años de experiencia."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --rojo:#C41E3A;--rojo-dark:#9B1530;--rojo-light:#E8304A;
+  --dorado:#F5A623;--dorado-light:#FFD166;
+  --negro:#0D0D0D;--carbon:#16213E;
+  --gris:#F7F7F7;--gris-mid:#E8E8E8;--blanco:#FFFFFF;
+  --texto:#2D2D2D;--texto-light:#6B7280;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--texto);background:var(--blanco);overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:'Montserrat',sans-serif}
+img{display:block;max-width:100%}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:72px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
+nav.top{background:transparent}
+nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(16px);box-shadow:0 2px 24px rgba(0,0,0,.1);border-bottom:2px solid var(--rojo)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-box{width:42px;height:42px;background:var(--rojo);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 14px rgba(196,30,58,.4);transition:transform .2s}
+.logo:hover .logo-box{transform:rotate(-6deg) scale(1.05)}
+.logo-name{font-weight:900;font-size:1.45rem;letter-spacing:-1px;color:#fff;transition:color .4s}
+nav.scrolled .logo-name{color:var(--negro)}
+.logo-name em{color:var(--dorado);font-style:normal}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{text-decoration:none;font-weight:600;font-size:.88rem;color:rgba(255,255,255,.88);transition:color .25s;position:relative}
+nav.scrolled .nav-links a{color:var(--texto)}
+.nav-links a:not(.cta)::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--rojo);transform:scaleX(0);transition:transform .2s}
+.nav-links a:not(.cta):hover::after{transform:scaleX(1)}
+.nav-links a:not(.cta):hover{color:var(--dorado)!important}
+.cta{background:var(--rojo)!important;color:#fff!important;padding:10px 22px;border-radius:8px;font-weight:700;font-size:.85rem;box-shadow:0 4px 16px rgba(196,30,58,.4)!important;transition:all .2s!important}
+.cta:hover{background:var(--rojo-dark)!important;transform:translateY(-2px);box-shadow:0 8px 28px rgba(196,30,58,.55)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:none;padding:4px}
+.hamburger span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+nav.scrolled .hamburger span{background:var(--negro)}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--carbon)}
+.hero-bg{position:absolute;inset:0;background:url('https://media.base44.com/images/public/69bcee79d908094d21d71ce3/c444e1a83_generated_image.png') center/cover no-repeat;opacity:.2;transform:scale(1.06);animation:hbg 18s ease-in-out infinite alternate}
+@keyframes hbg{from{transform:scale(1.06) translateY(0)}to{transform:scale(1.1) translateY(-2%)}}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(110deg,rgba(10,10,14,.97) 0%,rgba(22,33,62,.85) 55%,rgba(10,10,14,.45) 100%)}
+.hero-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.deco-circle{position:absolute;border-radius:50%;opacity:.07}
+.dc1{width:500px;height:500px;background:var(--rojo);top:-150px;right:5%;animation:float1 22s ease-in-out infinite}
+.dc2{width:220px;height:220px;background:var(--dorado);bottom:8%;left:3%;animation:float1 16s ease-in-out infinite reverse}
+@keyframes float1{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-28px) rotate(180deg)}}
+.hero-inner{position:relative;z-index:2;padding:120px 5% 100px;max-width:720px}
+.eyebrow-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.3);color:var(--dorado-light);font-weight:700;font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;padding:7px 16px;border-radius:100px;margin-bottom:28px;animation:fadeUp .6s ease both}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--dorado);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.hero h1{font-size:clamp(2.6rem,5.2vw,4rem);font-weight:900;line-height:1.08;letter-spacing:-2px;color:#fff;margin-bottom:22px;animation:fadeUp .6s .1s ease both}
+.hero h1 .gold{background:linear-gradient(135deg,var(--dorado),var(--dorado-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tw-wrap{position:relative;display:inline-block}
+.tw-wrap::after{content:'|';color:var(--dorado);animation:blink .8s infinite;margin-left:1px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-p{font-size:1.08rem;line-height:1.78;color:rgba(255,255,255,.7);max-width:540px;margin-bottom:42px;animation:fadeUp .6s .2s ease both}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .6s .3s ease both}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--rojo);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.93rem;padding:15px 32px;border-radius:12px;text-decoration:none;box-shadow:0 8px 28px rgba(196,30,58,.45);transition:all .25s;position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.12),transparent)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(196,30,58,.6);background:var(--rojo-light)}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;color:rgba(255,255,255,.82);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.93rem;padding:15px 28px;border-radius:12px;text-decoration:none;border:1.5px solid rgba(255,255,255,.22);transition:all .25s}
+.btn-ghost:hover{border-color:var(--dorado);color:var(--dorado);background:rgba(245,166,35,.08);transform:translateY(-3px)}
+.stats-bar{position:absolute;bottom:0;left:0;right:0;z-index:2;background:rgba(255,255,255,.04);backdrop-filter:blur(18px);border-top:1px solid rgba(255,255,255,.08);padding:26px 5%;display:flex}
+.stat-item{flex:1;text-align:center;padding:0 20px;border-right:1px solid rgba(255,255,255,.09)}
+.stat-item:first-child{text-align:left;padding-left:0}
+.stat-item:last-child{border-right:none;text-align:right;padding-right:0}
+.stat-n{font-weight:900;font-size:2.1rem;color:var(--dorado);display:block;line-height:1;font-family:'Montserrat',sans-serif}
+.stat-l{font-size:.78rem;color:rgba(255,255,255,.45);display:block;margin-top:5px;letter-spacing:.4px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+
+/* TICKER */
+.ticker{background:var(--rojo);padding:13px 0;overflow:hidden}
+.ticker-track{display:flex;animation:tick 30s linear infinite;white-space:nowrap}
+.tick-item{display:inline-flex;align-items:center;gap:10px;padding:0 32px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.82);border-right:1px solid rgba(255,255,255,.18)}
+.tick-item em{color:var(--dorado-light);font-style:normal;font-size:1rem}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* NOSOTROS */
+.nosotros{padding:110px 5%;background:var(--gris);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.nos-visual{position:relative}
+.nos-img-main{width:100%;height:490px;object-fit:cover;border-radius:20px;box-shadow:0 24px 64px rgba(0,0,0,.16)}
+.nos-img-sec{position:absolute;bottom:-24px;right:-24px;width:185px;height:185px;object-fit:cover;border-radius:16px;border:5px solid #fff;box-shadow:0 12px 40px rgba(0,0,0,.15)}
+.nos-badge{position:absolute;top:22px;left:-18px;background:var(--rojo);color:#fff;padding:14px 20px;border-radius:14px;box-shadow:0 8px 28px rgba(196,30,58,.45);font-family:'Montserrat',sans-serif}
+.nos-badge-n{font-size:1.9rem;font-weight:900;line-height:1;display:block}
+.nos-badge-t{font-size:.68rem;font-weight:600;opacity:.82;letter-spacing:1px;text-transform:uppercase;display:block;margin-top:2px}
+.eyebrow{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--rojo);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:26px;height:2px;background:var(--rojo);display:block}
+.sec-title{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;line-height:1.15;letter-spacing:-.7px;color:var(--negro);margin-bottom:16px}
+.sec-title em{font-style:normal;background:linear-gradient(135deg,var(--rojo),var(--rojo-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-desc{font-size:1rem;line-height:1.75;color:var(--texto-light);max-width:500px;margin-bottom:34px}
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.feat{background:#fff;border-radius:14px;padding:18px;border:1px solid var(--gris-mid);display:flex;gap:13px;align-items:flex-start;box-shadow:0 2px 10px rgba(0,0,0,.05);transition:all .25s}
+.feat:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.1);border-color:var(--rojo)}
+.feat-ico{width:40px;height:40px;min-width:40px;background:rgba(196,30,58,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.feat h4{font-size:.88rem;font-weight:700;color:var(--negro);margin-bottom:3px}
+.feat p{font-size:.78rem;color:var(--texto-light);line-height:1.5}
+
+/* PRODUCTOS */
+.productos{padding:110px 5%;background:#fff}
+.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:56px;flex-wrap:wrap;gap:16px}
+.ver-todos{color:var(--rojo);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.84rem;text-decoration:none;border-bottom:2px solid var(--rojo);padding-bottom:2px;display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
+.ver-todos:hover{gap:10px}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.prod-card{border-radius:20px;overflow:hidden;border:1px solid var(--gris-mid);box-shadow:0 2px 12px rgba(0,0,0,.06);background:#fff;transition:all .35s cubic-bezier(.34,1.56,.64,1)}
+.prod-card:hover{transform:translateY(-10px) scale(1.01);box-shadow:0 24px 64px rgba(0,0,0,.14);border-color:transparent}
+.prod-img{position:relative;height:220px;overflow:hidden;background:var(--gris)}
+.prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.prod-card:hover .prod-img img{transform:scale(1.08)}
+.prod-img-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4.5rem;background:linear-gradient(135deg,#fff8f8,#fff3ee)}
+.prod-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(196,30,58,.92),transparent 60%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:22px;opacity:0;transition:opacity .3s}
+.prod-card:hover .prod-overlay{opacity:1}
+.prod-ol-btn{background:#fff;color:var(--rojo);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;padding:9px 22px;border-radius:100px;text-decoration:none;transform:translateY(10px);transition:transform .3s;display:inline-block}
+.prod-card:hover .prod-ol-btn{transform:translateY(0)}
+.prod-body{padding:20px 22px 22px}
+.prod-tag{display:inline-block;background:rgba(196,30,58,.08);color:var(--rojo);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.67rem;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:9px}
+.prod-body h3{font-size:1.08rem;font-weight:700;color:var(--negro);margin-bottom:6px}
+.prod-body p{font-size:.83rem;color:var(--texto-light);line-height:1.6;margin-bottom:14px}
+.prod-foot{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--gris-mid)}
+.avail{display:flex;align-items:center;gap:6px;font-size:.76rem;font-weight:600;color:#16a34a}
+.avail::before{content:'';width:7px;height:7px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.2);animation:pulse 2s infinite;display:block}
+.prod-link{color:var(--rojo);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;text-decoration:none;display:flex;align-items:center;gap:4px;transition:gap .2s}
+.prod-link:hover{gap:8px}
+
+/* VENTAJAS DARK */
+.ventajas{padding:110px 5%;background:linear-gradient(135deg,var(--negro) 0%,#1a0a12 55%,var(--carbon) 100%);position:relative;overflow:hidden}
+.ventajas::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(196,30,58,.1) 0%,transparent 70%)}
+.ventajas .eyebrow{color:var(--dorado)}.ventajas .eyebrow::before{background:var(--dorado)}
+.ventajas .sec-title{color:#fff}
+.ventajas .sec-title em{background:linear-gradient(135deg,var(--dorado),var(--dorado-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ventajas .sec-desc{color:rgba(255,255,255,.55)}
+.vent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.vent-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:34px;transition:all .3s;position:relative;overflow:hidden}
+.vent-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rojo),var(--dorado));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.vent-card:hover{background:rgba(255,255,255,.07);border-color:rgba(196,30,58,.3);transform:translateY(-6px)}
+.vent-card:hover::before{transform:scaleX(1)}
+.vent-ico{width:58px;height:58px;background:linear-gradient(135deg,var(--rojo),var(--rojo-dark));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:20px;box-shadow:0 8px 24px rgba(196,30,58,.38)}
+.vent-card h3{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:9px}
+.vent-card p{font-size:.86rem;color:rgba(255,255,255,.55);line-height:1.7}
+
+/* VOLÚMENES */
+.volumenes{padding:110px 5%;background:var(--gris)}
+.vol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.vol-card{background:#fff;border-radius:20px;padding:36px 30px;border:2px solid var(--gris-mid);position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);transition:all .3s}
+.vol-card.star{background:var(--rojo);border-color:var(--rojo);transform:scale(1.04);box-shadow:0 16px 48px rgba(196,30,58,.45)}
+.vol-card:not(.star):hover{border-color:var(--rojo);transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.12)}
+.pop-badge{position:absolute;top:18px;right:18px;background:var(--dorado);color:var(--negro);font-family:'Montserrat',sans-serif;font-weight:800;font-size:.67rem;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px}
+.vol-ico{font-size:2.8rem;margin-bottom:14px}
+.vol-card h3{font-size:1.15rem;font-weight:800;color:var(--negro);margin-bottom:6px}
+.vol-card.star h3{color:#fff}
+.vol-range{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:900;color:var(--rojo);margin-bottom:18px;line-height:1}
+.vol-card.star .vol-range{color:var(--dorado-light)}
+.vol-ul{list-style:none;margin-bottom:26px}
+.vol-ul li{display:flex;align-items:center;gap:9px;font-size:.86rem;color:var(--texto-light);padding:7px 0;border-bottom:1px solid var(--gris)}
+.vol-card.star .vol-ul li{color:rgba(255,255,255,.78);border-bottom-color:rgba(255,255,255,.1)}
+.vol-ul li::before{content:'✓';width:20px;height:20px;min-width:20px;background:rgba(196,30,58,.09);color:var(--rojo);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800}
+.vol-card.star .vol-ul li::before{background:rgba(255,255,255,.14);color:var(--dorado-light)}
+.btn-vol{display:block;text-align:center;padding:12px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;text-decoration:none;background:var(--gris);color:var(--texto);border:2px solid var(--gris-mid);transition:all .2s}
+.vol-card.star .btn-vol{background:#fff;color:var(--rojo);border-color:transparent}
+.btn-vol:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+
+/* PROCESO */
+.proceso{padding:110px 5%;background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.proc-img-wrap{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.14)}
+.proc-img-wrap img{width:100%;height:480px;object-fit:cover;display:block}
+.proc-badge{position:absolute;bottom:22px;left:22px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-radius:14px;padding:14px 20px;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.proc-badge strong{display:block;font-size:1.4rem;font-weight:900;color:var(--rojo);font-family:'Montserrat',sans-serif}
+.proc-badge small{font-size:.73rem;color:var(--texto-light);font-weight:600}
+.pasos{margin-top:36px}
+.paso{display:flex;gap:18px;align-items:flex-start;margin-bottom:22px;position:relative}
+.paso:not(:last-child)::after{content:'';position:absolute;left:19px;top:46px;width:2px;height:calc(100% - 6px);background:linear-gradient(to bottom,var(--rojo),transparent)}
+.paso-n{width:42px;height:42px;min-width:42px;background:var(--rojo);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;box-shadow:0 4px 14px rgba(196,30,58,.38);position:relative;z-index:1}
+.paso-body h4{font-size:.96rem;font-weight:700;color:var(--negro);margin-bottom:4px}
+.paso-body p{font-size:.83rem;color:var(--texto-light);line-height:1.6}
+
+/* TESTIMONIOS */
+.testimonios{padding:110px 5%;background:var(--gris)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.testi-card{background:#fff;border-radius:20px;padding:34px;box-shadow:0 2px 12px rgba(0,0,0,.05);border:1px solid var(--gris-mid);position:relative;overflow:hidden;transition:all .3s}
+.testi-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.1);border-color:var(--rojo)}
+.testi-q{font-size:5rem;line-height:.8;color:var(--rojo);opacity:.1;font-family:'Montserrat',sans-serif;font-weight:900;position:absolute;top:16px;right:22px}
+.stars{color:var(--dorado);font-size:.9rem;letter-spacing:2px;margin-bottom:14px}
+.testi-card blockquote{font-size:.92rem;line-height:1.75;color:var(--texto);font-style:italic;margin-bottom:24px}
+.testi-author{display:flex;align-items:center;gap:13px;padding-top:18px;border-top:1px solid var(--gris-mid)}
+.testi-av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--rojo),var(--rojo-dark));display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#fff;box-shadow:0 4px 12px rgba(196,30,58,.3)}
+.testi-name{font-size:.92rem;font-weight:700;color:var(--negro)}
+.testi-role{font-size:.78rem;color:var(--texto-light)}
+
+/* CTA BANNER */
+.cta-banner{padding:80px 5%;background:var(--rojo);display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;top:-80px;right:-80px;width:380px;height:380px;border-radius:50%;background:rgba(255,255,255,.06)}
+.cta-banner::after{content:'';position:absolute;bottom:-60px;left:8%;width:240px;height:240px;border-radius:50%;background:rgba(0,0,0,.07)}
+.cta-txt{position:relative;z-index:1}
+.cta-txt h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:#fff;letter-spacing:-.4px;margin-bottom:7px}
+.cta-txt p{font-size:.98rem;color:rgba(255,255,255,.78)}
+.cta-btns{display:flex;gap:14px;flex-wrap:wrap;position:relative;z-index:1}
+.btn-white{background:#fff;color:var(--rojo);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.92rem;padding:14px 30px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.2)}
+.btn-outline-w{background:transparent;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.92rem;padding:14px 26px;border-radius:10px;text-decoration:none;border:2px solid rgba(255,255,255,.38);display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-outline-w:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-3px)}
+
+/* CONTACTO */
+.contacto{padding:110px 5%;background:var(--negro);display:grid;grid-template-columns:1fr 1.2fr;gap:80px}
+.contacto .eyebrow{color:var(--dorado)}.contacto .eyebrow::before{background:var(--dorado)}
+.contacto .sec-title{color:#fff}
+.contacto .sec-title em{background:linear-gradient(135deg,var(--dorado),var(--dorado-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.contacto .sec-desc{color:rgba(255,255,255,.5)}
+.c-items{margin-top:34px}
+.c-item{display:flex;gap:15px;align-items:flex-start;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.06)}
+.c-item:last-child{border-bottom:none}
+.c-ico{width:46px;height:46px;min-width:46px;background:rgba(196,30,58,.14);border:1px solid rgba(196,30,58,.28);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;transition:all .2s}
+.c-item:hover .c-ico{background:var(--rojo);border-color:var(--rojo)}
+.c-text strong{display:block;color:#fff;font-size:.88rem;font-weight:600;margin-bottom:3px}
+.c-text span{color:rgba(255,255,255,.46);font-size:.84rem}
+.form-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:42px}
+.form-box h3{font-size:1.35rem;font-weight:700;color:#fff;margin-bottom:30px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:.8rem;font-weight:600;color:rgba(255,255,255,.45);margin-bottom:7px;letter-spacing:.3px}
+.fg input,.fg select,.fg textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 15px;color:#fff;font-family:'Inter',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s,background .2s}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.22)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--dorado);background:rgba(255,255,255,.09)}
+.fg select option{background:#1a1a2e}
+.fg textarea{resize:vertical;min-height:105px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.btn-submit{width:100%;margin-top:4px;background:var(--rojo);color:#fff;border:none;cursor:pointer;padding:15px;border-radius:12px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.98rem;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 8px 28px rgba(196,30,58,.42);transition:all .25s}
+.btn-submit:hover{background:var(--rojo-light);transform:translateY(-3px);box-shadow:0 16px 48px rgba(196,30,58,.58)}
+
+/* FOOTER */
+footer{background:#080808;padding:66px 5% 28px;border-top:3px solid var(--rojo)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:52px}
+.fbrand-name{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.5rem;color:#fff;letter-spacing:-.5px}
+.fbrand-name em{font-style:normal;color:var(--rojo)}
+.footer-brand p{font-size:.86rem;color:rgba(255,255,255,.35);line-height:1.7;margin-top:13px;max-width:255px}
+.f-socials{display:flex;gap:9px;margin-top:18px}
+.f-soc{width:36px;height:36px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:.95rem;transition:all .2s}
+.f-soc:hover{background:var(--rojo);border-color:var(--rojo);transform:translateY(-3px)}
+.footer-col h4{font-size:.75rem;font-weight:700;color:rgba(255,255,255,.44);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul li a{font-size:.86rem;color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:var(--dorado)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:.78rem;color:rgba(255,255,255,.22)}
+.f-certs{display:flex;gap:10px}
+.cert{font-size:.7rem;font-weight:600;color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1);padding:4px 10px;border-radius:100px}
+
+/* WHATSAPP */
+.wa-btn{position:fixed;bottom:26px;right:26px;z-index:999;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;text-decoration:none;box-shadow:0 4px 22px rgba(37,211,102,.5);transition:all .3s}
+.wa-btn::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(37,211,102,.38);animation:ring 2.2s ease infinite}
+@keyframes ring{0%{transform:scale(1);opacity:1}100%{transform:scale(1.55);opacity:0}}
+.wa-btn:hover{transform:scale(1.1) translateY(-4px);box-shadow:0 12px 40px rgba(37,211,102,.7)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+.reveal.v{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .prod-grid,.vent-grid,.vol-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .nosotros,.proceso,.contacto{grid-template-columns:1fr;gap:48px}
+  .vol-card.star{transform:none}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:768px){
+  .nav-links{display:none}.hamburger{display:flex}
+  .stats-bar{flex-wrap:wrap}
+  .stat-item{flex:1 1 50%;padding:14px;border-right:none;border-bottom:1px solid rgba(255,255,255,.07);text-align:center!important}
+  .prod-grid,.vent-grid,.vol-grid,.testi-grid{grid-template-columns:1fr}
+  .cta-banner{text-align:center;justify-content:center}
+  .fg-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:14px;text-align:center}
+  .nos-img-sec{display:none}.nos-badge{left:0}
+}
+</style>
 </head>
 <body>
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="top" id="nav">
+  <a class="logo" href="#">
+    <div class="logo-box">🐔</div>
+    <span class="logo-name">MAXI<em>AVE</em></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#volumenes">Volúmenes</a></li>
+    <li><a href="#testimonios">Clientes</a></li>
+    <li><a href="#contacto" class="cta">Cotizar ahora</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#">
-      <div class="nav-logo-icon">🐔</div>
-      <span class="nav-logo-text">MAXI<span>AVE</span></span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#productos">Productos</a></li>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-deco"><div class="deco-circle dc1"></div><div class="deco-circle dc2"></div></div>
+  <div class="hero-inner">
+    <div class="eyebrow-pill"><span class="pill-dot"></span>Distribución Mayorista · México</div>
+    <h1>Tu proveedor de <span class="gold">confianza</span> en <span class="tw-wrap" id="tw">productos avícolas</span></h1>
+    <p class="hero-p">Pollo fresco, pavo, piezas y procesados directo del productor a tu negocio. Cadena de frío garantizada, entrega en 24 horas y precios de mayoreo real.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-primary">📋 Solicitar cotización</a>
+      <a href="#productos" class="btn-ghost">Ver catálogo →</a>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-n" data-target="15">0</span><span class="stat-l">años de experiencia</span></div>
+    <div class="stat-item"><span class="stat-n" data-target="500">0</span><span class="stat-l">clientes activos</span></div>
+    <div class="stat-item"><span class="stat-n" data-target="24">0</span><span class="stat-l">horas de entrega</span></div>
+    <div class="stat-item"><span class="stat-n" data-target="100">0</span><span class="stat-l">% cadena de frío</span></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="tick-item"><em>🍗</em>Pollo entero fresco</div>
+    <div class="tick-item"><em>🦃</em>Pavo de granja</div>
+    <div class="tick-item"><em>🍖</em>Piezas y cortes</div>
+    <div class="tick-item"><em>🥚</em>Huevo de rancho</div>
+    <div class="tick-item"><em>❄️</em>Cadena de frío 0°C–4°C</div>
+    <div class="tick-item"><em>🚛</em>Flota refrigerada propia</div>
+    <div class="tick-item"><em>🏅</em>Certificado SENASICA</div>
+    <div class="tick-item"><em>💳</em>Crédito a 30 días</div>
+    <div class="tick-item"><em>🍗</em>Pollo entero fresco</div>
+    <div class="tick-item"><em>🦃</em>Pavo de granja</div>
+    <div class="tick-item"><em>🍖</em>Piezas y cortes</div>
+    <div class="tick-item"><em>🥚</em>Huevo de rancho</div>
+    <div class="tick-item"><em>❄️</em>Cadena de frío 0°C–4°C</div>
+    <div class="tick-item"><em>🚛</em>Flota refrigerada propia</div>
+    <div class="tick-item"><em>🏅</em>Certificado SENASICA</div>
+    <div class="tick-item"><em>💳</em>Crédito a 30 días</div>
+  </div>
+</div>
+
+<!-- NOSOTROS -->
+<section class="nosotros" id="nosotros">
+  <div class="nos-visual reveal">
+    <div class="nos-badge"><span class="nos-badge-n">15+</span><span class="nos-badge-t">Años en el mercado</span></div>
+    <img class="nos-img-main" src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/041f49f6e_generated_image.png" alt="Planta Maxi Ave"/>
+    <img class="nos-img-sec" src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/c444e1a83_generated_image.png" alt="Producto Maxi Ave"/>
+  </div>
+  <div>
+    <div class="eyebrow reveal">Quiénes somos</div>
+    <h2 class="sec-title reveal d1">Tradición y frescura en <em>cada entrega</em></h2>
+    <p class="sec-desc reveal d2">En Maxi Ave llevamos más de 15 años siendo el puente confiable entre los mejores productores avícolas y los negocios que exigen calidad constante. Cadena de frío ininterrumpida desde origen hasta su puerta.</p>
+    <div class="feats">
+      <div class="feat reveal d2"><div class="feat-ico">❄️</div><div><h4>Cadena de frío total</h4><p>0°C a 4°C sin excepción. Monitoreo en tiempo real.</p></div></div>
+      <div class="feat reveal d3"><div class="feat-ico">🏅</div><div><h4>Certificación SENASICA</h4><p>Cumplimiento NOM de inocuidad alimentaria.</p></div></div>
+      <div class="feat reveal d3"><div class="feat-ico">🚛</div><div><h4>Flota propia</h4><p>Unidades refrigeradas con GPS y sensores de temperatura.</p></div></div>
+      <div class="feat reveal d4"><div class="feat-ico">📊</div><div><h4>Precios mayoreo</h4><p>Directo del productor. Sin intermediarios.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="productos" id="productos">
+  <div class="sec-header">
+    <div><div class="eyebrow reveal">Catálogo</div><h2 class="sec-title reveal d1">Nuestros <em>productos</em></h2></div>
+    <a href="#contacto" class="ver-todos reveal">Ver todo el catálogo →</a>
+  </div>
+  <div class="prod-grid">
+
+    <div class="prod-card reveal d1">
+      <div class="prod-img">
+        <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/c444e1a83_generated_image.png" alt="Pollo entero fresco"/>
+        <div class="prod-overlay"><a href="#contacto" class="prod-ol-btn">Cotizar ahora</a></div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-tag">Fresco · Premium</span>
+        <h3>Pollo entero fresco</h3>
+        <p>Sacrificado en el día. Calibres 1.4–2.2 kg con menudencias. Máxima frescura garantizada.</p>
+        <div class="prod-foot"><span class="avail">Disponible hoy</span><a href="#contacto" class="prod-link">Cotizar →</a></div>
+      </div>
+    </div>
+
+    <div class="prod-card reveal d2">
+      <div class="prod-img">
+        <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/45dbb726d_generated_image.png" alt="Piezas de pollo"/>
+        <div class="prod-overlay"><a href="#contacto" class="prod-ol-btn">Cotizar ahora</a></div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-tag">Piezas · Mayoreo</span>
+        <h3>Piezas de pollo</h3>
+        <p>Pechuga, muslo, pierna, ala y rabadilla. Cajas de 20 kg o bulto. Precio por volumen.</p>
+        <div class="prod-foot"><span class="avail">Disponible hoy</span><a href="#contacto" class="prod-link">Cotizar →</a></div>
+      </div>
+    </div>
+
+    <div class="prod-card reveal d3">
+      <div class="prod-img">
+        <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/68619cfb8_generated_image.png" alt="Pavo entero"/>
+        <div class="prod-overlay"><a href="#contacto" class="prod-ol-btn">Cotizar ahora</a></div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-tag">Temporada · Granja</span>
+        <h3>Pavo entero</h3>
+        <p>Pavos de 5 a 9 kg, frescos y congelados. Pedidos especiales disponibles todo el año.</p>
+        <div class="prod-foot"><span class="avail">Disponible hoy</span><a href="#contacto" class="prod-link">Cotizar →</a></div>
+      </div>
+    </div>
+
+    <div class="prod-card reveal d1">
+      <div class="prod-img">
+        <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/e81bbf03a_generated_image.png" alt="Pollo marinado"/>
+        <div class="prod-overlay"><a href="#contacto" class="prod-ol-btn">Cotizar ahora</a></div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-tag">Procesado · Listo</span>
+        <h3>Pollo marinado</h3>
+        <p>Pechuga y pierna con sazonadores naturales. Ideal para restaurantes y cocinas industriales.</p>
+        <div class="prod-foot"><span class="avail">Disponible hoy</span><a href="#contacto" class="prod-link">Cotizar →</a></div>
+      </div>
+    </div>
+
+    <div class="prod-card reveal d2">
+      <div class="prod-img">
+        <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/c8cf5762a_generated_image.png" alt="Huevo de granja"/>
+        <div class="prod-overlay"><a href="#contacto" class="prod-ol-btn">Cotizar ahora</a></div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-tag">Granja · Fresco</span>
+        <h3>Huevo de granja</h3>
+        <p>Huevo blanco y rojo clasificado por tamaño. Cubetas de 360 pzas. Entrega diaria.</p>
+        <div class="prod-foot"><span class="avail">Disponible hoy</span><a href="#contacto" class="prod-link">Cotizar →</a></div>
+      </div>
+    </div>
+
+    <div class="prod-card reveal d3">
+      <div class="prod-img">
+        <div class="prod-img-emoji">🫀</div>
+        <div class="prod-overlay"><a href="#contacto" class="prod-ol-btn">Cotizar ahora</a></div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-tag">Menudencia · Económico</span>
+        <h3>Menudencias y vísceras</h3>
+        <p>Hígado, molleja, corazón y pescuezo. Para caldos, guisos y alimento de mascotas.</p>
+        <div class="prod-foot"><span class="avail">Disponible hoy</span><a href="#contacto" class="prod-link">Cotizar →</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VENTAJAS -->
+<section class="ventajas">
+  <div class="eyebrow reveal">Por qué elegirnos</div>
+  <h2 class="sec-title reveal d1">Ventajas que hacen la <em>diferencia</em></h2>
+  <p class="sec-desc reveal d2">No solo distribuimos pollo. Somos su aliado logístico para que su negocio nunca se quede sin abasto.</p>
+  <div class="vent-grid">
+    <div class="vent-card reveal d1"><div class="vent-ico">⚡</div><h3>Entrega en 24 horas</h3><p>Pedido antes de las 6 PM, entrega al día siguiente. Cobertura ZMVM y Estado de México.</p></div>
+    <div class="vent-card reveal d2"><div class="vent-ico">💰</div><h3>Precios competitivos</h3><p>Compramos directo al productor. Sin intermediarios innecesarios. El ahorro llega a usted.</p></div>
+    <div class="vent-card reveal d3"><div class="vent-ico">🔒</div><h3>Inocuidad HACCP</h3><p>Trazabilidad completa y cumplimiento de todas las NOM de inocuidad alimentaria mexicana.</p></div>
+    <div class="vent-card reveal d1"><div class="vent-ico">🤝</div><h3>Crédito flexible</h3><p>Líneas de 15 a 30 días para clientes calificados. Aprobación en 48 horas hábiles.</p></div>
+    <div class="vent-card reveal d2"><div class="vent-ico">📦</div><h3>Pedidos flexibles</h3><p>Desde una caja hasta un tráiler completo. Nos adaptamos al tamaño de su operación.</p></div>
+    <div class="vent-card reveal d3"><div class="vent-ico">📞</div><h3>Ejecutivo dedicado</h3><p>Un vendedor asignado a su cuenta disponible por WhatsApp en horario de operación.</p></div>
+  </div>
+</section>
+
+<!-- VOLÚMENES -->
+<section class="volumenes" id="volumenes">
+  <div class="eyebrow reveal">Planes de compra</div>
+  <h2 class="sec-title reveal d1">Elige el volumen <em>adecuado</em> para tu negocio</h2>
+  <p class="sec-desc reveal d2">Desde una carnicería familiar hasta una cadena de supermercados. Tenemos condiciones para cada operación.</p>
+  <div class="vol-grid">
+    <div class="vol-card reveal d1">
+      <div class="vol-ico">🏪</div><h3>Pequeño negocio</h3>
+      <div class="vol-range">100–500 kg</div>
+      <ul class="vol-ul">
+        <li>Entrega 2 veces por semana</li>
+        <li>Precio estándar mayoreo</li>
+        <li>Pago de contado</li>
+        <li>WhatsApp con vendedor</li>
+        <li>Factura electrónica</li>
+      </ul>
+      <a href="#contacto" class="btn-vol">Solicitar cotización</a>
+    </div>
+    <div class="vol-card star reveal d2">
+      <div class="pop-badge">⭐ Más popular</div>
+      <div class="vol-ico">🏬</div><h3>Negocio mediano</h3>
+      <div class="vol-range">500 kg – 2 t</div>
+      <ul class="vol-ul">
+        <li>Entrega diaria programada</li>
+        <li>Precio preferencial</li>
+        <li>Crédito a 15 días</li>
+        <li>Ejecutivo de cuenta</li>
+        <li>Reporte mensual de compras</li>
+      </ul>
+      <a href="#contacto" class="btn-vol">Solicitar cotización</a>
+    </div>
+    <div class="vol-card reveal d3">
+      <div class="vol-ico">🏭</div><h3>Gran volumen</h3>
+      <div class="vol-range">2 t – 10 t+</div>
+      <ul class="vol-ul">
+        <li>Entregas múltiples al día</li>
+        <li>Precio exclusivo negociado</li>
+        <li>Crédito a 30 días</li>
+        <li>Gerente de cuenta dedicado</li>
+        <li>Integración con su sistema</li>
+      </ul>
+      <a href="#contacto" class="btn-vol">Solicitar cotización</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="proceso" id="distribucion">
+  <div class="proc-img-wrap reveal">
+    <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/4d0d7b3f0_generated_image.png" alt="Distribución Maxi Ave"/>
+    <div class="proc-badge"><strong>24 hrs</strong><small>De pedido a entrega</small></div>
+  </div>
+  <div>
+    <div class="eyebrow reveal">Proceso logístico</div>
+    <h2 class="sec-title reveal d1">Así llega el producto <em>a su puerta</em></h2>
+    <p class="sec-desc reveal d2">Cada paso diseñado para garantizar frescura, temperatura y puntualidad.</p>
+    <div class="pasos">
+      <div class="paso reveal d2"><div class="paso-n">1</div><div class="paso-body"><h4>Recepción en planta certificada</h4><p>Producto de granjas con registro SSA. Revisión de temperatura, peso y calidad al 100%.</p></div></div>
+      <div class="paso reveal d3"><div class="paso-n">2</div><div class="paso-body"><h4>Almacén refrigerado HACCP</h4><p>Cámaras 0°C–4°C con monitoreo automático. Rotación FIFO estricta.</p></div></div>
+      <div class="paso reveal d4"><div class="paso-n">3</div><div class="paso-body"><h4>Picking y etiquetado</h4><p>Preparación exacta con etiquetado de lote, fecha y trazabilidad.</p></div></div>
+      <div class="paso reveal d5"><div class="paso-n">4</div><div class="paso-body"><h4>Entrega en ruta refrigerada</h4><p>GPS y sensor de temperatura en cada unidad. Comprobante digital.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios" id="testimonios">
+  <div class="eyebrow reveal">Clientes satisfechos</div>
+  <h2 class="sec-title reveal d1">Lo que dicen quienes <em>confían</em> en nosotros</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal d1">
+      <div class="testi-q">"</div>
+      <div class="stars">★★★★★</div>
+      <blockquote>"Llevamos 3 años con Maxi Ave. Nunca nos han fallado en una entrega y el precio siempre es competitivo. Son nuestra primera opción sin dudarlo."</blockquote>
+      <div class="testi-author"><div class="testi-av">RC</div><div><div class="testi-name">Ricardo Castellanos</div><div class="testi-role">Restaurante El Ranchero, CDMX</div></div></div>
+    </div>
+    <div class="testi-card reveal d2">
+      <div class="testi-q">"</div>
+      <div class="stars">★★★★★</div>
+      <blockquote>"El crédito a 30 días nos ayudó muchísimo con el flujo. La calidad del pollo es excelente y el ejecutivo siempre disponible por WhatsApp."</blockquote>
+      <div class="testi-author"><div class="testi-av">ML</div><div><div class="testi-name">María López</div><div class="testi-role">Carnicería Los Potros, Ecatepec</div></div></div>
+    </div>
+    <div class="testi-card reveal d3">
+      <div class="testi-q">"</div>
+      <div class="stars">★★★★★</div>
+      <blockquote>"Manejamos volumen alto y Maxi Ave nunca nos ha dejado sin producto. La cadena de frío es impecable. Nuestros clientes no se quejan."</blockquote>
+      <div class="testi-author"><div class="testi-av">JM</div><div><div class="testi-name">Jorge Mendoza</div><div class="testi-role">Super Ahorro Familiar, Toluca</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-txt reveal"><h2>¿Listo para mejorar su abasto?</h2><p>Hable con un ejecutivo ahora mismo. Sin compromiso.</p></div>
+  <div class="cta-btns reveal d1">
+    <a href="#contacto" class="btn-white">📋 Solicitar cotización</a>
+    <a href="https://wa.me/5512345678?text=Hola%20Maxi%20Ave" target="_blank" class="btn-outline-w">💬 WhatsApp directo</a>
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div>
+    <div class="eyebrow reveal">Contáctenos</div>
+    <h2 class="sec-title reveal d1">Solicite su cotización <em>hoy</em></h2>
+    <p class="sec-desc reveal d2">Respuesta en menos de 2 horas en horario de negocio. Sin compromisos, con precios reales.</p>
+    <div class="c-items">
+      <div class="c-item reveal d2"><div class="c-ico">📍</div><div class="c-text"><strong>Dirección</strong><span>Carretera México-Texcoco Km 12, Bodega 4, Estado de México</span></div></div>
+      <div class="c-item reveal d3"><div class="c-ico">📞</div><div class="c-text"><strong>Teléfono</strong><span>55 1234 5678 — Lun–Sáb 6:00 am – 6:00 pm</span></div></div>
+      <div class="c-item reveal d3"><div class="c-ico">💬</div><div class="c-text"><strong>WhatsApp directo</strong><span>55 1234 5678 — Respuesta garantizada</span></div></div>
+      <div class="c-item reveal d4"><div class="c-ico">✉️</div><div class="c-text"><strong>Correo</strong><span>ventas@maxiave.com.mx</span></div></div>
+    </div>
+  </div>
+  <div class="form-box reveal d2">
+    <h3>📋 Formulario de cotización</h3>
+    <div class="fg-row">
+      <div class="fg"><label>Nombre completo *</label><input id="fn" type="text" placeholder="Tu nombre"/></div>
+      <div class="fg"><label>Empresa / Negocio *</label><input id="fe" type="text" placeholder="Nombre del negocio"/></div>
+    </div>
+    <div class="fg-row">
+      <div class="fg"><label>WhatsApp / Teléfono *</label><input id="ft" type="tel" placeholder="55 0000 0000"/></div>
+      <div class="fg"><label>Correo electrónico</label><input id="fc" type="email" placeholder="correo@empresa.com"/></div>
+    </div>
+    <div class="fg"><label>Producto de interés</label>
+      <select id="fp"><option value="">Selecciona producto</option><option>Pollo entero fresco</option><option>Piezas de pollo</option><option>Pavo entero</option><option>Pollo marinado</option><option>Huevo de granja</option><option>Menudencias y vísceras</option><option>Varios productos</option></select>
+    </div>
+    <div class="fg"><label>Volumen semanal estimado</label>
+      <select id="fv"><option value="">Selecciona volumen</option><option>Menos de 100 kg</option><option>100–500 kg</option><option>500 kg – 1 tonelada</option><option>1–5 toneladas</option><option>Más de 5 toneladas</option></select>
+    </div>
+    <div class="fg"><label>Mensaje adicional</label><textarea id="fm" placeholder="Cuéntanos sobre tu negocio..."></textarea></div>
+    <button class="btn-submit" onclick="enviar()">💬 Enviar cotización por WhatsApp</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fbrand-name">MAXI<em>AVE</em></div>
+      <p>Comercializadora avícola con más de 15 años de experiencia. Su proveedor confiable en la zona metropolitana de México.</p>
+      <div class="f-socials">
+        <a href="#" class="f-soc">📘</a><a href="#" class="f-soc">📸</a><a href="#" class="f-soc">▶️</a>
+        <a href="https://wa.me/5512345678" class="f-soc" target="_blank">💬</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Productos</h4><ul>
+      <li><a href="#productos">Pollo entero fresco</a></li>
+      <li><a href="#productos">Piezas de pollo</a></li>
+      <li><a href="#productos">Pavo entero</a></li>
+      <li><a href="#productos">Pollo marinado</a></li>
+      <li><a href="#productos">Huevo de granja</a></li>
+      <li><a href="#productos">Menudencias</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Empresa</h4><ul>
+      <li><a href="#nosotros">Quiénes somos</a></li>
+      <li><a href="#volumenes">Planes de volumen</a></li>
       <li><a href="#distribucion">Distribución</a></li>
       <li><a href="#testimonios">Clientes</a></li>
-      <li><a href="#contacto" class="nav-cta">Cotizar ahora</a></li>
-    </ul>
-    <button class="nav-hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Horarios</h4><ul>
+      <li><a href="#">Lun–Vie: 6am – 6pm</a></li>
+      <li><a href="#">Sábado: 6am – 2pm</a></li>
+      <li><a href="#">Domingos: Cerrado</a></li>
+      <li><a href="#contacto">Urgentes: WhatsApp</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Maxi Ave Comercializadora S.A. de C.V. — Todos los derechos reservados.</p>
+    <div class="f-certs"><span class="cert">SENASICA</span><span class="cert">HACCP</span><span class="cert">ISO 22000</span></div>
+  </div>
+</footer>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-badge">🏆 Distribución mayorista en México</div>
-      <h1>La mejor <span>calidad</span> en aves y alimentos del campo</h1>
-      <p class="hero-desc">Somos su aliado estratégico en la comercialización de pollo, pavo y productos avícolas. Abastecemos restaurantes, carnicerías, supermercados y distribuidores con frescura garantizada.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn-primary">📋 Solicitar cotización</a>
-        <a href="#productos" class="btn-secondary">Ver catálogo →</a>
-      </div>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">15+</div>
-        <div class="hero-stat-label">Años de experiencia</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">500+</div>
-        <div class="hero-stat-label">Clientes activos</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">24h</div>
-        <div class="hero-stat-label">Entrega garantizada</div>
-      </div>
-    </div>
-  </section>
+<a href="https://wa.me/5512345678?text=Hola%20Maxi%20Ave,%20me%20interesa%20cotizar%20productos%20avícolas." class="wa-btn" target="_blank" rel="noopener">💬</a>
 
-  <!-- NOSOTROS -->
-  <section class="nosotros" id="nosotros">
-    <div class="nosotros-img-wrap">
-      <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/4a8d0d210_generated_image.png" alt="Planta Maxi Ave" />
-      <div class="nosotros-badge">
-        <small>Certificados desde</small>
-        2009
-      </div>
-    </div>
-    <div>
-      <div class="section-label">Quiénes somos</div>
-      <h2 class="section-title">Tradición, calidad y <span>frescura</span> en cada entrega</h2>
-      <p class="section-desc">En Maxi Ave llevamos más de 15 años siendo el puente entre los mejores productores avícolas y los negocios que necesitan calidad constante. Trabajamos con estrictos estándares de inocuidad alimentaria y cadena de frío controlada.</p>
-      <div class="nosotros-features">
-        <div class="feature-card">
-          <div class="feature-card-icon">❄️</div>
-          <h4>Cadena de frío</h4>
-          <p>Control de temperatura de 0°C a 4°C desde origen hasta destino.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card-icon">🏅</div>
-          <h4>Certificación SENASICA</h4>
-          <p>Cumplimos con todas las normas de inocuidad alimentaria mexicana.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card-icon">🚛</div>
-          <h4>Flota propia</h4>
-          <p>Vehículos refrigerados propios para garantizar puntualidad.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card-icon">📊</div>
-          <h4>Precios mayoristas</h4>
-          <p>Esquemas de precio por volumen adaptados a tu negocio.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>60);nav.classList.toggle('top',scrollY<=60)});
 
-  <!-- PRODUCTOS -->
-  <section class="productos" id="productos">
-    <div class="section-header">
-      <div class="section-label">Catálogo</div>
-      <h2 class="section-title">Nuestros <span>productos</span></h2>
-      <p class="section-desc">Ofrecemos una línea completa de productos avícolas frescos, congelados y procesados para satisfacer las necesidades de tu negocio.</p>
-    </div>
-    <div class="productos-grid">
+function toggleNav(){
+  const l=document.getElementById('navLinks');
+  const open=l.getAttribute('data-open')==='1';
+  if(open){l.style.display='none';l.setAttribute('data-open','0')}
+  else{Object.assign(l.style,{display:'flex',flexDirection:'column',gap:'0',position:'fixed',top:'72px',left:'0',right:'0',background:'rgba(10,10,14,.98)',padding:'10px 0',zIndex:'998',borderBottom:'2px solid #C41E3A'});
+  l.querySelectorAll('a').forEach(a=>{Object.assign(a.style,{padding:'13px 5%',borderBottom:'1px solid rgba(255,255,255,.05)',color:'rgba(255,255,255,.85)'})});l.setAttribute('data-open','1')}}
 
-      <div class="producto-card">
-        <div class="producto-img">🐔</div>
-        <div class="producto-body">
-          <span class="producto-tag">Fresco · Premium</span>
-          <h3>Pollo entero fresco</h3>
-          <p>Pollo entero con menudencias, sacrificado en el día. Disponible en calibres 1.4 kg a 2.2 kg.</p>
-          <a href="#contacto" class="producto-link">Cotizar →</a>
-        </div>
-      </div>
+// Typewriter
+const words=['pollo fresco','distribución avícola','pavo de granja','mayoreo real'];
+let wi=0,ci=0,del=false;const tw=document.getElementById('tw');
+(function type(){
+  const w=words[wi];
+  tw.textContent=del?w.slice(0,--ci):w.slice(0,++ci);
+  if(!del&&ci===w.length){del=true;setTimeout(type,1800);return}
+  if(del&&ci===0){del=false;wi=(wi+1)%words.length}
+  setTimeout(type,del?55:105);
+})();
 
-      <div class="producto-card">
-        <div class="producto-img" style="background: #fff5f5;">
-          <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/771e34a7f_generated_image.png" alt="Pieza de pollo" style="width:100%;height:100%;object-fit:cover;" />
-        </div>
-        <div class="producto-body">
-          <span class="producto-tag">Piezas · Mayoreo</span>
-          <h3>Piezas de pollo</h3>
-          <p>Pechuga, muslo, pierna, ala y rabadilla. Venta por caja de 20 kg o en bulto completo.</p>
-          <a href="#contacto" class="producto-link">Cotizar →</a>
-        </div>
-      </div>
+// Counters
+let started=false;
+const io=new IntersectionObserver(e=>{if(e[0].isIntersecting&&!started){started=true;document.querySelectorAll('.stat-n[data-target]').forEach(el=>{const t=+el.dataset.target;const sfx=t===15?'+':t===24?'h':t===100?'%':'+';let c=0;const s=t/60;const ti=setInterval(()=>{c=Math.min(c+s,t);el.textContent=Math.floor(c)+sfx;if(c>=t)clearInterval(ti)},18)})}});
+const sb=document.querySelector('.stats-bar');if(sb)io.observe(sb);
 
-      <div class="producto-card">
-        <div class="producto-img">🦃</div>
-        <div class="producto-body">
-          <span class="producto-tag">Temporada · Navidad</span>
-          <h3>Pavo entero</h3>
-          <p>Pavos de 5 a 9 kg, frescos y congelados. Disponibilidad todo el año, pedidos especiales.</p>
-          <a href="#contacto" class="producto-link">Cotizar →</a>
-        </div>
-      </div>
+// Reveal
+const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');ro.unobserve(x.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
-      <div class="producto-card">
-        <div class="producto-img">🥩</div>
-        <div class="producto-body">
-          <span class="producto-tag">Procesado · Listo</span>
-          <h3>Pollo marinado</h3>
-          <p>Pechuga y pierna marinadas con sazonadores naturales. Ideal para restaurantes y cocinas.</p>
-          <a href="#contacto" class="producto-link">Cotizar →</a>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <div class="producto-img">🥚</div>
-        <div class="producto-body">
-          <span class="producto-tag">Subproducto · Fresco</span>
-          <h3>Huevo de granja</h3>
-          <p>Huevo blanco y rojo, clasificado por tamaño. Venta por cubeta de 360 pzas.</p>
-          <a href="#contacto" class="producto-link">Cotizar →</a>
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <div class="producto-img">🫀</div>
-        <div class="producto-body">
-          <span class="producto-tag">Menudencia · Economico</span>
-          <h3>Menudencias y vísceras</h3>
-          <p>Hígado, molleja, corazón y pescuezo. Excelente para caldos, guisos y alimento de mascotas.</p>
-          <a href="#contacto" class="producto-link">Cotizar →</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- POR QUÉ ELEGIRNOS -->
-  <section class="porque">
-    <div class="section-header">
-      <div class="section-label">Ventajas competitivas</div>
-      <h2 class="section-title">¿Por qué elegir <span>Maxi Ave</span>?</h2>
-      <p class="section-desc">No solo vendemos pollo. Somos su aliado logístico y comercial para que su negocio nunca se quede sin abasto.</p>
-    </div>
-    <div class="porque-grid">
-      <div class="porque-card">
-        <div class="porque-card-icon">⚡</div>
-        <h3>Entrega en 24 horas</h3>
-        <p>Pedido antes de las 6 PM, entrega al día siguiente. Cobertura en toda la zona metropolitana.</p>
-      </div>
-      <div class="porque-card">
-        <div class="porque-card-icon">💰</div>
-        <h3>Precios competitivos</h3>
-        <p>Compramos directo al productor y trasladamos el ahorro a nuestros clientes mayoristas.</p>
-      </div>
-      <div class="porque-card">
-        <div class="porque-card-icon">🔒</div>
-        <h3>Inocuidad garantizada</h3>
-        <p>Cadena de frío continua, HACCP certificado y trazabilidad completa de origen a destino.</p>
-      </div>
-      <div class="porque-card">
-        <div class="porque-card-icon">🤝</div>
-        <h3>Crédito a clientes</h3>
-        <p>Líneas de crédito de 15 a 30 días para clientes con historial. Aprobación rápida.</p>
-      </div>
-      <div class="porque-card">
-        <div class="porque-card-icon">📦</div>
-        <h3>Pedidos flexibles</h3>
-        <p>Desde una caja hasta un tráiler completo. Nos adaptamos al tamaño de su operación.</p>
-      </div>
-      <div class="porque-card">
-        <div class="porque-card-icon">📞</div>
-        <h3>Atención personalizada</h3>
-        <p>Un ejecutivo de cuenta dedicado para cada cliente. WhatsApp directo con su vendedor.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- DISTRIBUCIÓN -->
-  <section class="distribucion" id="distribucion">
-    <div class="distribucion-inner">
-      <div>
-        <div class="section-label">Proceso logístico</div>
-        <h2 class="section-title">Así llega el producto <span>a su negocio</span></h2>
-        <p class="section-desc">Nuestro proceso garantiza frescura y temperatura controlada en cada etapa, desde la granja hasta su mostrador.</p>
-        <div class="proceso-steps">
-          <div class="paso">
-            <div class="paso-num">1</div>
-            <div class="paso-content">
-              <h4>Recepción en planta</h4>
-              <p>Producto llega de granjas certificadas. Revisión de temperatura, peso y calidad.</p>
-            </div>
-          </div>
-          <div class="paso">
-            <div class="paso-num">2</div>
-            <div class="paso-content">
-              <h4>Almacén refrigerado</h4>
-              <p>Almacenamiento en cámaras de 0°C a 4°C. Rotación FIFO para frescura máxima.</p>
-            </div>
-          </div>
-          <div class="paso">
-            <div class="paso-num">3</div>
-            <div class="paso-content">
-              <h4>Picking y empaque</h4>
-              <p>Preparación del pedido según especificaciones del cliente. Etiquetado con lote y fecha.</p>
-            </div>
-          </div>
-          <div class="paso">
-            <div class="paso-num">4</div>
-            <div class="paso-content">
-              <h4>Entrega en ruta</h4>
-              <p>Distribución en unidades refrigeradas. Comprobante digital y firma de recepción.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="distribucion-img">
-        <img src="https://media.base44.com/images/public/69bcee79d908094d21d71ce3/bc7fabafa_generated_image.png" alt="Distribución Maxi Ave" />
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section class="testimonios" id="testimonios">
-    <div class="section-header">
-      <div class="section-label">Clientes satisfechos</div>
-      <h2 class="section-title">Lo que dicen nuestros <span>clientes</span></h2>
-    </div>
-    <div class="testimonios-grid">
-      <div class="testimonio-card">
-        <div class="testimonio-stars">★★★★★</div>
-        <p>"Llevamos 3 años trabajando con Maxi Ave. Nunca nos han fallado en una entrega y el precio siempre es competitivo. Son nuestros proveedores de confianza."</p>
-        <div class="testimonio-author">
-          <div class="testimonio-avatar">RC</div>
-          <div class="testimonio-info">
-            <strong>Ricardo Castellanos</strong>
-            <small>Restaurante El Ranchero, CDMX</small>
-          </div>
-        </div>
-      </div>
-      <div class="testimonio-card">
-        <div class="testimonio-stars">★★★★★</div>
-        <p>"La calidad del pollo es excelente y el ejecutivo que nos atiende siempre está disponible. Nos dan crédito a 30 días, lo que nos ayuda mucho con el flujo."</p>
-        <div class="testimonio-author">
-          <div class="testimonio-avatar">ML</div>
-          <div class="testimonio-info">
-            <strong>María López</strong>
-            <small>Carnicería Los Potros, Ecatepec</small>
-          </div>
-        </div>
-      </div>
-      <div class="testimonio-card">
-        <div class="testimonio-stars">★★★★★</div>
-        <p>"Manejamos un volumen alto en nuestro supermercado y Maxi Ave nunca nos ha dejado sin producto. La cadena de frío es impecable, clientes no se quejan."</p>
-        <div class="testimonio-author">
-          <div class="testimonio-avatar">JM</div>
-          <div class="testimonio-info">
-            <strong>Jorge Mendoza</strong>
-            <small>Super Ahorro Familiar, Toluca</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section class="contacto" id="contacto">
-    <div>
-      <div class="section-label">Hablemos</div>
-      <h2 class="section-title">Solicite su cotización <span>hoy</span></h2>
-      <p class="section-desc">Nuestros ejecutivos le responden en menos de 2 horas en horario de negocio. Sin compromisos.</p>
-      <div class="contacto-info">
-        <div class="contacto-item">
-          <div class="contacto-item-icon">📍</div>
-          <div class="contacto-item-text">
-            <strong>Dirección</strong>
-            <span>Carretera México-Texcoco Km 12, Bodega 4, Estado de México</span>
-          </div>
-        </div>
-        <div class="contacto-item">
-          <div class="contacto-item-icon">📞</div>
-          <div class="contacto-item-text">
-            <strong>Teléfono</strong>
-            <span>55 1234 5678 — Lunes a Sábado 6:00 am a 6:00 pm</span>
-          </div>
-        </div>
-        <div class="contacto-item">
-          <div class="contacto-item-icon">💬</div>
-          <div class="contacto-item-text">
-            <strong>WhatsApp directo</strong>
-            <span>55 1234 5678 — Respuesta garantizada</span>
-          </div>
-        </div>
-        <div class="contacto-item">
-          <div class="contacto-item-icon">✉️</div>
-          <div class="contacto-item-text">
-            <strong>Correo</strong>
-            <span>ventas@maxiave.com.mx</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="contacto-form">
-      <h3>📋 Formulario de cotización</h3>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Nombre completo *</label>
-          <input type="text" placeholder="Tu nombre" />
-        </div>
-        <div class="form-group">
-          <label>Empresa / Negocio *</label>
-          <input type="text" placeholder="Nombre del negocio" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Teléfono / WhatsApp *</label>
-          <input type="tel" placeholder="55 0000 0000" />
-        </div>
-        <div class="form-group">
-          <label>Correo electrónico</label>
-          <input type="email" placeholder="correo@empresa.com" />
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Tipo de producto de interés</label>
-        <select>
-          <option value="">Selecciona un producto</option>
-          <option>Pollo entero fresco</option>
-          <option>Piezas de pollo (pechuga, muslo, pierna)</option>
-          <option>Pavo entero</option>
-          <option>Pollo marinado</option>
-          <option>Huevo de granja</option>
-          <option>Menudencias y vísceras</option>
-          <option>Varios productos</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Volumen aproximado semanal</label>
-        <select>
-          <option value="">Selecciona volumen</option>
-          <option>Menos de 100 kg</option>
-          <option>100 – 500 kg</option>
-          <option>500 kg – 1 tonelada</option>
-          <option>1 – 5 toneladas</option>
-          <option>Más de 5 toneladas</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Mensaje adicional</label>
-        <textarea placeholder="Cuéntanos más sobre tu negocio y necesidades..."></textarea>
-      </div>
-      <button class="btn-form" onclick="enviarCotizacion()">📩 Enviar cotización por WhatsApp</button>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo-text">MAXI<span>AVE</span></div>
-        <p>Comercializadora de alimentos avícolas con más de 15 años de experiencia. Su proveedor de confianza en la zona metropolitana.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Productos</h4>
-        <ul>
-          <li><a href="#productos">Pollo entero</a></li>
-          <li><a href="#productos">Piezas de pollo</a></li>
-          <li><a href="#productos">Pavo</a></li>
-          <li><a href="#productos">Pollo marinado</a></li>
-          <li><a href="#productos">Huevo de granja</a></li>
-          <li><a href="#productos">Menudencias</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Empresa</h4>
-        <ul>
-          <li><a href="#nosotros">Quiénes somos</a></li>
-          <li><a href="#distribucion">Distribución</a></li>
-          <li><a href="#testimonios">Clientes</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Horarios</h4>
-        <ul>
-          <li><a href="#">Lunes – Viernes</a></li>
-          <li><a href="#">6:00 am – 6:00 pm</a></li>
-          <li><a href="#">Sábado</a></li>
-          <li><a href="#">6:00 am – 2:00 pm</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 Maxi Ave Comercializadora S.A. de C.V. — Todos los derechos reservados.</p>
-      <div class="footer-socials">
-        <a href="#" class="footer-social">📘</a>
-        <a href="#" class="footer-social">📸</a>
-        <a href="#" class="footer-social">💬</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/5512345678?text=Hola%20Maxi%20Ave,%20me%20interesa%20cotizar%20productos%20avícolas%20para%20mi%20negocio." class="whatsapp-float" target="_blank" rel="noopener">💬</a>
-
-  <script>
-    function toggleMenu() {
-      const links = document.querySelector('.nav-links');
-      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
-      links.style.flexDirection = 'column';
-      links.style.position = 'absolute';
-      links.style.top = '72px';
-      links.style.left = '0';
-      links.style.right = '0';
-      links.style.background = '#fff';
-      links.style.padding = '20px 5%';
-      links.style.borderBottom = '3px solid #C41E3A';
-      links.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)';
-    }
-
-    function enviarCotizacion() {
-      const nombre = document.querySelector('input[placeholder="Tu nombre"]').value;
-      const empresa = document.querySelector('input[placeholder="Nombre del negocio"]').value;
-      const tel = document.querySelector('input[placeholder="55 0000 0000"]').value;
-      const producto = document.querySelector('select').value;
-
-      if (!nombre || !empresa || !tel) {
-        alert('Por favor completa los campos obligatorios (nombre, empresa y teléfono).');
-        return;
-      }
-
-      const msg = encodeURIComponent(
-        `¡Hola Maxi Ave! 👋\n\n` +
-        `Me interesa cotizar productos para mi negocio:\n\n` +
-        `👤 *Nombre:* ${nombre}\n` +
-        `🏢 *Empresa:* ${empresa}\n` +
-        `📞 *Teléfono:* ${tel}\n` +
-        `🛒 *Producto:* ${producto || 'Por definir'}\n\n` +
-        `¿Me pueden enviar precios y condiciones? Gracias.`
-      );
-
-      window.open(`https://wa.me/5512345678?text=${msg}`, '_blank');
-    }
-
-    // Animación de entrada suave para cards
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.producto-card, .porque-card, .testimonio-card, .feature-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
-  </script>
-</body>
-</html>
+// Form
+function enviar(){
+  const n=document.getElementById('fn').value.trim();
+  const e=document.getElementById('fe').value.trim();
+  const t=document.getElementById('ft').value.trim();
+  if(!n||!e||!t){alert('Por favor completa nombre, empresa y teléfono.');return}
+  const p=document.getElementById('fp').value;
+  const v=document.getElementById('fv').value;
+  const m=document.getElementById('fm').value.trim();
+  const txt=encodeURIComponent(`¡Hola Maxi Ave! 👋\n\nSolicito cotización:\n\n👤 *Nombre:* ${n}\n🏢 *Empresa:* ${e}\n📞 *Teléfono:* ${t}\n🛒 *Producto:* ${p||'Por definir'}\n📦 *Volumen:* ${v||'Por definir'}${m?'\n💬 *Notas:* '+m:''}\n\nQuedo en espera. Gracias.`);
+  window.open('https://wa.me/5512345678?text='+txt,'_blank');
+}
+</script>
+</body></html>
