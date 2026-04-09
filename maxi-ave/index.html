@@ -33,7 +33,7 @@ a{color:inherit;text-decoration:none}
 ul{list-style:none}
 
 /* ─── CURSOR personalizado ───────────────── */
-body{cursor:none}
+@media(hover:hover){body{cursor:none}}
 .cursor{position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference}
 .cursor-dot{width:8px;height:8px;background:var(--white);border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:width .15s,height .15s}
 .cursor-ring{width:36px;height:36px;border:1.5px solid rgba(255,255,255,.7);border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:all .12s var(--ease);pointer-events:none}
@@ -72,7 +72,7 @@ nav.light .nav-menu a:not(.nav-cta):hover{color:var(--ink)!important}
 .nav-cta:hover{background:var(--rl)!important;transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,30,58,.55)!important}
 .nav-cta::after{display:none!important}
 
-.nav-burger{display:none;flex-direction:column;gap:5px;cursor:none;border:none;background:none}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:none;padding:8px;margin:-8px}
 .nav-burger span{display:block;width:24px;height:1.5px;background:var(--white);border-radius:2px;transition:.3s}
 nav.light .nav-burger span{background:var(--ink)}
 
@@ -350,6 +350,25 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
 .d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
 
+/* ─── MOBILE DRAWER ─────────────────────────── */
+.mobile-overlay{display:none;position:fixed;inset:0;z-index:998;background:rgba(0,0,0,.55);backdrop-filter:blur(4px)}
+.mobile-overlay.open{display:block}
+.mobile-drawer{position:fixed;top:0;right:0;bottom:0;z-index:999;width:280px;background:var(--ink2);transform:translateX(100%);transition:transform .38s var(--ease);display:flex;flex-direction:column;padding:0;overflow:hidden}
+.mobile-drawer.open{transform:translateX(0)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid rgba(255,255,255,.07)}
+.drawer-logo{font-family:var(--ff-sans);font-weight:900;font-size:1.2rem;color:var(--white);letter-spacing:-.5px}
+.drawer-logo b{color:var(--r)}
+.drawer-close{width:36px;height:36px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:rgba(255,255,255,.6);transition:all .2s}
+.drawer-close:hover{background:var(--r);border-color:var(--r);color:var(--white)}
+.drawer-links{padding:16px 0;flex:1}
+.drawer-links a{display:flex;align-items:center;padding:15px 22px;font-family:var(--ff-sans);font-weight:600;font-size:1rem;color:rgba(255,255,255,.75);border-bottom:1px solid rgba(255,255,255,.05);transition:all .2s;gap:10px}
+.drawer-links a:hover,.drawer-links a:active{background:rgba(255,255,255,.04);color:var(--white);padding-left:28px}
+.drawer-links a.drawer-cta{margin:16px 22px 0;padding:15px 20px;background:var(--r);color:var(--white)!important;border-radius:10px;justify-content:center;border:none;box-shadow:0 6px 20px rgba(196,30,58,.4);font-weight:700}
+.drawer-links a.drawer-cta:hover{background:var(--rl);padding-left:20px}
+.drawer-foot{padding:20px 22px;border-top:1px solid rgba(255,255,255,.06)}
+.drawer-foot p{font-size:.78rem;color:rgba(255,255,255,.28);line-height:1.5}
+.drawer-foot a{color:var(--g)!important}
+
 /* ─── RESPONSIVE ─────────────────────────── */
 @media(max-width:1100px){
   .hero{grid-template-columns:1fr}
@@ -369,7 +388,7 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
 }
 @media(max-width:768px){
-  .nav-menu{display:none}.nav-burger{display:flex}
+  .nav-menu{display:none!important}.nav-burger{display:flex}
   .hero h1{font-size:2.4rem}
   .cats-grid{grid-template-columns:1fr 1fr}
   .vents-grid{grid-template-columns:1fr}
@@ -769,6 +788,27 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
   </div>
 </footer>
 
+<!-- MOBILE OVERLAY + DRAWER -->
+<div class="mobile-overlay" id="mOverlay" onclick="closeNav()"></div>
+<div class="mobile-drawer" id="mDrawer">
+  <div class="drawer-head">
+    <span class="drawer-logo">MAXI<b>AVE</b></span>
+    <div class="drawer-close" onclick="closeNav()">✕</div>
+  </div>
+  <div class="drawer-links">
+    <a href="#nosotros" onclick="closeNav()">🏢 Nosotros</a>
+    <a href="#productos" onclick="closeNav()">🍗 Productos</a>
+    <a href="#volumenes" onclick="closeNav()">📦 Planes de mayoreo</a>
+    <a href="#testimonios" onclick="closeNav()">⭐ Clientes</a>
+    <a href="#contacto" class="drawer-cta" onclick="closeNav()">📋 Cotizar ahora</a>
+  </div>
+  <div class="drawer-foot">
+    <p>Lun–Dom 5:00 am – 5:00 pm<br/>
+    📞 <a href="tel:+525557728868">55 5772-8868</a> &nbsp;|&nbsp;
+    💬 <a href="https://wa.me/525546091793">WhatsApp</a></p>
+  </div>
+</div>
+
 <!-- WhatsApp flotante -->
 <a href="https://wa.me/525546091793?text=Hola%20Maxi%20Ave,%20me%20interesa%20cotizar%20productos." class="wa-float" target="_blank" rel="noopener">💬</a>
 
@@ -798,14 +838,14 @@ window.addEventListener('scroll',()=>{
 
 /* ── NAV MOBILE ──────────────────── */
 function toggleNav(){
-  const m=document.getElementById('navMenu');
-  const open=m.dataset.open==='1';
-  if(open){m.style.display='none';m.dataset.open='0'}
-  else{
-    Object.assign(m.style,{display:'flex',flexDirection:'column',gap:'0',position:'fixed',top:'70px',left:'0',right:'0',background:'rgba(5,5,5,.98)',padding:'8px 0',zIndex:'997',borderBottom:'1px solid rgba(196,30,58,.3)'});
-    m.querySelectorAll('a').forEach(a=>Object.assign(a.style,{padding:'14px 5%',borderBottom:'1px solid rgba(255,255,255,.04)',color:'rgba(255,255,255,.78)',fontSize:'.9rem'}));
-    m.dataset.open='1';
-  }
+  document.getElementById('mDrawer').classList.add('open');
+  document.getElementById('mOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeNav(){
+  document.getElementById('mDrawer').classList.remove('open');
+  document.getElementById('mOverlay').classList.remove('open');
+  document.body.style.overflow='';
 }
 
 /* ── COUNTERS ────────────────────── */
