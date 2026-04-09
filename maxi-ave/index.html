@@ -95,18 +95,65 @@ nav.light .nav-burger span{background:var(--ink)}
 .kicker-line{width:32px;height:1.5px;background:var(--r)}
 .kicker-text{font-family:var(--ff-sans);font-weight:700;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5)}
 
-.hero h1{font-family:var(--ff-head);font-size:clamp(3.4rem,6vw,5.4rem);font-weight:700;line-height:1.05;color:var(--white);margin-bottom:22px;opacity:0;animation:slideUp .7s .45s var(--ease) forwards}
+.hero h1{font-family:var(--ff-head);font-size:clamp(3.4rem,6vw,5.4rem);font-weight:700;line-height:1.1;color:var(--white);margin-bottom:22px}
+.hw{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(24px) skewX(-4deg);
+  animation:wordIn .55s calc(.3s + var(--i) * .1s) var(--ease) forwards;
+}
+@keyframes wordIn{
+  to{opacity:1;transform:translateY(0) skewX(0deg)}
+}
 .hero h1 .italic{font-style:italic;color:var(--g)}
 .hero h1 .stroke{-webkit-text-stroke:1.5px var(--white);color:transparent}
 
 .hero-sub{font-size:1.05rem;line-height:1.78;color:rgba(255,255,255,.58);max-width:460px;margin-bottom:40px;opacity:0;animation:slideUp .7s .6s var(--ease) forwards}
 
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:slideUp .7s .75s var(--ease) forwards}
-.btn-fill{display:inline-flex;align-items:center;gap:9px;background:var(--r);color:var(--white);font-family:var(--ff-sans);font-weight:700;font-size:.9rem;padding:14px 28px;border-radius:8px;box-shadow:0 8px 28px rgba(196,30,58,.45);transition:all .3s var(--ease);position:relative;overflow:hidden}
-.btn-fill::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,transparent 60%)}
-.btn-fill:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(196,30,58,.6);background:var(--rl)}
-.btn-outline{display:inline-flex;align-items:center;gap:9px;color:rgba(255,255,255,.78);font-family:var(--ff-sans);font-weight:600;font-size:.9rem;padding:14px 26px;border-radius:8px;border:1px solid rgba(255,255,255,.2);transition:all .3s var(--ease)}
-.btn-outline:hover{border-color:var(--g);color:var(--g);background:rgba(212,160,23,.06);transform:translateY(-3px)}
+.btn-fill{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--r);color:var(--white);
+  font-family:var(--ff-sans);font-weight:700;font-size:.88rem;
+  letter-spacing:.8px;text-transform:uppercase;
+  padding:0 32px;height:52px;
+  border-radius:4px;
+  position:relative;overflow:hidden;
+  transition:all .35s var(--ease);
+}
+.btn-fill::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:rgba(255,255,255,.4);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s var(--ease);
+}
+.btn-fill:hover::after{transform:scaleX(1)}
+.btn-fill:hover{background:var(--rd);letter-spacing:1.2px}
+.btn-fill .btn-arrow{
+  width:28px;height:28px;background:rgba(255,255,255,.15);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;transition:transform .3s var(--ease-spring);flex-shrink:0;
+}
+.btn-fill:hover .btn-arrow{transform:translateX(4px)}
+
+.btn-outline{
+  display:inline-flex;align-items:center;gap:10px;
+  color:rgba(255,255,255,.65);
+  font-family:var(--ff-sans);font-weight:600;font-size:.88rem;
+  letter-spacing:.8px;text-transform:uppercase;
+  padding:0 28px;height:52px;
+  border-radius:4px;
+  border:1px solid rgba(255,255,255,.18);
+  background:transparent;
+  transition:all .35s var(--ease);
+}
+.btn-outline .btn-line{
+  width:20px;height:1px;background:currentColor;
+  transition:width .3s var(--ease);flex-shrink:0;
+}
+.btn-outline:hover{color:rgba(255,255,255,.95);border-color:rgba(255,255,255,.45)}
+.btn-outline:hover .btn-line{width:32px}
 
 /* Lado derecho: imagen con efecto */
 .hero-right{position:relative;overflow:hidden}
@@ -286,10 +333,23 @@ nav.light .nav-burger span{background:var(--ink)}
 .cta-txt h2{font-family:var(--ff-head);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--white);font-style:italic;margin-bottom:6px}
 .cta-txt p{font-size:.97rem;color:rgba(255,255,255,.72)}
 .cta-acts{display:flex;gap:14px;flex-wrap:wrap;position:relative;z-index:1}
-.btn-cw{background:var(--white);color:var(--r);font-family:var(--ff-sans);font-weight:700;font-size:.9rem;padding:14px 28px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;transition:all .25s}
-.btn-cw:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
-.btn-co{background:transparent;color:var(--white);font-family:var(--ff-sans);font-weight:700;font-size:.9rem;padding:14px 24px;border-radius:8px;border:1.5px solid rgba(255,255,255,.35);display:inline-flex;align-items:center;gap:8px;transition:all .25s}
-.btn-co:hover{border-color:var(--white);background:rgba(255,255,255,.1);transform:translateY(-3px)}
+.btn-cw{
+  background:var(--white);color:var(--r);
+  font-family:var(--ff-sans);font-weight:700;font-size:.85rem;
+  letter-spacing:.8px;text-transform:uppercase;
+  padding:0 30px;height:52px;border-radius:4px;
+  display:inline-flex;align-items:center;gap:10px;transition:all .3s var(--ease);
+}
+.btn-cw:hover{background:var(--cream);transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.btn-co{
+  background:transparent;color:rgba(255,255,255,.85);
+  font-family:var(--ff-sans);font-weight:600;font-size:.85rem;
+  letter-spacing:.8px;text-transform:uppercase;
+  padding:0 26px;height:52px;border-radius:4px;
+  border:1px solid rgba(255,255,255,.3);
+  display:inline-flex;align-items:center;gap:10px;transition:all .3s var(--ease);
+}
+.btn-co:hover{border-color:rgba(255,255,255,.7);color:var(--white);background:rgba(255,255,255,.08)}
 
 /* ─── CONTACTO ───────────────────────────── */
 .contacto-section{padding:100px 5%;background:var(--ink);display:grid;grid-template-columns:1fr 1.15fr;gap:80px}
@@ -313,8 +373,23 @@ nav.light .nav-burger span{background:var(--ink)}
 .fg select option{background:#1a1a1a}
 .fg textarea{resize:vertical;min-height:100px}
 .fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.btn-form{width:100%;margin-top:6px;background:var(--r);color:var(--white);border:none;cursor:none;padding:14px;border-radius:10px;font-family:var(--ff-sans);font-weight:700;font-size:.95rem;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 8px 26px rgba(196,30,58,.4);transition:all .25s}
-.btn-form:hover{background:var(--rl);transform:translateY(-3px);box-shadow:0 16px 44px rgba(196,30,58,.55)}
+.btn-form{
+  width:100%;margin-top:6px;
+  background:var(--r);color:var(--white);border:none;cursor:pointer;
+  height:52px;border-radius:4px;
+  font-family:var(--ff-sans);font-weight:700;font-size:.85rem;
+  letter-spacing:.8px;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  position:relative;overflow:hidden;
+  transition:all .3s var(--ease);
+}
+.btn-form::before{
+  content:'';position:absolute;left:-100%;top:0;bottom:0;width:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+  transition:left .5s var(--ease);
+}
+.btn-form:hover::before{left:100%}
+.btn-form:hover{background:var(--rd);letter-spacing:1.2px}
 
 /* ─── FOOTER ─────────────────────────────── */
 footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
@@ -390,6 +465,8 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
   .cats-grid{grid-template-columns:1fr 1fr;gap:12px}
   .vents-grid{grid-template-columns:1fr}
   .cta-banner{text-align:center;justify-content:center}
+  .hero-actions{flex-direction:column;align-items:flex-start}
+  .btn-fill,.btn-outline{width:100%;justify-content:center;height:48px}
   .fg-row{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .f-bottom{flex-direction:column;text-align:center}
@@ -434,15 +511,25 @@ footer{background:#050505;padding:70px 5% 28px;border-top:2px solid var(--r)}
       <div class="kicker-line"></div>
       <span class="kicker-text">Col. Morelos, CDMX — Lunes a Domingo 5:00 am</span>
     </div>
-    <h1>
-      El proveedor<br/>
-      <span class="italic">que no falla</span><br/>
-      en <span class="stroke">15 años</span>
+    <h1 class="hero-h1-anim" aria-label="El proveedor que no falla en 15 años">
+      <span class="hw" style="--i:0">El</span>
+      <span class="hw" style="--i:1">proveedor</span><br/>
+      <span class="hw italic" style="--i:2">que</span>
+      <span class="hw italic" style="--i:3">no</span>
+      <span class="hw italic" style="--i:4">falla</span><br/>
+      <span class="hw" style="--i:5">en</span>
+      <span class="hw stroke" style="--i:6">15 años</span>
     </h1>
     <p class="hero-sub">Abrimos a las 5 de la mañana para que usted nunca pare. Pollo, res, cerdo, huevo, pescado y más — con la frescura y el precio que su negocio necesita.</p>
     <div class="hero-actions">
-      <a href="#contacto" class="btn-fill">Solicitar cotización</a>
-      <a href="#productos" class="btn-outline">Ver catálogo →</a>
+      <a href="#contacto" class="btn-fill">
+        Solicitar cotización
+        <span class="btn-arrow">→</span>
+      </a>
+      <a href="#productos" class="btn-outline">
+        <span class="btn-line"></span>
+        Ver catálogo
+      </a>
     </div>
     <div class="hero-stats">
       <div class="hstat"><span class="hstat-n" data-t="15">0</span><span class="hstat-l">años en el mercado</span></div>
