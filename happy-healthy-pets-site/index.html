@@ -27,7 +27,7 @@ body{font-family:'Poppins',sans-serif;background:#fff;color:#1a1a1a;-webkit-font
 .announce{
   background:var(--green-bar);
   text-align:center;
-  padding:10px 16px;
+  padding:0 12px;
   font-size:.72rem;
   font-weight:700;
   letter-spacing:.3px;
@@ -35,16 +35,20 @@ body{font-family:'Poppins',sans-serif;background:#fff;color:#1a1a1a;-webkit-font
   position:fixed;
   top:0;left:0;right:0;
   z-index:1001;
-  display:flex;align-items:center;justify-content:center;gap:24px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  height:38px;
+  white-space:nowrap;
+  overflow:hidden;
 }
-.announce-arrow{background:none;border:none;cursor:pointer;font-size:.8rem;color:#3a5200;padding:0 4px}
+.announce-text{flex:1;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.7rem}
+.announce-arrow{background:none;border:none;cursor:pointer;font-size:.8rem;color:#3a5200;padding:0 4px;flex-shrink:0}
 
 /* NAV */
 .nav{
   position:fixed;top:38px;left:0;right:0;z-index:1000;
   background:var(--white);
   border-bottom:1px solid #eee;
-  height:72px;display:flex;align-items:center;
+  height:64px;display:flex;align-items:center;
 }
 .nav-inner{
   max-width:1280px;margin:0 auto;width:100%;padding:0 24px;
@@ -171,7 +175,12 @@ body{font-family:'Poppins',sans-serif;background:#fff;color:#1a1a1a;-webkit-font
 
 
 /* ── INDEX ESPECÍFICO ───────────────────────────────────── */
-body{padding-top:calc(38px + 72px)}
+body{padding-top:calc(38px + 64px)}
+@media(max-width:768px){
+  body{padding-top:calc(38px + 56px)}
+  .nav{height:56px}
+  .nav-logo img{height:40px}
+}
 
 /* HERO */
 .hero{
@@ -458,8 +467,8 @@ details[open] .faq-q::after{content:'－'}
 
 @media(max-width:768px){
   .hero{grid-template-columns:1fr;min-height:auto}
-  .hero-right{height:280px}
-  .hero-left{padding:40px 24px}
+  .hero-right{height:320px;order:-1}
+  .hero-left{padding:32px 22px 40px}
   .benefits-inner{grid-template-columns:repeat(2,1fr)}
   .footer-inner{grid-template-columns:1fr;gap:28px}
   .footer-bottom{flex-direction:column;text-align:center}
@@ -473,15 +482,31 @@ details[open] .faq-q::after{content:'－'}
   .pc-var-btn{font-size:.56rem;padding:3px 7px}
   .pc-add-btn{font-size:.6rem;padding:9px}
 }
-  </style>
+  
+@media(max-width:480px){
+  .hero-title{font-size:2rem;line-height:1.1}
+  .hero-eyebrow{font-size:.62rem;margin-bottom:10px}
+  .hero-sub{font-size:.8rem;margin-bottom:20px}
+  .hero-actions{gap:10px;margin-bottom:20px}
+  .btn-hero-primary{padding:13px 22px;font-size:.74rem}
+  .btn-hero-sec{padding:11px 20px;font-size:.74rem}
+  .hero-badges{gap:7px}
+  .hero-badge{padding:6px 12px;font-size:.6rem}
+  .benefits-inner{grid-template-columns:repeat(2,1fr);gap:8px}
+  .benefit{padding:14px 8px}
+  .benefit-icon{font-size:1.3rem;margin-bottom:4px}
+  .benefit-title{font-size:.68rem}
+  .benefit-desc{font-size:.58rem}
+}
+</style>
 </head>
 <body>
 
 
-<div class="announce">
-  <button class="announce-arrow">‹</button>
-  🚚 ENVÍOS GRATIS A TODO MÉXICO A PARTIR DE $599
-  <button class="announce-arrow">›</button>
+<div class="announce" id="announce-bar">
+  <button class="announce-arrow" onclick="prevAnnounce()">‹</button>
+  <span class="announce-text" id="announce-text">🚚 ENVÍOS GRATIS A TODO MÉXICO A PARTIR DE $599</span>
+  <button class="announce-arrow" onclick="nextAnnounce()">›</button>
 </div>
 <nav class="nav">
   <div class="nav-inner">
@@ -929,6 +954,28 @@ function cardHtml(p) {
   </div>`;
 }
 
+
+
+const ANNOUNCE_MSGS = [
+  '🚚 ENVÍOS GRATIS A TODO MÉXICO A PARTIR DE $599',
+  '🎉 20% DE DESCUENTO EN TU PRIMERA COMPRA',
+  '🌿 SUPLEMENTOS 100% NATURALES — AVALADOS POR VETERINARIOS',
+];
+let announceIdx = 0;
+function updateAnnounce(){
+  const el = document.getElementById('announce-text');
+  if(el) el.textContent = ANNOUNCE_MSGS[announceIdx];
+}
+function nextAnnounce(){
+  announceIdx = (announceIdx+1) % ANNOUNCE_MSGS.length;
+  updateAnnounce();
+}
+function prevAnnounce(){
+  announceIdx = (announceIdx-1+ANNOUNCE_MSGS.length) % ANNOUNCE_MSGS.length;
+  updateAnnounce();
+}
+// Auto-rotate every 4s
+setInterval(nextAnnounce, 4000);
 
 document.addEventListener('DOMContentLoaded', () => {
   // Productos destacados
