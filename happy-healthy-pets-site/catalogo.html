@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Happy &amp; Healthy Pets — Suplementos 100% Naturales para Mascotas</title>
-<meta name="description" content="Suplementos premium 100% naturales para perros y gatos. Digest+, Artro+, Vision+, Renal+ y 35 más. Envío gratis a partir de $599 MXN."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Catálogo Completo — Happy & Healthy Pets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    
 /* ─── TOKENS ─────────────────────────── */
 :root {
   --g1:#1B5E37; --g2:#2D7A50; --g3:#3A9463; --g4:#52B788; --gmint:#B7E4C7;
@@ -425,421 +424,120 @@ footer{background:var(--ink2);padding:32px 5%;border-top:1px solid rgba(255,255,
 
 .btn-all-prods{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--white);font-family:var(--ff-sans);font-size:.82rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;padding:16px 36px;border-radius:2px;transition:all .3s var(--ease)}
 .btn-all-prods:hover{background:var(--g2);transform:translateY(-2px)}
-</style>
+
+
+    /* ─── CATÁLOGO OVERRIDES ─── */
+    body{margin:0;padding-top:70px}
+    .catalog-hero{background:var(--ink2);color:var(--white);padding:60px 5% 50px;text-align:center}
+    .catalog-hero h1{font-family:var(--ff-head);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;margin:0 0 .8rem}
+    .catalog-hero h1 em{color:var(--g3);font-style:italic}
+    .catalog-hero p{font-family:var(--ff-sans);font-size:.95rem;color:rgba(255,255,255,.6);margin:0}
+    .catalog-hero .back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.5);font-family:var(--ff-sans);font-size:.78rem;text-decoration:none;margin-bottom:1.5rem;letter-spacing:.5px;transition:color .2s}
+    .catalog-hero .back-link:hover{color:var(--white)}
+
+    /* Sticky cat nav */
+    .cat-nav{position:sticky;top:70px;z-index:100;background:var(--white);border-bottom:1px solid var(--mid);padding:0 5%;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+    .cat-nav::-webkit-scrollbar{display:none}
+    .cat-nav-item{flex-shrink:0;padding:14px 20px;font-family:var(--ff-sans);font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--fog);text-decoration:none;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+    .cat-nav-item:hover{color:var(--ink)}
+    .cat-nav-item.active{color:var(--g2);border-bottom-color:var(--g2)}
+
+    /* Sección por categoría */
+    .cat-section{padding:70px 5%}
+    .cat-section:nth-child(even){background:var(--cream)}
+    .cat-sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--mid)}
+    .cat-sec-info{display:flex;align-items:center;gap:16px}
+    .cat-sec-emoji{font-size:2.2rem;line-height:1}
+    .cat-sec-title{font-family:var(--ff-head);font-size:clamp(1.6rem,2.5vw,2rem);font-weight:700;color:var(--ink);margin:0 0 4px}
+    .cat-sec-desc{font-family:var(--ff-sans);font-size:.8rem;color:var(--fog);margin:0}
+    .cat-sec-count{font-family:var(--ff-sans);font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--fog)}
+    .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--mid)}
+    .cat-grid .product-card{background:var(--white)}
+
+    /* Buscador */
+    .catalog-search{max-width:420px;margin:0 auto 2rem;position:relative}
+    .catalog-search input{width:100%;box-sizing:border-box;border:1px solid var(--mid);border-radius:2px;padding:12px 44px 12px 16px;font-family:var(--ff-sans);font-size:.9rem;color:var(--ink);background:var(--white);outline:none}
+    .catalog-search input:focus{border-color:var(--g2)}
+    .catalog-search .srch-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--fog);font-size:.9rem}
+
+    @media(max-width:600px){
+      .cat-sec-head{flex-direction:column;align-items:flex-start;gap:.8rem}
+      .cat-grid{grid-template-columns:1fr 1fr;gap:1px}
+      .pc-img-wrap{height:148px;padding:10px}
+      .pc-img-wrap img{width:120px;height:120px}
+      .pc-desc{display:none}
+      .pc-variants{display:flex;margin-bottom:.5rem}
+      .pc-var-btn{padding:4px 7px;font-size:.6rem}
+      .pc-body{padding:.8rem .9rem 1rem}
+      .pc-name{font-size:1.1rem}
+      .pc-price{font-size:1.4rem}
+      .pc-add{padding:8px 10px;font-size:.6rem}
+      .cat-nav-item{padding:12px 14px;font-size:.65rem}
+    }
+  </style>
 </head>
 <body>
-
-<!-- CURSOR -->
-<div class="cursor-dot" id="cdot"></div>
-<div class="cursor-ring" id="cring"></div>
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-paw">🐾</div>
-  <div class="loader-name">Happy &amp; <em>Healthy</em> Pets</div>
-  <div class="loader-bar"><div class="loader-fill"></div></div>
-</div>
-
-<!-- NAV -->
-<nav id="nav" class="top">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark">🐾</div>
-    <div class="nav-logo-text">
-      <span class="nav-logo-name">Happy &amp; Healthy</span>
-      <span class="nav-logo-sub">Pets · Suplementos</span>
-    </div>
-  </a>
-  <div class="nav-links">
-    <a href="#productos">Productos</a>
-    <a href="#nosotros">Nosotros</a>
-          <a href="#resenas">Reseñas</a>
-    <a href="#contacto">Contacto</a>
-    <a href="#" class="nav-cta" onclick="openCart();return false">🛒 Carrito <span class="nav-cart-count" id="nav-count">0</span></a>
-  </div>
-  <button class="nav-burger" id="burger" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- MOBILE MENU -->
-<div class="nav-mobile" id="mobile-menu">
-  <button class="nav-mobile-close" id="menu-close">✕</button>
-  <a href="#productos" onclick="closeMobile()">Productos</a>
-  <a href="#beneficios" onclick="closeMobile()">Beneficios</a>
-  <a href="#contacto" onclick="closeMobile()">Contacto</a>
-  <a href="#" onclick="closeMobile();openCart();return false" style="color:var(--g4)">🛒 Carrito</a>
-</div>
-
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="hero-left">
-    <div class="hero-kicker">
-      <div class="kicker-dot"></div>
-      <span class="kicker-txt">Suplementos 100% Naturales · México</span>
-    </div>
-    <h1>
-      <span class="hw" style="--i:0">La salud</span><span> </span>
-      <span class="hw" style="--i:1">de tu</span><span> </span>
-      <span class="hw" style="--i:2" class="accent"><em class="accent">mascota,</em></span><br>
-      <span class="hw" style="--i:3">en cada</span><span> </span>
-      <span class="hw" style="--i:4"><em class="gold">tableta.</em></span>
-    </h1>
-    <p class="hero-desc">Fórmulas veterinarias avanzadas con ingredientes naturales premium. Diseñadas con amor para perros y gatos que merecen lo mejor.</p>
-    <div class="hero-actions">
-      <a href="#productos" class="btn-fill"><span>Ver Productos</span><div class="arr">→</div></a>
-      <a href="#beneficios" class="btn-ghost"><span class="line"></span><span>¿Por qué elegirnos?</span></a>
-    </div>
-    <div class="hero-stats">
-      <div class="h-stat">
-        <span class="h-stat-num"><em>35</em>+</span>
-        <span class="h-stat-lbl">Productos</span>
+  <!-- NAV igual al index -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <div class="nav-logo-icon">🐾</div>
+        <div><div class="nav-logo-name">Happy &amp; Healthy</div><div class="nav-logo-sub">PETS · SUPLEMENTOS</div></div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#nosotros">Nosotros</a>
+        <a href="index.html#resenas">Reseñas</a>
+        <a href="index.html#contacto">Contacto</a>
       </div>
-      <div class="h-stat">
-        <span class="h-stat-num"><em>100</em>%</span>
-        <span class="h-stat-lbl">Natural</span>
-      </div>
-      <div class="h-stat">
-        <span class="h-stat-num"><em>4.8</em>★</span>
-        <span class="h-stat-lbl">Valoración</span>
-      </div>
+      <button class="btn-cart" onclick="openCart()">🛒 Carrito <span class="cart-count" id="cart-count">0</span></button>
     </div>
-  </div>
-  <div class="hero-right">
-    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&q=85&fit=crop" alt="Mascota feliz y saludable"/>
-    <div class="hero-pill">
-      <span class="hp-val">$599</span>
-      <span class="hp-lbl">Envío gratis desde</span>
-      <div class="hp-badge"><div class="hp-dot"></div> Todo México</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="catalog-hero">
+    <a href="index.html" class="back-link">← Volver al inicio</a>
+    <h1>Catálogo <em>completo</em></h1>
+    <p>35 productos organizados por categoría · Envío a toda la República</p>
+    <div class="catalog-search" style="margin-top:1.5rem">
+      <input type="text" id="search-input" placeholder="Buscar producto..." oninput="searchProducts(this.value)"/>
+      <span class="srch-icon">🔍</span>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ANNOUNCE -->
-<div class="announce" style="background:var(--ink);border-bottom:1px solid rgba(255,255,255,.06)">
-  <span class="announce-badge">Oferta</span>
-  <span class="announce-text"><strong>20% de descuento</strong> en tu primera compra · Envíos gratis a partir de <strong>$599 MXN</strong></span>
-</div>
+  <!-- STICKY CAT NAV -->
+  <nav class="cat-nav" id="cat-nav">
+    <a class="cat-nav-item active" href="#cat-all" onclick="showAll(this)">Todos</a>
+    <a class="cat-nav-item" href="#cat-digestivo" onclick="setActiveNav(this)">🫁 Digestivo</a>
+    <a class="cat-nav-item" href="#cat-vitaminas" onclick="setActiveNav(this)">💊 Vitaminas</a>
+    <a class="cat-nav-item" href="#cat-bienestar" onclick="setActiveNav(this)">🌿 Bienestar</a>
+    <a class="cat-nav-item" href="#cat-articular" onclick="setActiveNav(this)">🦴 Articular</a>
+    <a class="cat-nav-item" href="#cat-dermatologico" onclick="setActiveNav(this)">✨ Dermatológico</a>
+    <a class="cat-nav-item" href="#cat-respiratorio" onclick="setActiveNav(this)">💨 Respiratorio</a>
+    <a class="cat-nav-item" href="#cat-packs" onclick="setActiveNav(this)">📦 Packs</a>
+    <a class="cat-nav-item" href="#cat-cardiovascular" onclick="setActiveNav(this)">❤️ Cardiovascular</a>
+  </nav>
 
-<!-- TRUST BAR -->
-<div class="trust">
-  <div class="trust-inner">
-    <div class="trust-item"><span class="t-icon">🌿</span> Ingredientes Naturales</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item"><span class="t-icon">🔬</span> Fórmulas Veterinarias</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item"><span class="t-icon">🚚</span> Envío a Todo México</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item"><span class="t-icon">💊</span> 35+ Suplementos</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item"><span class="t-icon">⭐</span> 4.8/5 Valoración</div>
-  </div>
-</div>
+  <!-- MAIN -->
+  <main id="catalog-main">
+    <!-- JS renderiza las secciones aquí -->
+  </main>
 
-<!-- MARQUEE -->
-<div class="marquee-sec">
-  <div class="marquee-track" id="marquee">
-    <div class="marquee-item"><div class="mi-dot"></div>Digest +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Artro +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Vision +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Renal +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Bio +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Calm +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Senior +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Hepatic +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Bronqui +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Derma +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Gymgo +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Urinary +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Cardiac +</div>
-    <!-- Repeat -->
-    <div class="marquee-item"><div class="mi-dot"></div>Digest +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Artro +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Vision +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Renal +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Bio +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Calm +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Senior +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Hepatic +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Bronqui +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Derma +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Gymgo +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Urinary +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Cardiac +</div>
-  </div>
-</div>
-
-<!-- CATEGORIES -->
-<section class="sec cats-sec" id="categorias" style="padding:48px 5%">
-  <div class="sec-inner">
-    <div class="sec-head reveal">
-      <div class="eyebrow">35 Fórmulas · Colección Completa</div>
-      <h2 class="sec-title">Encuentra el suplemento <em>ideal</em></h2>
-      <p class="sec-sub">Desde digestión hasta articulaciones. Cada fórmula, diseñada con ingredientes naturales específicos para cada necesidad.</p>
-    </div>
-    <div class="cats-strip reveal reveal-delay-1" id="cats-strip">
-      <button class="cat-pill active" data-cat="all" onclick="filterCat('all',this)">
-        <span class="cp-icon">🐾</span> Todos <span class="cp-count">(35)</span>
-      </button>
-      <button class="cat-pill" data-cat="digestivo" onclick="filterCat('digestivo',this)">
-        <span class="cp-icon">🌿</span> Digestivo <span class="cp-count">(5)</span>
-      </button>
-      <button class="cat-pill" data-cat="articulaciones" onclick="filterCat('articulaciones',this)">
-        <span class="cp-icon">🦴</span> Articulaciones <span class="cp-count">(5)</span>
-      </button>
-      <button class="cat-pill" data-cat="piel" onclick="filterCat('piel',this)">
-        <span class="cp-icon">✨</span> Piel &amp; Pelaje <span class="cp-count">(3)</span>
-      </button>
-      <button class="cat-pill" data-cat="bienestar" onclick="filterCat('bienestar',this)">
-        <span class="cp-icon">😌</span> Bienestar <span class="cp-count">(3)</span>
-      </button>
-      <button class="cat-pill" data-cat="renal" onclick="filterCat('renal',this)">
-        <span class="cp-icon">💧</span> Renal <span class="cp-count">(2)</span>
-      </button>
-      <button class="cat-pill" data-cat="senior" onclick="filterCat('senior',this)">
-        <span class="cp-icon">🐕</span> Senior <span class="cp-count">(3)</span>
-      </button>
-      <button class="cat-pill" data-cat="vitaminas" onclick="filterCat('vitaminas',this)">
-        <span class="cp-icon">💊</span> Vitaminas <span class="cp-count">(9)</span>
-      </button>
-      <button class="cat-pill" data-cat="packs" onclick="filterCat('packs',this)">
-        <span class="cp-icon">📦</span> Packs <span class="cp-count">(5)</span>
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section class="sec products-sec" id="productos" style="padding-top:40px">
-  <div class="sec-inner">
-    <div class="prod-toolbar">
-      <p class="prod-count-label"><strong id="prod-count">35</strong> suplementos · Todos los productos</p>
-    </div>
-    <div class="products-grid" id="products-grid"></div>
-  </div>
-  <div style="text-align:center;margin-top:3rem;padding-bottom:1rem">
-    <a href="catalogo.html" class="btn-all-prods">
-      Ver catálogo completo &mdash; 35 productos &rarr;
-    </a>
-  </div>
-</section>
-
-
-<!-- SOBRE NOSOTROS -->
-<section class="about-sec" id="nosotros">
-  <div class="about-inner">
-    <div class="about-imgs reveal">
-      <img class="about-img-main" 
-        src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80&auto=format&fit=crop" 
-        alt="Perros felices con Happy & Healthy Pets"/>
-      <img class="about-img-sec" 
-        src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80&auto=format&fit=crop" 
-        alt="Suplementos naturales para mascotas"/>
-      <div class="about-badge">7<span>años</span></div>
-    </div>
-    <div class="about-text reveal">
-      <div class="eyebrow">Nuestra Historia</div>
-      <h2>Ciencia y amor en <em>cada fórmula</em></h2>
-      <p>Somos un equipo de veterinarios y nutricionistas apasionados por el bienestar animal. Nacimos en México con una misión clara: ofrecer suplementos 100% naturales que realmente funcionen.</p>
-      <p>Cada producto es desarrollado con ingredientes premium, respaldados por evidencia científica y probados bajo los más altos estándares de calidad. Porque tu mascota merece lo mejor.</p>
-      <div class="about-values">
-        <div class="av-item"><div class="av-dot"></div>Ingredientes 100% naturales y libres de químicos</div>
-        <div class="av-item"><div class="av-dot"></div>Formulados por veterinarios certificados</div>
-        <div class="av-item"><div class="av-dot"></div>Sin gluten, sin colorantes artificiales</div>
-        <div class="av-item"><div class="av-dot"></div>Envío rápido a toda la República Mexicana</div>
-      </div>
-      <div class="about-stats">
-        <div>
-          <div class="ab-stat-n">35+</div>
-          <div class="ab-stat-l">Productos</div>
-        </div>
-        <div>
-          <div class="ab-stat-n">8K+</div>
-          <div class="ab-stat-l">Mascotas felices</div>
-        </div>
-        <div>
-          <div class="ab-stat-n">4.8★</div>
-          <div class="ab-stat-l">Valoración media</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- RESEÑAS -->
-<section class="reviews-sec" id="resenas">
-  <div class="reviews-head reveal">
-    <div class="eyebrow">Lo que dicen nuestros clientes</div>
-    <h2 class="sec-title">Familias que <em>confían</em> en nosotros</h2>
-  </div>
-  <div class="reviews-grid">
-
-    <div class="rv-card reveal">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"Mi perra Luna llevaba meses con problemas digestivos. A las dos semanas de empezar con Digest+ noté la diferencia. Ahora come feliz y sin molestias."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#d4ecd4">M</div>
-        <div>
-          <div class="rv-name">Mariana García</div>
-          <div class="rv-pet">🐕 Luna, Golden Retriever · Digest+</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="rv-card reveal" style="background:var(--g1);border-color:var(--g2)">
-      <div class="rv-stars" style="color:var(--gold3)">★★★★★</div>
-      <p class="rv-text" style="color:rgba(255,255,255,.75)">"Increíble producto. Mi gato Milo tiene artritis y con Artro+ se mueve mucho mejor. Ya no le duele saltar y está más activo que nunca. 100% recomendado."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:rgba(255,255,255,.15);color:white">R</div>
-        <div>
-          <div class="rv-name" style="color:white">Roberto Sánchez</div>
-          <div class="rv-pet" style="color:rgba(255,255,255,.5)">🐱 Milo, Gato persa · Artro+</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="rv-card reveal">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"Llevo 3 meses dándole Bio+ a mis dos labradores y la diferencia es notable. Pelaje brillante, más energía y sin problemas estomacales. Vale cada centavo."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#fde8c8">C</div>
-        <div>
-          <div class="rv-name">Claudia Reyes</div>
-          <div class="rv-pet">🐕 Max y Thor, Labradores · Bio+</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="rv-card reveal">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"El envío llegó súper rápido y bien empacado. Empecé a darle Vision+ a mi Yorkie y en un mes el veterinario notó mejoría en sus ojos. Seguiré comprando."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#e8d4ec">A</div>
-        <div>
-          <div class="rv-name">Alejandro Torres</div>
-          <div class="rv-pet">🐕 Coco, Yorkshire Terrier · Vision+</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="rv-card reveal">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"Mi gata tiene problemas renales y Renal+ ha sido un cambio de vida para ella. Está más hidratada, activa y sus análisis mejoraron mucho. El veterinario quedó sorprendido."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#d4e8f0">P</div>
-        <div>
-          <div class="rv-name">Patricia Morales</div>
-          <div class="rv-pet">🐱 Kitty, Gata doméstica · Renal+</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="rv-card reveal">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"Probé Calm+ con mi Beagle que sufría de ansiedad en tormentas. Funciona de verdad. Ya no tiembla ni ladra horas. Lo recomendaré a todos mis conocidos con mascotas."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#d4ecdc">J</div>
-        <div>
-          <div class="rv-name">Jorge Méndez</div>
-          <div class="rv-pet">🐕 Kira, Beagle · Calm+</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- WHY -->
-<section class="sec why-sec" id="beneficios">
-  <div class="sec-inner">
-    <div class="sec-head reveal">
-      <div class="eyebrow">Nuestro compromiso</div>
-      <h2 class="sec-title">¿Por qué <em>Happy &amp; Healthy?</em></h2>
-      <p class="sec-sub">Cada suplemento es el resultado de investigación veterinaria y el amor por los animales.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card reveal reveal-delay-1">
-        <span class="why-icon">🌿</span>
-        <div class="why-title">Ingredientes Naturales</div>
-        <p class="why-desc">Formulados con extractos botánicos premium, sin aditivos artificiales ni conservadores dañinos para tu mascota.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-2">
-        <span class="why-icon">🔬</span>
-        <div class="why-title">Respaldo Científico</div>
-        <p class="why-desc">Cada fórmula está respaldada por investigación veterinaria y estudios clínicos que garantizan su eficacia.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-3">
-        <span class="why-icon">🐾</span>
-        <div class="why-title">Para Perros y Gatos</div>
-        <p class="why-desc">Suplementos diseñados específicamente para las necesidades únicas de cada especie y etapa de vida.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-4">
-        <span class="why-icon">🚚</span>
-        <div class="why-title">Envío a Todo México</div>
-        <p class="why-desc">Recibe tu pedido en casa. Envíos rápidos y seguros a toda la república. Gratis a partir de $599 MXN.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER CTA -->
-<div class="footer-cta" id="contacto">
-  <h2 class="fc-title">¿Listo para <em>transformar</em><br>la salud de tu mascota?</h2>
-  <p class="fc-desc">35 suplementos naturales. Fórmulas veterinarias. Envío a todo México.<br>Empieza hoy con 20% de descuento en tu primera compra.</p>
-  <div class="fc-actions">
-    <a href="#productos" class="btn-fill"><span>Ver Todos los Productos</span><div class="arr">→</div></a>
-    <a href="https://wa.me/521XXXXXXXXXX?text=Hola!%20Me%20interesa%20un%20suplemento%20para%20mi%20mascota" target="_blank" class="btn-ghost"><span class="line"></span><span>WhatsApp</span></a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">Happy &amp; <em>Healthy</em> Pets</div>
-    <div class="footer-links">
-      <a href="#productos">Productos</a>
-      <a href="#nosotros">Nosotros</a>
-          <a href="#resenas">Reseñas</a>
-      <a href="https://happyandhealthypets.myshopify.com" target="_blank">Tienda Oficial</a>
-    </div>
-    <div class="footer-copy">© 2026 Happy &amp; Healthy Pets · Suplementos 100% Naturales</div>
-  </div>
-</footer>
-
-<!-- CART -->
-<div class="cart-overlay" id="cart-overlay" onclick="closeCartOutside(event)">
-  <div class="cart-panel">
+  <!-- CART (mismo del index) -->
+  <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+  <aside class="cart-drawer" id="cart-drawer">
     <div class="cart-head">
-      <h3>Tu Carrito</h3>
+      <h3>Carrito</h3>
       <button class="cart-close" onclick="closeCart()">✕</button>
     </div>
-    <div class="cart-items" id="cart-items">
-      <div class="cart-empty">
-        <span class="ce-icon">🛒</span>
-        Tu carrito está vacío
-      </div>
-    </div>
+    <div class="cart-items" id="cart-items"></div>
     <div class="cart-foot">
-      <div class="cart-total-row">
-        <span class="ct-label">Total</span>
-        <span class="ct-total" id="cart-total">$0 MXN</span>
-      </div>
-      <p class="ct-shipping" id="cart-shipping">Agrega $599 más para envío gratis 🚚</p>
-      <button class="btn-checkout" onclick="checkout()">Finalizar Compra →</button>
+      <div class="cart-total-row"><span>Total</span><span class="cart-total" id="cart-total">$0</span></div>
+      <button class="btn-checkout">Proceder al pago →</button>
     </div>
-  </div>
-</div>
+  </aside>
 
-<script>
-// ─── PRODUCTS DATA ───
-</script>
-<script>
-// Inject products
-</script>
-
-<script>
-// ─── PRODUCTS ───
-const PRODUCTS = [
+  <script>
+    const PRODUCTS = [
   {id:'bio',name:'Bio +',desc:'Suplemento probiótico diseñado para fortalecer el sistema inmunológico y mejorar la salud digestiva. Estimula la eliminación de bacterias dañinas en el intestino.',price:250,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/465.png?v=1775336188',cat:'vitaminas',featured:true,variants:[{t:'30',p:250,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/465.png?v=1775336188'},{t:'60',p:290,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/464.png?v=1775336299'},{t:'100',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/463.png?v=1775336299'}]},
   {id:'digest',name:'Digest +',desc:'Formulado con alcachofa y jengibre para el bienestar digestivo. Facilita la eliminación de residuos, mejora la funcionalidad hepática y alivia síntomas de colon irritable.',price:290,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/451.png?v=1775335394',cat:'digestivo',featured:true,variants:[{t:'30',p:290,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/451.png?v=1775335394'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/450.png?v=1775336323'},{t:'100',p:390,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/449.png?v=1775336323'}]},
   {id:'gastric',name:'Gastric +',desc:'Suplemento natural para apoyar la salud digestiva de tus mascotas. Ideal como auxiliar durante procesos de gastritis y úlceras gástricas.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/437.png?v=1775336145',cat:'digestivo',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/437.png?v=1775336145'},{t:'60',p:330,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/436.png?v=1775336290'},{t:'100',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/435.png?v=1775336290'}]},
@@ -877,53 +575,107 @@ const PRODUCTS = [
   {id:'urinary',name:'Urinary +',desc:'Auxilia en infecciones urinarias, cistitis y urolitiasis. Mantiene el tracto urinario saludable con una fórmula 100% natural a base de D-Manosa y arándano.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/346.png?v=1775336104',cat:'renal',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/346.png?v=1775336104'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/345.png?v=1775336276'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/344.png?v=1775336276'}]}
 ];
 
-// ─── CART STATE ───
-let cart = [];
-let activeFilter = 'all';
+    // Categorías con metadata
+    const CAT_META = {
+      'digestivo':     {label:'Digestivo',       emoji:'🫁', desc:'Salud del aparato digestivo, hígado y riñones'},
+      'vitaminas':     {label:'Vitaminas',        emoji:'💊', desc:'Vitaminas, minerales y probióticos esenciales'},
+      'bienestar':     {label:'Bienestar',        emoji:'🌿', desc:'Estrés, ansiedad, calidad de vida y sueño'},
+      'articular':     {label:'Articular',        emoji:'🦴', desc:'Articulaciones, movilidad y recuperación'},
+      'dermatologico': {label:'Dermatológico',    emoji:'✨', desc:'Piel, pelaje y alergias cutáneas'},
+      'respiratorio':  {label:'Respiratorio',     emoji:'💨', desc:'Sistema respiratorio y bronquios'},
+      'packs':         {label:'Packs',            emoji:'📦', desc:'Combinaciones especiales para tratamientos completos'},
+      'cardiovascular':{label:'Cardiovascular',   emoji:'❤️', desc:'Corazón, circulación y sistema vascular'},
+    };
 
-// ─── RENDER PRODUCTS ───
-function renderProducts() {
-  const grid = document.getElementById('products-grid');
-  const filtered = activeFilter === 'all' ? PRODUCTS.filter(p => p.featured).slice(0,8) : PRODUCTS.filter(p => p.cat === activeFilter).slice(0,8);
-  document.getElementById('prod-count').textContent = PRODUCTS.filter(p=>p.featured).length;
+    let cart = [];
 
-  grid.innerHTML = filtered.map(p => {
-    const mainImg = p.img || '';
-    const firstPrice = p.variants && p.variants.length ? p.variants[0].p : p.price;
-    const badgeHtml = p.featured
-      ? `<div class="pc-badge gold">Destacado</div>`
-      : '';
-    const varHtml = p.variants && p.variants.length > 1
-      ? `<div class="pc-variants" id="vars-${p.id}">` +
-        p.variants.map((v,i) => `<button class="pc-var-btn${i===0?' sel':''}" onclick="selVar('${p.id}',${i},this)" data-p="${v.p}" data-i="${v.i}">${v.t} tab</button>`).join('') +
-        `</div>`
-      : '';
-    return `
-    <div class="product-card">
-      <div class="pc-img-wrap">
-        ${mainImg ? `<img src="${mainImg}" alt="${p.name}" loading="lazy" id="img-${p.id}">` : `<div class="pc-no-img">🐾</div>`}
+    function cardHtml(p) {
+      const firstPrice = p.variants && p.variants.length ? p.variants[0].p : p.price;
+      const badgeHtml = p.featured ? `<div class="pc-badge gold">Destacado</div>` : '';
+      const varHtml = p.variants && p.variants.length > 1
+        ? `<div class="pc-variants" id="vars-${p.id}">` +
+          p.variants.map((v,i) => `<button class="pc-var-btn${i===0?' sel':''}" onclick="selVar('${p.id}',${i},this)" data-p="${v.p}" data-i="${v.i}">${v.t} tab</button>`).join('') +
+          `</div>` : '';
+      return `<div class="product-card">
         ${badgeHtml}
-      </div>
-      <div class="pc-body">
-        <div class="pc-cat-line">${catLabel(p.cat)}</div>
-        <div class="pc-name">${p.name}</div>
-        <div class="pc-desc">${p.desc}</div>
-        ${varHtml}
-        <div class="pc-footer">
-          <div class="pc-price" id="price-${p.id}">$${firstPrice} <span>MXN</span></div>
-          <button class="pc-add" onclick="addToCart('${p.id}')">Agregar</button>
+        <div class="pc-img-wrap">
+          <img id="img-${p.id}" src="${p.img||''}" alt="${p.name}" loading="lazy"/>
         </div>
-      </div>
-    </div>`;
-  }).join('');
-}
+        <div class="pc-body">
+          <div class="pc-cat-line">${(CAT_META[p.cat]||{emoji:''}).emoji} ${p.cat.toUpperCase()}</div>
+          <div class="pc-name">${p.name}</div>
+          <p class="pc-desc">${p.desc}</p>
+          ${varHtml}
+          <div class="pc-footer">
+            <div class="pc-price" id="price-${p.id}">$${firstPrice} <span>MXN</span></div>
+            <button class="pc-add" onclick="addToCart('${p.id}')">+ AGREGAR</button>
+          </div>
+        </div>
+      </div>`;
+    }
 
-function catLabel(cat) {
-  const m = {digestivo:'Digestivo',articulaciones:'Articulaciones',piel:'Piel & Pelaje',bienestar:'Bienestar',renal:'Renal',senior:'Senior',vitaminas:'Vitaminas',packs:'Pack'};
-  return m[cat] || cat;
-}
+    function renderCatalog(products) {
+      const main = document.getElementById('catalog-main');
+      const cats = [...new Set(products.map(p => p.cat))];
+      main.innerHTML = cats.map(cat => {
+        const catProds = products.filter(p => p.cat === cat);
+        const meta = CAT_META[cat] || {label:cat, emoji:'📦', desc:''};
+        return `<section class="cat-section" id="cat-${cat}">
+          <div class="cat-sec-head">
+            <div class="cat-sec-info">
+              <div class="cat-sec-emoji">${meta.emoji}</div>
+              <div>
+                <div class="cat-sec-title">${meta.label}</div>
+                <div class="cat-sec-desc">${meta.desc}</div>
+              </div>
+            </div>
+            <div class="cat-sec-count">${catProds.length} producto${catProds.length>1?'s':''}</div>
+          </div>
+          <div class="cat-grid">
+            ${catProds.map(p => cardHtml(p)).join('')}
+          </div>
+        </section>`;
+      }).join('');
+    }
 
-function selVar(pid, idx, btn) {
+    function searchProducts(q) {
+      const term = q.toLowerCase().trim();
+      const filtered = term ? PRODUCTS.filter(p => 
+        p.name.toLowerCase().includes(term) || 
+        p.desc.toLowerCase().includes(term) ||
+        p.cat.toLowerCase().includes(term)
+      ) : PRODUCTS;
+      renderCatalog(filtered);
+    }
+
+    function setActiveNav(el) {
+      document.querySelectorAll('.cat-nav-item').forEach(e => e.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function showAll(el) {
+      setActiveNav(el);
+      renderCatalog(PRODUCTS);
+    }
+
+    // Intersección observer para highlight de nav
+    function initNavHighlight() {
+      const sections = document.querySelectorAll('.cat-section');
+      const navItems = document.querySelectorAll('.cat-nav-item[href^="#cat-"]');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if(e.isIntersecting) {
+            const id = '#' + e.target.id;
+            navItems.forEach(n => {
+              n.classList.toggle('active', n.getAttribute('href') === id);
+            });
+          }
+        });
+      }, {rootMargin:'-30% 0px -60% 0px'});
+      sections.forEach(s => obs.observe(s));
+    }
+
+    function selVar(pid, idx, btn) {
   btn.closest('.pc-variants').querySelectorAll('.pc-var-btn').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
   const priceEl = document.getElementById('price-' + pid);
@@ -1068,6 +820,11 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ─── INIT ───
 renderProducts();
-</script>
+
+
+    // Init
+    renderCatalog(PRODUCTS);
+    initNavHighlight();
+  </script>
 </body>
 </html>
