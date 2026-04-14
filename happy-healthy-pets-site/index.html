@@ -7,7 +7,7 @@
   <meta name="description" content="Suplementos 100% naturales para tu mascota. Envíos gratis a todo México a partir de $599."/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <style>
-    
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Poppins',sans-serif;background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased}
@@ -169,36 +169,23 @@ body{font-family:'Poppins',sans-serif;background:#fff;color:#1a1a1a;-webkit-font
 }
 .pc-add-btn:hover{background:var(--green-dark)}
 
-    
+
+/* ── INDEX ESPECÍFICO ───────────────────────────────────── */
 body{padding-top:calc(38px + 72px)}
 
 /* HERO */
 .hero{
-  background:var(--green-bg);
-  min-height:540px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  overflow:hidden;
-  position:relative;
+  background:var(--green-bg);min-height:540px;
+  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
 }
 .hero-left{
   padding:60px 40px 60px 5%;
-  display:flex;flex-direction:column;justify-content:center;
-  z-index:2;
+  display:flex;flex-direction:column;justify-content:center;z-index:2;
 }
-.hero-eyebrow{
-  font-size:.7rem;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;color:var(--green-dark);margin-bottom:14px;
-}
-.hero-title{
-  font-size:clamp(2rem,3.5vw,3rem);font-weight:900;
-  line-height:1.12;color:var(--dark);margin-bottom:16px;
-}
+.hero-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green-dark);margin-bottom:14px}
+.hero-title{font-size:clamp(2rem,3.5vw,3rem);font-weight:900;line-height:1.12;color:var(--dark);margin-bottom:16px}
 .hero-title em{color:var(--green-dark);font-style:normal}
-.hero-sub{
-  font-size:.88rem;color:var(--gray);line-height:1.72;
-  margin-bottom:28px;max-width:380px;
-}
+.hero-sub{font-size:.88rem;color:var(--gray);line-height:1.72;margin-bottom:28px;max-width:380px}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
 .btn-hero-primary{
   background:var(--green);color:var(--dark);border:none;border-radius:50px;
@@ -209,77 +196,264 @@ body{padding-top:calc(38px + 72px)}
 .btn-hero-primary:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px)}
 .btn-hero-sec{
   background:transparent;color:var(--dark);border:2px solid var(--dark);
-  border-radius:50px;padding:12px 24px;font-size:.78rem;font-weight:700;cursor:pointer;
-  text-decoration:none;display:inline-block;transition:all .2s;
-  font-family:'Poppins',sans-serif;
+  border-radius:50px;padding:12px 24px;font-size:.78rem;font-weight:700;
+  text-decoration:none;display:inline-block;transition:all .2s;font-family:'Poppins',sans-serif;
 }
 .btn-hero-sec:hover{background:var(--dark);color:#fff}
 .hero-badges{display:flex;gap:10px;flex-wrap:wrap}
-.hero-badge{
-  background:#fff;border-radius:50px;padding:7px 14px;
-  font-size:.65rem;font-weight:700;color:var(--dark);
-  box-shadow:0 2px 8px rgba(0,0,0,.07);
-}
-.hero-right{
-  position:relative;overflow:hidden;
-}
-.hero-right img{
-  width:100%;height:100%;object-fit:cover;object-position:center top;
-  display:block;
-}
+.hero-badge{background:#fff;border-radius:50px;padding:7px 14px;font-size:.65rem;font-weight:700;color:var(--dark);box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.hero-right{position:relative;overflow:hidden}
+.hero-right img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
 
 /* BENEFITS */
-.benefits-bar{
-  background:var(--dark);padding:28px 20px;
-}
-.benefits-inner{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
-}
+.benefits-bar{background:var(--dark);padding:28px 20px}
+.benefits-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .benefit{text-align:center;padding:8px}
 .benefit-icon{font-size:1.5rem;margin-bottom:6px}
 .benefit-title{font-size:.72rem;font-weight:700;color:#fff;margin-bottom:2px}
 .benefit-desc{font-size:.62rem;color:rgba(255,255,255,.45)}
 
-/* FEATURED SECTION */
+/* FEATURED */
 .featured-sec{padding:72px 20px}
 .sec-wrap{max-width:1280px;margin:0 auto}
 .sec-hd{margin-bottom:40px}
-.sec-label{
-  font-size:.65rem;font-weight:800;letter-spacing:2.5px;
-  text-transform:uppercase;color:var(--green-dark);margin-bottom:8px;
-}
-.sec-title{
-  font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:900;
-  color:var(--dark);line-height:1.15;
-}
+.sec-label{font-size:.65rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--green-dark);margin-bottom:8px}
+.sec-title{font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:900;color:var(--dark);line-height:1.15}
 .sec-title em{font-style:normal;color:var(--green-dark)}
 .sec-sub{font-size:.82rem;color:var(--gray);margin-top:6px}
-.products-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;
-}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
 .sec-footer{text-align:center;margin-top:48px}
 .btn-ver-todo{
   display:inline-flex;align-items:center;gap:8px;
-  background:var(--green);color:var(--dark);
-  border-radius:50px;padding:16px 36px;font-size:.8rem;font-weight:800;
+  background:var(--green);color:var(--dark);border-radius:50px;
+  padding:16px 36px;font-size:.8rem;font-weight:800;
   text-decoration:none;transition:all .2s;border:none;cursor:pointer;
   font-family:'Poppins',sans-serif;letter-spacing:.3px;
 }
 .btn-ver-todo:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px)}
 
+/* PACKS */
+.packs-sec{padding:64px 20px;background:var(--green-bg)}
+.packs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;max-width:1280px;margin:0 auto}
+
+
+/* ── BEST SELLERS (en home) ─────────────────────────────── */
+.home-prods-sec{padding:72px 20px;background:#fff}
+.home-prods-sec .sec-wrap{max-width:1280px;margin:0 auto}
+.home-prods-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+
+/* ── PACKS ──────────────────────────────────────────────── */
+.packs-sec{padding:64px 20px;background:var(--green-bg)}
+.packs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+
+/* ── RESEÑAS ────────────────────────────────────────────── */
+.reviews-sec{padding:72px 20px;background:#fff}
+.reviews-sec .sec-hd{text-align:center;margin-bottom:44px}
+.reviews-img{
+  width:100%;max-width:900px;margin:0 auto;display:block;
+  border-radius:20px;box-shadow:0 8px 40px rgba(0,0,0,.1);
+}
+.reviews-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  max-width:960px;margin:48px auto 0;
+}
+.review-card{
+  background:var(--green-bg);border-radius:16px;padding:24px;
+  border:1px solid #d8eeb8;
+}
+.review-stars{color:#f5c518;font-size:1rem;letter-spacing:2px;margin-bottom:10px}
+.review-text{font-size:.8rem;color:var(--dark);line-height:1.72;margin-bottom:14px}
+.review-author{display:flex;align-items:center;gap:10px}
+.review-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--green);display:flex;align-items:center;justify-content:center;
+  font-size:.78rem;font-weight:800;color:#fff;flex-shrink:0;
+}
+.review-name{font-size:.72rem;font-weight:700;color:var(--dark)}
+.review-pet{font-size:.62rem;color:#aaa}
+
+/* ── CÓMO SE DAN ────────────────────────────────────────── */
+.como-sec{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;background:var(--green-bg);overflow:hidden;
+}
+.como-img{width:100%;height:100%;object-fit:cover;display:block;min-height:420px}
+.como-content{
+  padding:64px 48px;display:flex;flex-direction:column;justify-content:center;
+}
+.como-tag{
+  font-size:.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:var(--green-dark);margin-bottom:14px;
+}
+.como-title{
+  font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:900;
+  color:var(--dark);margin-bottom:16px;line-height:1.2;
+}
+.como-title em{color:var(--green-dark);font-style:normal}
+.como-desc{font-size:.85rem;color:var(--gray);line-height:1.72;margin-bottom:28px}
+.como-steps{display:flex;flex-direction:column;gap:14px}
+.como-step{display:flex;align-items:flex-start;gap:14px}
+.como-step-num{
+  background:var(--green);color:var(--dark);border-radius:50%;
+  width:30px;height:30px;min-width:30px;display:flex;align-items:center;
+  justify-content:center;font-size:.72rem;font-weight:800;
+}
+.como-step-text{font-size:.8rem;color:var(--dark);line-height:1.6;padding-top:4px}
+.como-step-text strong{font-weight:700}
+
+/* ── ESPECIALES (categorías) ────────────────────────────── */
+.especiales-sec{padding:72px 20px;background:#fff}
+.especiales-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  max-width:960px;margin:0 auto;
+}
+.espec-card{
+  border-radius:20px;overflow:hidden;position:relative;
+  cursor:pointer;transition:transform .22s;aspect-ratio:1/1;
+}
+.espec-card:hover{transform:translateY(-4px)}
+.espec-card img{width:100%;height:100%;object-fit:cover;display:block}
+.espec-card-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
+  padding:20px 16px 16px;color:#fff;font-size:.85rem;font-weight:800;
+  text-align:center;
+}
+
+/* ── VETERINARIOS ───────────────────────────────────────── */
+.vets-sec{
+  background:var(--dark);color:#fff;
+  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
+}
+.vets-img{width:100%;height:100%;object-fit:cover;display:block;min-height:380px}
+.vets-content{
+  padding:64px 52px;display:flex;flex-direction:column;justify-content:center;
+}
+.vets-tag{
+  font-size:.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:var(--green);margin-bottom:14px;
+}
+.vets-title{
+  font-size:clamp(1.6rem,2.2vw,2rem);font-weight:900;line-height:1.2;
+  margin-bottom:16px;
+}
+.vets-title em{color:var(--green);font-style:normal}
+.vets-desc{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.72;margin-bottom:28px}
+.vets-badges{display:flex;flex-wrap:wrap;gap:10px}
+.vets-badge{
+  border:1.5px solid rgba(255,255,255,.2);border-radius:50px;
+  padding:8px 16px;font-size:.68rem;font-weight:700;color:#fff;
+}
+
+/* ── FAQ ────────────────────────────────────────────────── */
+.faq-sec{padding:72px 20px;background:var(--green-bg)}
+.faq-sec .sec-hd{text-align:center;margin-bottom:40px}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{
+  background:#fff;border-radius:14px;overflow:hidden;
+  border:1px solid #e0eec8;
+}
+.faq-q{
+  padding:18px 22px;font-size:.82rem;font-weight:700;
+  color:var(--dark);cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  list-style:none;
+  user-select:none;
+}
+.faq-q::after{
+  content:'＋';font-size:1rem;font-weight:400;color:#aaa;
+  transition:transform .2s;flex-shrink:0;
+}
+details[open] .faq-q::after{content:'－'}
+.faq-a{
+  padding:0 22px 18px;font-size:.8rem;color:var(--gray);line-height:1.72;
+  border-top:1px solid #f0f0f0;padding-top:14px;
+}
+
+/* ── NEWSLETTER ─────────────────────────────────────────── */
+.newsletter-sec{
+  background:var(--dark);padding:64px 20px;text-align:center;
+}
+.newsletter-sec h2{
+  font-size:clamp(1.5rem,2.5vw,2rem);font-weight:900;color:#fff;
+  margin-bottom:10px;
+}
+.newsletter-sec h2 em{color:var(--green);font-style:normal}
+.newsletter-sec p{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:28px}
+.newsletter-form{
+  display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;
+}
+.newsletter-form input{
+  flex:1;min-width:200px;border:none;border-radius:50px;
+  padding:14px 22px;font-family:'Poppins',sans-serif;font-size:.82rem;outline:none;
+}
+.newsletter-form button{
+  background:var(--green);color:var(--dark);border:none;border-radius:50px;
+  padding:14px 24px;font-size:.78rem;font-weight:800;cursor:pointer;
+  font-family:'Poppins',sans-serif;white-space:nowrap;transition:all .2s;
+}
+.newsletter-form button:hover{background:var(--green-dark);color:#fff}
+
+/* ── INSTAGRAM ──────────────────────────────────────────── */
+.instagram-sec{padding:64px 20px;background:#fff;text-align:center}
+.instagram-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+  max-width:800px;margin:32px auto 0;
+}
+.ig-item{aspect-ratio:1/1;border-radius:12px;overflow:hidden;position:relative;cursor:pointer}
+.ig-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.ig-item:hover img{transform:scale(1.06)}
+.ig-overlay{
+  position:absolute;inset:0;background:rgba(164,198,57,.82);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .2s;font-size:1.4rem;
+}
+.ig-item:hover .ig-overlay{opacity:1}
+
+/* ─ RESPONSIVE ─ */
+@media(max-width:768px){
+  .como-sec{grid-template-columns:1fr}
+  .como-img{min-height:260px}
+  .como-content{padding:36px 24px}
+  .vets-sec{grid-template-columns:1fr}
+  .vets-img{min-height:240px}
+  .vets-content{padding:36px 24px}
+  .reviews-grid{grid-template-columns:1fr}
+  .especiales-grid{grid-template-columns:1fr 1fr}
+  .instagram-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:480px){
+  .especiales-grid{grid-template-columns:1fr}
+  .instagram-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+
 /* FOOTER */
-.footer{background:var(--green-bg);border-top:1px solid #e0eecc;padding:40px 20px}
-.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
-.footer-brand img{height:48px;margin-bottom:12px}
-.footer-brand p{font-size:.72rem;color:var(--gray);line-height:1.6;max-width:240px}
-.footer-col h4{font-size:.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--dark);margin-bottom:14px}
-.footer-col a{display:block;font-size:.72rem;color:var(--gray);text-decoration:none;margin-bottom:8px;transition:color .2s}
+.footer{background:var(--green-bg);border-top:1px solid #e0eecc;padding:48px 20px 32px}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.footer-brand img{height:52px;margin-bottom:14px;display:block}
+.footer-brand p{font-size:.72rem;color:var(--gray);line-height:1.7;max-width:240px;margin-bottom:16px}
+.footer-social{display:flex;gap:10px}
+.footer-social a{
+  width:34px;height:34px;border-radius:50%;background:#fff;border:1.5px solid #d8eeb8;
+  display:flex;align-items:center;justify-content:center;font-size:.82rem;
+  text-decoration:none;transition:all .2s;
+}
+.footer-social a:hover{background:var(--green);border-color:var(--green)}
+.footer-col h4{font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--dark);margin-bottom:16px}
+.footer-col a{display:block;font-size:.72rem;color:var(--gray);text-decoration:none;margin-bottom:9px;transition:color .2s}
 .footer-col a:hover{color:var(--dark)}
 .footer-bottom{
   border-top:1px solid #e0eecc;margin-top:32px;padding-top:20px;
-  text-align:center;font-size:.65rem;color:#aaa;
   max-width:1100px;margin-left:auto;margin-right:auto;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-bottom-left{font-size:.65rem;color:#aaa}
+.footer-payments{display:flex;gap:6px;align-items:center;font-size:.65rem;color:#aaa}
+.footer-payment-badge{
+  background:#fff;border:1px solid #e0e0e0;border-radius:6px;
+  padding:4px 8px;font-size:.58rem;font-weight:700;color:#555;
 }
 
 @media(max-width:768px){
@@ -287,17 +461,18 @@ body{padding-top:calc(38px + 72px)}
   .hero-right{height:280px}
   .hero-left{padding:40px 24px}
   .benefits-inner{grid-template-columns:repeat(2,1fr)}
-  .footer-inner{grid-template-columns:1fr;gap:24px}
+  .footer-inner{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;text-align:center}
 }
 @media(max-width:480px){
   .products-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .packs-grid{grid-template-columns:1fr 1fr;gap:10px}
   .pc-info{padding:8px 0 4px}
-  .pc-name{font-size:.82rem}
+  .pc-name{font-size:.8rem}
   .pc-from{display:none}
   .pc-var-btn{font-size:.56rem;padding:3px 7px}
   .pc-add-btn{font-size:.6rem;padding:9px}
 }
-
   </style>
 </head>
 <body>
@@ -328,7 +503,7 @@ body{padding-top:calc(38px + 72px)}
 </nav>
 
 
-<!-- HERO -->
+<!-- ═══ HERO ═══════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">🐾 Suplementos Premium</div>
@@ -348,25 +523,25 @@ body{padding-top:calc(38px + 72px)}
     <div class="hero-badges">
       <span class="hero-badge">✅ 100% Naturales</span>
       <span class="hero-badge">🚚 Envío gratis +$599</span>
-      <span class="hero-badge">⭐ Auxiliar en tratamientos</span>
+      <span class="hero-badge">⭐ Avalado por veterinarios</span>
     </div>
   </div>
   <div class="hero-right">
-    <img src="https://happyandhealthypets.myshopify.com/cdn/shop/files/H_H_PETS_6.png?v=1739662884&width=1100" alt="Happy &amp; Healthy Pets — Suplementos para mascotas"/>
+    <img src="https://happyandhealthypets.myshopify.com/cdn/shop/files/H_H_PETS_6.png?v=1739662884&width=1100" alt="Happy &amp; Healthy Pets"/>
   </div>
 </section>
 
-<!-- BENEFITS -->
+<!-- ═══ BENEFITS BAR ════════════════════════════════════════ -->
 <div class="benefits-bar">
   <div class="benefits-inner">
     <div class="benefit"><div class="benefit-icon">🌿</div><div class="benefit-title">100% Naturales</div><div class="benefit-desc">Sin químicos dañinos</div></div>
-    <div class="benefit"><div class="benefit-icon">🔬</div><div class="benefit-title">Fórmulas Verificadas</div><div class="benefit-desc">Respaldadas por expertos</div></div>
+    <div class="benefit"><div class="benefit-icon">🔬</div><div class="benefit-title">Formulados por Vets</div><div class="benefit-desc">Avalados por veterinarios</div></div>
     <div class="benefit"><div class="benefit-icon">🚚</div><div class="benefit-title">Envío Gratis</div><div class="benefit-desc">Pedidos mayores a $599</div></div>
     <div class="benefit"><div class="benefit-icon">💳</div><div class="benefit-title">Pago Seguro</div><div class="benefit-desc">Múltiples métodos</div></div>
   </div>
 </div>
 
-<!-- FEATURED PRODUCTS -->
+<!-- ═══ SUPLEMENTOS DESTACADOS ══════════════════════════════ -->
 <section class="featured-sec" id="destacados">
   <div class="sec-wrap">
     <div class="sec-hd">
@@ -381,27 +556,213 @@ body{padding-top:calc(38px + 72px)}
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ═══ PACKS ════════════════════════════════════════════════ -->
+<section class="packs-sec">
+  <div class="sec-wrap" style="max-width:1280px;margin:0 auto">
+    <div class="sec-hd" style="margin-bottom:36px">
+      <div class="sec-label">Paquetes Especiales</div>
+      <h2 class="sec-title">Packs <em>+</em></h2>
+      <p class="sec-sub">Combos diseñados para un tratamiento completo</p>
+    </div>
+    <div class="packs-grid" id="packs-grid"></div>
+    <div class="sec-footer">
+      <a href="catalogo.html?cat=packs" class="btn-ver-todo" style="background:var(--dark);color:#fff">Ver todos los packs →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESEÑAS ══════════════════════════════════════════════ -->
+<section class="reviews-sec">
+  <div class="sec-wrap" style="max-width:960px;margin:0 auto">
+    <div class="sec-hd" style="text-align:center">
+      <div class="sec-label">Testimonios</div>
+      <h2 class="sec-title">No lo decimos nosotros,<br/><em>lo demuestra tu mascota!</em></h2>
+    </div>
+    <img class="reviews-img" 
+      src="https://happyandhealthypets.myshopify.com/cdn/shop/files/resenas.png?v=1739536992&width=1200"
+      alt="Reseñas de clientes" loading="lazy"/>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Mi perrita empezó con Digest+ hace 2 meses y la diferencia es increíble. Ya no tiene problemas digestivos y come con más ganas que nunca."</p>
+        <div class="review-author">
+          <div class="review-avatar">MG</div>
+          <div><div class="review-name">María González</div><div class="review-pet">🐶 Labrador, 4 años</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Compré Artro+ para mi gato mayor y en 3 semanas ya se mueve mucho mejor. El vet también notó la mejoría. ¡Totalmente recomendado!"</p>
+        <div class="review-author">
+          <div class="review-avatar">CR</div>
+          <div><div class="review-name">Carlos Ramírez</div><div class="review-pet">🐱 Persa, 9 años</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"El Calm+ fue una bendición. Mi beagle se ponía muy ansioso en tormentas y ahora está tranquilo. El envío llegó súper rápido."</p>
+        <div class="review-author">
+          <div class="review-avatar">LP</div>
+          <div><div class="review-name">Laura Pérez</div><div class="review-pet">🐶 Beagle, 2 años</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CÓMO SE DAN LOS SUPLEMENTOS ═════════════════════════ -->
+<section class="como-sec">
+  <img class="como-img" 
+    src="https://happyandhealthypets.myshopify.com/cdn/shop/files/hdbcnsdhbcnsdkc.png?v=1739536992&width=900"
+    alt="Cómo dar suplementos a tu mascota" loading="lazy"/>
+  <div class="como-content">
+    <div class="como-tag">🐾 Modo de uso</div>
+    <h2 class="como-title">¿Cómo se dan los<br/><em>suplementos</em> a mi mascota?</h2>
+    <p class="como-desc">
+      La DOSIS recomendada la podrás encontrar en la ficha técnica del suplemento de tu elección.
+      Una vez que veas si es 1, 2 o 3 tabletas, lo que deberás hacer es triturar la tableta y añadirla al alimento de tu mascota.
+    </p>
+    <div class="como-steps">
+      <div class="como-step">
+        <div class="como-step-num">1</div>
+        <div class="como-step-text"><strong>Revisa la ficha técnica</strong> de tu suplemento para conocer la dosis correcta según el peso de tu mascota.</div>
+      </div>
+      <div class="como-step">
+        <div class="como-step-num">2</div>
+        <div class="como-step-text"><strong>Tritura la tableta</strong> con una cuchara o pastillero hasta obtener un polvo fino.</div>
+      </div>
+      <div class="como-step">
+        <div class="como-step-num">3</div>
+        <div class="como-step-text"><strong>Añade al alimento</strong> de tu mascota. ¡Así de fácil! La mayoría lo acepta sin problema.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ESPECIALES ════════════════════════════════════════════ -->
+<section class="especiales-sec">
+  <div class="sec-wrap" style="max-width:1000px;margin:0 auto">
+    <div class="sec-hd" style="text-align:center;margin-bottom:36px">
+      <div class="sec-label">Colecciones</div>
+      <h2 class="sec-title">Especiales</h2>
+    </div>
+    <div class="especiales-grid">
+      <a href="https://happyandhealthypets.myshopify.com/collections/para-tu-gatito" target="_blank" class="espec-card">
+        <img src="https://happyandhealthypets.myshopify.com/cdn/shop/collections/127.png?v=1739256066&width=600" alt="Para tu Gatito" loading="lazy"/>
+        <div class="espec-card-label">Para tu Gatito</div>
+      </a>
+      <a href="https://happyandhealthypets.myshopify.com/collections/adultos-de-edad-avanzada" target="_blank" class="espec-card">
+        <img src="https://happyandhealthypets.myshopify.com/cdn/shop/collections/128.png?v=1739256066&width=600" alt="Mascotas Edad Avanzada" loading="lazy"/>
+        <div class="espec-card-label">Mascotas Edad Avanzada</div>
+      </a>
+      <a href="catalogo.html" class="espec-card" style="background:var(--green-bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;text-decoration:none">
+        <div style="font-size:2.5rem">🐾</div>
+        <div style="font-size:.85rem;font-weight:800;color:var(--dark);text-align:center;padding:0 16px">Ver todos los suplementos</div>
+        <div style="font-size:.7rem;color:var(--gray)">35 productos →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FORMULADO Y AVALADO ══════════════════════════════════ -->
+<section class="vets-sec">
+  <img class="vets-img"
+    src="https://happyandhealthypets.myshopify.com/cdn/shop/files/H_H_PETS_4.png?v=1739536992&width=900"
+    alt="Formulado por veterinarios" loading="lazy"/>
+  <div class="vets-content">
+    <div class="vets-tag">🔬 Ciencia &amp; Naturaleza</div>
+    <h2 class="vets-title">Formulado y <em>Avalado</em><br/>por Veterinarios</h2>
+    <p class="vets-desc">
+      Nuestros productos están hechos de ingredientes 100% naturales, formulados y avalados por veterinarios y con resultados garantizados. ¡Nuestros clientes lo respaldan!
+    </p>
+    <div class="vets-badges">
+      <span class="vets-badge">🌿 Ingredientes naturales</span>
+      <span class="vets-badge">✅ Resultados garantizados</span>
+      <span class="vets-badge">👨‍⚕️ Aprobado por vets</span>
+      <span class="vets-badge">🏆 Miles de mascotas</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ══════════════════════════════════════════════════ -->
+<section class="faq-sec">
+  <div class="sec-wrap" style="max-width:760px;margin:0 auto">
+    <div class="sec-hd" style="text-align:center;margin-bottom:40px">
+      <div class="sec-label">Dudas frecuentes</div>
+      <h2 class="sec-title">Preguntas <em>Frecuentes</em></h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">¿Qué contienen nuestros suplementos?</summary>
+        <div class="faq-a">Nuestros productos están hechos a base de ingredientes 100% naturales formulados por veterinarios. Cada suplemento tiene su ficha técnica con los ingredientes detallados.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Cuál es la dosis recomendada para mi mascota?</summary>
+        <div class="faq-a">La dosis recomendada la podrás encontrar en la ficha técnica del suplemento de tu elección. Generalmente depende del peso de tu mascota (1, 2 o 3 tabletas diarias).</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Le puedo dar a mi mascota más de 1 suplemento a la vez?</summary>
+        <div class="faq-a">Sí, es posible combinar suplementos. Recomendamos consultar con tu veterinario si tu mascota tiene alguna condición específica o está bajo tratamiento médico.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Es segura mi compra?</summary>
+        <div class="faq-a">¡Totalmente! Contamos con pago seguro mediante múltiples métodos. Tu información está protegida y el proceso de compra es 100% seguro.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Si compro hoy, ¿cuándo llega mi pedido?</summary>
+        <div class="faq-a">Los pedidos se procesan en 1-2 días hábiles. El tiempo de entrega es de 3-5 días hábiles dependiendo de tu ubicación. ¡Envío gratis en pedidos mayores a $599 MXN!</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEWSLETTER ════════════════════════════════════════════ -->
+<section class="newsletter-sec">
+  <h2>Únete a nuestra <em>comunidad!</em></h2>
+  <p>Recibe ofertas exclusivas, tips de salud para tu mascota y novedades directo en tu correo.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="Tu correo electrónico"/>
+    <button onclick="newsletterSub(this)">Suscribirme</button>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
       <img src="https://happyandhealthypets.myshopify.com/cdn/shop/files/3.png?v=1739263173&width=480" alt="Happy &amp; Healthy Pets"/>
-      <p>Suplementos 100% naturales para la salud y bienestar de tu mascota.</p>
+      <p>Suplementos 100% naturales para la salud y bienestar de tu mascota. Formulados y avalados por veterinarios.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/happyandhealthypets" target="_blank">📸</a>
+        <a href="https://wa.me/521XXXXXXXXXX" target="_blank">💬</a>
+      </div>
     </div>
     <div class="footer-col">
       <h4>Tienda</h4>
       <a href="catalogo.html">Todos los suplementos</a>
       <a href="catalogo.html">Más vendidos</a>
-      <a href="catalogo.html?cat=packs">Packs especiales</a>
+      <a href="catalogo.html?cat=packs">Pack +</a>
+      <a href="https://happyandhealthypets.myshopify.com/collections/para-tu-gatito" target="_blank">Para tu Gatito</a>
+      <a href="https://happyandhealthypets.myshopify.com/collections/adultos-de-edad-avanzada" target="_blank">Edad Avanzada</a>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
-      <a href="https://www.instagram.com/happyandhealthypets" target="_blank">Instagram</a>
-      <a href="https://wa.me/521XXXXXXXXXX" target="_blank">WhatsApp</a>
+      <h4>Información</h4>
+      <a href="https://happyandhealthypets.myshopify.com/policies/privacy-policy" target="_blank">Política de privacidad</a>
+      <a href="https://happyandhealthypets.myshopify.com/policies/refund-policy" target="_blank">Política de reembolso</a>
+      <a href="https://happyandhealthypets.myshopify.com/policies/shipping-policy" target="_blank">Política de envío</a>
       <a href="https://happyandhealthypets.myshopify.com" target="_blank">Tienda oficial</a>
     </div>
   </div>
-  <div class="footer-bottom">© 2024 Happy &amp; Healthy Pets. Todos los derechos reservados.</div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">© 2025 Happy &amp; Healthy Pets. Todos los derechos reservados.</div>
+    <div class="footer-payments">
+      Pagos seguros:
+      <span class="footer-payment-badge">VISA</span>
+      <span class="footer-payment-badge">MC</span>
+      <span class="footer-payment-badge">AMEX</span>
+      <span class="footer-payment-badge">OXXO</span>
+    </div>
+  </div>
 </footer>
 
 
@@ -570,10 +931,28 @@ function cardHtml(p) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Productos destacados
   const featured = PRODUCTS.filter(p => p.featured);
   document.getElementById('featured-grid').innerHTML = featured.map(p => cardHtml(p)).join('');
+  
+  // Packs
+  const packs = PRODUCTS.filter(p => p.cat === 'packs').slice(0,4);
+  document.getElementById('packs-grid').innerHTML = packs.map(p => cardHtml(p)).join('');
+  
   updateCartUI();
 });
+
+function newsletterSub(btn) {
+  const inp = btn.previousElementSibling;
+  if(!inp.value || !inp.value.includes('@')) {
+    inp.style.border = '2px solid red';
+    return;
+  }
+  btn.textContent = '✅ ¡Listo!';
+  btn.style.background = '#2e7d32';
+  btn.style.color = '#fff';
+  inp.disabled = true;
+}
 </script>
 </body>
 </html>
