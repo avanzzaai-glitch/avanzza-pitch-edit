@@ -1,1073 +1,397 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Happy &amp; Healthy Pets — Suplementos 100% Naturales para Mascotas</title>
-<meta name="description" content="Suplementos premium 100% naturales para perros y gatos. Digest+, Artro+, Vision+, Renal+ y 35 más. Envío gratis a partir de $599 MXN."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<style>
-/* ─── TOKENS ─────────────────────────── */
-:root {
-  --g1:#1B5E37; --g2:#2D7A50; --g3:#3A9463; --g4:#52B788; --gmint:#B7E4C7;
-  --gold:#C9963A; --gold2:#E2AE4F; --gold3:#F5D07A;
-  --ink:#0D0D0D; --ink2:#1A1A1A;
-  --cream:#F7F3EC; --cream2:#EDE8DF;
-  --mid:#D4CEC4; --fog:#8A8278;
-  --white:#FFFFFF;
-  --ff-head:'Cormorant Garamond',Georgia,serif;
-  --ff-sans:'DM Sans',sans-serif;
-  --ff-body:'Inter',sans-serif;
-  --ease:cubic-bezier(.25,.46,.45,.94);
-  --ease-spring:cubic-bezier(.34,1.56,.64,1);
-  --r:16px;
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Happy & Healthy Pets — Suplementos 100% Naturales</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased}
+
+:root{
+  --green:#8CC63F;
+  --green-light:#C5E07F;
+  --green-bg:#F2F9E8;
+  --dark:#1a1a1a;
+  --gray:#666;
+  --light:#f5f5f5;
+  --white:#fff;
+  --radius:16px;
+  --ease:cubic-bezier(.4,0,.2,1);
 }
 
-/* ─── RESET ───────────────────────────── */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden}
-body{font-family:var(--ff-body);color:var(--ink);background:var(--white);overflow-x:hidden}
-img{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-ul{list-style:none}
-button{cursor:pointer;font-family:inherit;border:none;background:none}
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--white);border-bottom:1px solid #e8e8e8;height:64px;display:flex;align-items:center}
+.nav-inner{max-width:1200px;margin:0 auto;width:100%;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:40px;width:auto}
+.nav-logo-text{font-size:.72rem;font-weight:700;letter-spacing:1.5px;color:var(--dark);text-transform:uppercase}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:.78rem;font-weight:500;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.btn-cart{background:var(--green);color:#fff;border:none;border-radius:50px;padding:10px 20px;font-size:.78rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s}
+.btn-cart:hover{background:#79b32e}
+.cart-count{background:rgba(0,0,0,.2);border-radius:50px;padding:2px 7px;font-size:.7rem;min-width:20px;text-align:center}
+@media(max-width:600px){.nav-links{display:none}.nav-logo-text{display:none}}
 
-/* ─── CURSOR ──────────────────────────── */
-.cursor-dot{width:8px;height:8px;background:var(--g3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:width .15s,height .15s,opacity .2s;opacity:0}
-.cursor-ring{width:34px;height:34px;border:1.5px solid rgba(45,122,80,.5);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:transform .08s,width .2s,height .2s,opacity .2s;opacity:0}
-body:hover .cursor-dot,body:hover .cursor-ring{opacity:1}
-@media(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
+/* ── ANNOUNCEMENT BAR ── */
+.announce{background:var(--green-light);text-align:center;padding:9px 16px;font-size:.72rem;font-weight:600;letter-spacing:.5px;color:#3a5c00}
 
-/* ─── LOADER ──────────────────────────── */
-#loader{position:fixed;inset:0;z-index:9000;background:var(--ink2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .7s var(--ease),visibility .7s}
-#loader.out{opacity:0;visibility:hidden}
-.loader-paw{font-size:3.2rem;animation:pulse 1s ease-in-out infinite alternate}
-@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.12)}}
-.loader-name{font-family:var(--ff-sans);font-weight:800;font-size:1.5rem;color:var(--white);letter-spacing:-0.5px}
-.loader-name em{color:var(--g4);font-style:normal}
-.loader-bar{width:180px;height:2px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
-.loader-fill{height:100%;background:linear-gradient(90deg,var(--g3),var(--gold2));border-radius:2px;width:0;animation:lfill 1.3s var(--ease) forwards}
-@keyframes lfill{to{width:100%}}
+/* ── CARD SHOPIFY STYLE ── */
+.product-card{background:#fff;border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease);display:flex;flex-direction:column}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.12)}
+.pc-img-wrap{border-radius:var(--radius);overflow:hidden;position:relative;aspect-ratio:1/1;width:100%;background:#f0f0f0}
+.pc-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s var(--ease)}
+.product-card:hover .pc-img-wrap img{transform:scale(1.04)}
+.pc-badge{position:absolute;top:10px;left:10px;background:var(--green);color:#fff;font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:50px;z-index:2}
+.pc-info{padding:12px 4px 4px}
+.pc-name{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:4px}
+.pc-sub{font-size:.72rem;color:var(--gray);margin-bottom:8px}
+.pc-price-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.pc-price{font-size:.9rem;font-weight:700;color:var(--dark)}
+.pc-price span{font-size:.65rem;font-weight:500;color:var(--gray)}
+.pc-variants{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.pc-var-btn{border:1.5px solid #ddd;border-radius:50px;background:#fff;font-size:.62rem;font-weight:600;padding:4px 10px;cursor:pointer;transition:all .15s;color:var(--dark)}
+.pc-var-btn.sel,.pc-var-btn:hover{border-color:var(--dark);background:var(--dark);color:#fff}
+.pc-add{width:100%;background:var(--dark);color:#fff;border:none;border-radius:50px;padding:11px;font-size:.72rem;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:all .2s;margin-top:8px;text-transform:uppercase}
+.pc-add:hover{background:var(--green)}
 
-/* ─── NAV ─────────────────────────────── */
-nav{position:fixed;top:0;left:0;right:0;z-index:800;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;transition:all .4s var(--ease)}
-nav.top{background:transparent}
-nav.solid{background:rgba(13,13,13,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.07)}
-nav.light{background:rgba(247,243,236,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--mid)}
-
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--g2),var(--g3));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 14px rgba(45,122,80,.4);transition:transform .3s var(--ease-spring)}
-.nav-logo:hover .nav-logo-mark{transform:rotate(-8deg) scale(1.1)}
-.nav-logo-text{display:flex;flex-direction:column;line-height:1}
-.nav-logo-name{font-family:var(--ff-sans);font-weight:800;font-size:1.05rem;color:var(--white);letter-spacing:-0.3px;transition:color .3s}
-nav.light .nav-logo-name{color:var(--ink)}
-.nav-logo-sub{font-size:0.6rem;color:rgba(255,255,255,.4);letter-spacing:1.5px;text-transform:uppercase;transition:color .3s}
-nav.light .nav-logo-sub{color:var(--fog)}
-
-.nav-links{display:flex;align-items:center;gap:24px}
-.nav-links a{font-family:var(--ff-sans);font-weight:600;font-size:.83rem;letter-spacing:.2px;color:rgba(255,255,255,.75);transition:color .2s;position:relative}
-nav.light .nav-links a{color:rgba(13,13,13,.65)}
-.nav-links a:not(.nav-cta)::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:var(--g3);transform:scaleX(0);transform-origin:left;transition:transform .25s}
-.nav-links a:not(.nav-cta):hover{color:var(--white)}
-nav.light .nav-links a:not(.nav-cta):hover{color:var(--ink)}
-.nav-links a:not(.nav-cta):hover::after{transform:scaleX(1)}
-
-.nav-cta{background:var(--g2);color:var(--white)!important;padding:9px 20px;border-radius:7px;font-weight:700;font-size:.82rem;letter-spacing:.3px;box-shadow:0 4px 14px rgba(45,122,80,.4);transition:all .25s!important}
-.nav-cta:hover{background:var(--g3)!important;transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,122,80,.5)!important}
-.nav-cta::after{display:none!important}
-.nav-cart-count{background:var(--gold);color:white;border-radius:50%;width:18px;height:18px;font-size:.68rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-left:4px;vertical-align:middle}
-
-.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
-.nav-burger span{display:block;width:22px;height:1.5px;background:var(--white);border-radius:2px;transition:.3s}
-nav.light .nav-burger span{background:var(--ink)}
-.nav-mobile{display:none;position:fixed;inset:0;z-index:799;background:rgba(13,13,13,.98);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
-.nav-mobile.open{display:flex}
-.nav-mobile a{font-family:var(--ff-head);font-size:2.2rem;font-weight:700;color:var(--white)}
-.nav-mobile a:hover{color:var(--g4)}
-.nav-mobile-close{position:absolute;top:24px;right:24px;font-size:2rem;color:rgba(255,255,255,.5);cursor:pointer;background:none;border:none}
-
-/* ─── HERO ─────────────────────────────── */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;background:var(--ink2)}
-
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:120px 5% 100px 5%;position:relative;z-index:2}
-.hero-left::before{content:'';position:absolute;inset:0;z-index:-1;
-  background:radial-gradient(circle at 20% 60%,rgba(45,122,80,.18) 0%,transparent 55%),
-             radial-gradient(circle at 80% 20%,rgba(201,150,58,.1) 0%,transparent 40%)}
-
-.hero-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;opacity:0;animation:sup .7s .2s var(--ease) forwards}
-.kicker-dot{width:8px;height:8px;background:var(--g4);border-radius:50%;flex-shrink:0}
-.kicker-txt{font-family:var(--ff-sans);font-weight:700;font-size:.7rem;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.45)}
-
-.hero h1{font-family:var(--ff-head);font-size:clamp(3.2rem,5.5vw,5rem);font-weight:700;line-height:1.08;color:var(--white);margin-bottom:24px}
-.hw{display:inline-block;opacity:0;transform:translateY(28px) skewX(-3deg);animation:win .55s calc(.25s + var(--i)*.09s) var(--ease) forwards}
-@keyframes win{to{opacity:1;transform:translateY(0) skewX(0)}}
-.hero h1 .accent{font-style:italic;color:var(--g4)}
-.hero h1 .gold{font-style:italic;color:var(--gold2)}
-
-.hero-desc{font-size:1.05rem;line-height:1.8;color:rgba(255,255,255,.72);max-width:460px;margin-bottom:40px;opacity:0;animation:sup .7s .65s var(--ease) forwards}
-@keyframes sup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px;opacity:0;animation:sup .7s .8s var(--ease) forwards}
-.btn-fill{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--g2),var(--g3));color:var(--white);font-family:var(--ff-sans);font-weight:700;font-size:.87rem;letter-spacing:.8px;text-transform:uppercase;padding:0 30px;height:52px;border-radius:5px;position:relative;overflow:hidden;transition:all .35s var(--ease);box-shadow:0 4px 20px rgba(45,122,80,.4)}
-.btn-fill::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--g3),var(--g4));opacity:0;transition:opacity .3s}
-.btn-fill:hover::before{opacity:1}
-.btn-fill:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(45,122,80,.55);letter-spacing:1.1px}
-.btn-fill span{position:relative;z-index:1}
-.btn-fill .arr{width:26px;height:26px;background:rgba(255,255,255,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;transition:transform .3s var(--ease-spring);position:relative;z-index:1;flex-shrink:0}
-.btn-fill:hover .arr{transform:translateX(4px)}
-
-.btn-ghost{display:inline-flex;align-items:center;gap:10px;color:rgba(255,255,255,.6);font-family:var(--ff-sans);font-weight:600;font-size:.87rem;letter-spacing:.8px;text-transform:uppercase;padding:0 24px;height:52px;border-radius:5px;border:1px solid rgba(255,255,255,.15);transition:all .3s}
-.btn-ghost:hover{color:var(--white);border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05)}
-.btn-ghost .line{width:18px;height:1px;background:currentColor;transition:width .3s var(--ease)}
-.btn-ghost:hover .line{width:28px}
-
-.hero-stats{display:flex;gap:0;opacity:0;animation:sup .7s .95s var(--ease) forwards}
-.h-stat{padding:16px 28px 16px 0;border-right:1px solid rgba(255,255,255,.1);margin-right:28px}
-.h-stat:last-child{border-right:none;margin-right:0}
-.h-stat-num{font-family:var(--ff-head);font-size:2.2rem;font-weight:700;color:var(--white);display:block;line-height:1}
-.h-stat-num em{font-style:italic;color:var(--g4)}
-.h-stat-lbl{font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px;display:block}
-
-/* Hero derecha — imagen */
-.hero-right{position:relative;overflow:hidden}
-.hero-right img{width:100%;height:100%;object-fit:cover;filter:brightness(.65) contrast(1.08);transform:scale(1.05);animation:kb 20s ease-in-out infinite alternate}
-@keyframes kb{from{transform:scale(1.05)}to{transform:scale(1.12) translate(-1.5%,-1%)}}
-.hero-right::before{content:'';position:absolute;inset:0;z-index:1;
-  background:linear-gradient(90deg,var(--ink2) 0%,transparent 35%),
-             linear-gradient(to top,var(--ink2) 0%,transparent 30%)}
-
-/* Floating pill */
-.hero-pill{position:absolute;bottom:32px;right:24px;z-index:2;background:rgba(13,13,13,.75);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:20px 26px;opacity:0;animation:sup .7s 1.1s var(--ease) forwards}
-.hp-val{font-family:var(--ff-sans);font-weight:900;font-size:1.9rem;color:var(--gold2);line-height:1;display:block}
-.hp-lbl{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.5px;display:block;margin-top:4px}
-.hp-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(82,183,136,.15);border:1px solid rgba(82,183,136,.3);border-radius:20px;padding:4px 10px;margin-top:8px;font-size:.7rem;color:var(--g4);font-weight:600}
-.hp-dot{width:6px;height:6px;background:var(--g4);border-radius:50%;animation:blink 1.5s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-
-/* ─── ANNOUNCEMENT ──────────────────────── */
-.announce{background:linear-gradient(90deg,var(--g1),var(--g2));padding:11px 5%;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
-.announce-text{font-family:var(--ff-sans);font-size:.8rem;font-weight:600;color:rgba(255,255,255,.9);letter-spacing:.3px}
-.announce-text strong{color:var(--gold3)}
-.announce-badge{background:var(--gold);color:var(--white);font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
-
-/* ─── TRUST BAR ─────────────────────────── */
-.trust{background:var(--cream2);padding:18px 5%;border-top:1px solid var(--mid);border-bottom:1px solid var(--mid)}
-.trust-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:10px;color:var(--fog);font-family:var(--ff-sans);font-size:.78rem;font-weight:600;letter-spacing:.3px}
-.trust-item .t-icon{font-size:1.2rem}
-.trust-sep{width:1px;height:20px;background:var(--mid)}
-
-/* ─── SECTIONS ──────────────────────────── */
-.sec{padding:88px 5%}
-.sec-inner{max-width:1280px;margin:0 auto}
-.sec-head{text-align:center;margin-bottom:52px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-sans);font-weight:700;font-size:.68rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--g2);margin-bottom:14px}
-.eyebrow::before,.eyebrow::after{content:'';flex:1;height:1px;width:32px;background:var(--g3);opacity:.4}
-.sec-title{font-family:var(--ff-head);font-size:clamp(2rem,3.5vw,2.9rem);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:14px}
-.sec-title em{font-style:italic;color:var(--g2)}
-.sec-sub{color:var(--fog);font-size:.97rem;max-width:520px;margin:0 auto;line-height:1.75}
-
-/* ─── CATEGORIES STRIP ──────────────────── */
-.cats-sec{background:var(--white);border-top:1px solid var(--mid);border-bottom:1px solid var(--mid)}
-.cats-strip{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.cat-pill{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid var(--mid);border-radius:2px;padding:8px 16px;cursor:pointer;transition:all .2s;font-family:var(--ff-sans);font-size:.75rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--fog)}
-.cat-pill:hover{border-color:var(--ink);color:var(--ink)}
-.cat-pill.active{background:var(--ink);border-color:var(--ink);color:var(--white)}
-.cat-pill .cp-icon{font-size:.85rem}
-.cat-pill .cp-count{font-size:.65rem;opacity:.6}
-
-/* ─── PRODUCTS ──────────────────────────── */
-.products-sec{background:var(--white)}
-.prod-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:1rem;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--mid)}
-.prod-count-label{font-family:var(--ff-sans);font-size:.78rem;color:var(--fog);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
-.prod-count-label strong{color:var(--ink);font-weight:700}
-
-.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--mid);overflow:hidden}.product-card{margin:0;border-radius:0;border:none}
-.product-card{background:var(--white);border:1px solid var(--mid);border-radius:20px;overflow:hidden;transition:all .35s var(--ease);position:relative;display:flex;flex-direction:column;cursor:pointer}
-.product-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--g2),var(--g4));transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
-.product-card:hover{border-color:rgba(45,122,80,.25);box-shadow:0 20px 60px rgba(0,0,0,.09);transform:translateY(-6px)}
-.product-card:hover::after{transform:scaleX(1)}
-.product-card.hidden{display:none}
-
-.pc-img-wrap{position:relative;background:var(--cream);height:230px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:24px}
-.pc-img-wrap img{width:182px;height:182px;object-fit:cover;object-position:center;border-radius:50%;transition:transform .6s var(--ease);box-shadow:0 10px 36px rgba(0,0,0,.22);flex-shrink:0}
-.product-card:hover .pc-img-wrap img{transform:scale(1.1)}
-.pc-no-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3.5rem;background:linear-gradient(135deg,var(--cream),var(--gmint))}
-
-.pc-badge{position:absolute;top:12px;left:12px;font-family:var(--ff-sans);font-size:.58rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:4px 9px;border-radius:2px;background:rgba(13,13,13,.85);color:var(--white);backdrop-filter:blur(4px)}
-.pc-badge.gold{background:rgba(13,13,13,.85)}
-
-.pc-body{padding:1.3rem 1.4rem 1.6rem;display:flex;flex-direction:column;flex:1;border-top:1px solid var(--mid)}
-.pc-cat-line{font-family:var(--ff-sans);font-size:.58rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--fog);margin-bottom:.45rem}
-.pc-name{font-family:var(--ff-head);font-size:1.55rem;font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:.5rem}
-.pc-desc{font-size:.8rem;color:var(--fog);line-height:1.65;margin-bottom:1rem;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-
-.pc-variants{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:1.1rem}
-.pc-var-btn{background:transparent;border:1px solid var(--mid);border-radius:2px;padding:5px 11px;font-size:.7rem;font-weight:700;letter-spacing:.5px;color:var(--fog);transition:all .18s;font-family:var(--ff-sans);text-transform:uppercase}
-.pc-var-btn:hover{border-color:var(--ink);color:var(--ink)}
-.pc-var-btn.sel{background:var(--ink);border-color:var(--ink);color:var(--white)}
-
-.pc-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:1rem;border-top:1px solid var(--mid)}
-.pc-price{font-family:var(--ff-head);font-weight:700;font-size:1.8rem;color:var(--ink);line-height:1;letter-spacing:-.5px}
-.pc-price span{font-size:.72rem;font-weight:500;color:var(--fog);margin-left:2px;font-family:var(--ff-sans)}
-.pc-add{background:var(--ink);color:var(--white);padding:10px 20px;border-radius:2px;font-family:var(--ff-sans);font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:all .25s;display:flex;align-items:center;gap:6px}
-.pc-add:hover{background:var(--g2);transform:none}
-.pc-add::before{content:'+';font-size:1rem;font-weight:400;line-height:1}
-
-/* ─── WHY ───────────────────────────────── */
-.why-sec{background:linear-gradient(160deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);position:relative;overflow:hidden}
-.why-sec::before{content:'';position:absolute;inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/svg%3E")}
-.why-sec .eyebrow{color:rgba(255,255,255,.6)}
-.why-sec .eyebrow::before,.why-sec .eyebrow::after{background:rgba(255,255,255,.3)}
-.why-sec .sec-title{color:var(--white)}
-.why-sec .sec-title em{color:var(--gold3)}
-.why-sec .sec-sub{color:rgba(255,255,255,.6)}
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
-.why-card{background:rgba(255,255,255,.04);border:none;border-top:1px solid rgba(255,255,255,.12);border-radius:0;padding:2.2rem 1.5rem 2rem;transition:all .3s;position:relative}
-.why-card:hover{background:rgba(255,255,255,.07)}
-.why-icon{font-size:1.8rem;margin-bottom:1.2rem;display:block;opacity:.9}
-.why-title{font-family:var(--ff-head);font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:.5rem;letter-spacing:-.3px}
-.why-desc{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.7}
-
-/* ─── MARQUEE ───────────────────────────── */
-.marquee-sec{background:var(--g1);padding:14px 0;overflow:hidden}
-.marquee-track{display:flex;gap:0;width:max-content;animation:scroll 30s linear infinite}
-.marquee-track:hover{animation-play-state:paused}
-@keyframes scroll{to{transform:translateX(-50%)}}
-.marquee-item{display:flex;align-items:center;gap:12px;padding:0 32px;white-space:nowrap;font-family:var(--ff-head);font-size:1rem;font-style:italic;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.5px}
-.marquee-item .mi-dot{width:4px;height:4px;background:var(--gold2);border-radius:50%;flex-shrink:0}
-
-/* ─── FEATURED PRODUCT ──────────────────── */
-.featured-sec{background:var(--cream)}
-.featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.feat-img-side{position:relative}
-.feat-img-main{border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.12);aspect-ratio:1;background:var(--gmint)}
-.feat-img-main img{width:100%;height:100%;object-fit:cover}
-.feat-float{position:absolute;bottom:-20px;right:-20px;background:var(--white);border-radius:14px;padding:18px 22px;box-shadow:0 8px 32px rgba(0,0,0,.1)}
-.ff-label{font-size:.7rem;font-weight:700;color:var(--fog);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
-.ff-val{font-family:var(--ff-head);font-size:1.8rem;font-weight:700;color:var(--g1)}
-.ff-sub{font-size:.72rem;color:var(--fog)}
-
-.feat-text-side{}
-.feat-kicker{display:inline-flex;align-items:center;gap:8px;background:var(--g2);color:var(--white);font-family:var(--ff-sans);font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:20px}
-.feat-title{font-family:var(--ff-head);font-size:clamp(2rem,3vw,2.8rem);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:16px}
-.feat-desc{color:var(--fog);line-height:1.8;font-size:.97rem;margin-bottom:28px}
-.feat-pills{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:32px}
-.feat-pill{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1.5px solid var(--mid);border-radius:50px;padding:6px 14px;font-family:var(--ff-sans);font-size:.78rem;font-weight:600;color:var(--ink)}
-.feat-pill .fp-icon{font-size:.9rem}
-
-/* ─── CONTACT / FOOTER ──────────────────── */
-.footer-cta{background:var(--ink);padding:80px 5%;text-align:center;position:relative;overflow:hidden}
-.footer-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(45,122,80,.15) 0%,transparent 65%)}
-.fc-title{font-family:var(--ff-head);font-size:clamp(2.6rem,5vw,4.2rem);font-weight:700;color:var(--white);margin-bottom:14px;position:relative;line-height:1.05;letter-spacing:-.5px}
-.fc-title em{font-style:italic;color:var(--g4)}
-.fc-desc{color:rgba(255,255,255,.5);font-size:1rem;line-height:1.75;margin-bottom:36px;position:relative}
-.fc-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
-
-footer{background:var(--ink2);padding:32px 5%;border-top:1px solid rgba(255,255,255,.06)}
-.footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.footer-brand{font-family:var(--ff-sans);font-weight:800;font-size:1.1rem;color:rgba(255,255,255,.8)}
-.footer-brand em{color:var(--g4);font-style:normal}
-.footer-links{display:flex;gap:24px}
-.footer-links a{font-size:.8rem;color:rgba(255,255,255,.35);transition:color .2s;font-family:var(--ff-sans)}
-.footer-links a:hover{color:rgba(255,255,255,.7)}
-.footer-copy{font-size:.75rem;color:rgba(255,255,255,.2);font-family:var(--ff-sans)}
-
-/* ─── CART PANEL ────────────────────────── */
-.cart-overlay{position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.5);opacity:0;visibility:hidden;transition:all .35s}
-.cart-overlay.open{opacity:1;visibility:visible}
-.cart-panel{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);z-index:1201;background:var(--white);box-shadow:-8px 0 48px rgba(0,0,0,.18);transform:translateX(100%);transition:transform .4s var(--ease);display:flex;flex-direction:column}
-.cart-overlay.open .cart-panel{transform:translateX(0)}
-.cart-head{padding:20px 24px;border-bottom:1px solid var(--mid);display:flex;align-items:center;justify-content:space-between}
-.cart-head h3{font-family:var(--ff-head);font-size:1.4rem;font-weight:700;color:var(--ink)}
-.cart-close{font-size:1.5rem;color:var(--fog);transition:color .2s;background:none;border:none;cursor:pointer}
-.cart-close:hover{color:var(--ink)}
+/* ── CART ── */
+.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1100;backdrop-filter:blur(2px)}
+.cart-overlay.open{display:block}
+.cart-drawer{position:fixed;top:0;right:-420px;bottom:0;width:420px;max-width:100vw;background:#fff;z-index:1200;transition:right .35s var(--ease);display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.1)}
+.cart-drawer.open{right:0}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #e8e8e8}
+.cart-head h3{font-size:1rem;font-weight:700}
+.cart-close{background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--gray);width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
+.cart-close:hover{background:#f0f0f0}
 .cart-items{flex:1;overflow-y:auto;padding:16px 24px}
-.cart-empty{text-align:center;padding:60px 0;color:var(--fog);font-size:.95rem}
-.cart-empty .ce-icon{font-size:3rem;margin-bottom:16px;display:block}
-.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--mid)}
-.ci-img{width:60px;height:60px;border-radius:10px;object-fit:cover;background:var(--cream);flex-shrink:0}
-.ci-info{flex:1}
-.ci-name{font-weight:700;font-size:.88rem;color:var(--ink);margin-bottom:2px}
-.ci-sub{font-size:.75rem;color:var(--fog);margin-bottom:8px}
-.ci-row{display:flex;align-items:center;gap:10px}
-.ci-qty{display:flex;align-items:center;gap:8px;background:var(--cream);border-radius:8px;padding:4px 10px}
-.ci-qty button{background:none;border:none;font-size:1rem;color:var(--fog);cursor:pointer;width:20px;text-align:center;transition:color .2s}
-.ci-qty button:hover{color:var(--ink)}
-.ci-qty span{font-weight:700;font-size:.88rem;min-width:16px;text-align:center}
-.ci-price{font-weight:700;color:var(--g1)}
-.ci-remove{margin-left:auto;color:var(--fog);font-size:.8rem;cursor:pointer;background:none;border:none;transition:color .2s}
-.ci-remove:hover{color:var(--ink)}
-.cart-foot{padding:20px 24px;border-top:1px solid var(--mid)}
-.cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
-.ct-label{font-size:.85rem;color:var(--fog)}
-.ct-total{font-family:var(--ff-head);font-size:1.8rem;font-weight:700;color:var(--ink)}
-.ct-shipping{font-size:.75rem;color:var(--g3);margin-bottom:16px}
-.btn-checkout{width:100%;background:linear-gradient(135deg,var(--g2),var(--g3));color:var(--white);padding:16px;border-radius:10px;font-family:var(--ff-sans);font-weight:700;font-size:.95rem;letter-spacing:.5px;transition:all .3s;border:none;cursor:pointer}
-.btn-checkout:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,122,80,.4)}
+.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #f0f0f0}
+.cart-item-img{width:64px;height:64px;object-fit:cover;border-radius:10px;flex-shrink:0}
+.cart-item-info{flex:1}
+.cart-item-name{font-size:.82rem;font-weight:600;margin-bottom:2px}
+.cart-item-price{font-size:.78rem;color:var(--gray)}
+.cart-item-remove{background:none;border:none;color:#ccc;font-size:.85rem;cursor:pointer;transition:color .2s}
+.cart-item-remove:hover{color:#e53935}
+.cart-foot{padding:20px 24px;border-top:1px solid #e8e8e8}
+.cart-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:.9rem;font-weight:700}
+.cart-total{font-size:1.1rem}
+.btn-checkout{width:100%;background:var(--green);color:#fff;border:none;border-radius:50px;padding:16px;font-size:.82rem;font-weight:700;cursor:pointer;transition:background .2s;letter-spacing:.5px}
+.btn-checkout:hover{background:#79b32e}
+.cart-empty{text-align:center;padding:40px 20px;color:var(--gray);font-size:.9rem}
 
-/* ─── RESPONSIVE ─────────────────────────── */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .hero-right{display:none}
-  .hero-left{padding:110px 6% 80px}
-  .featured-grid{grid-template-columns:1fr}
-  .feat-img-side{display:none}
-  .nav-links{display:none}
-  .nav-burger{display:flex}
+body{padding-top:calc(36px + 64px)}
+
+/* HERO */
+.hero{background:var(--green-bg);padding:60px 20px 0;overflow:hidden;position:relative}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.hero-text{padding-bottom:60px}
+.hero-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.hero-title{font-size:clamp(2.2rem,4vw,3.4rem);font-weight:800;line-height:1.15;color:var(--dark);margin-bottom:16px}
+.hero-title em{color:var(--green);font-style:normal}
+.hero-sub{font-size:.9rem;color:var(--gray);line-height:1.7;margin-bottom:32px;max-width:360px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--green);color:#fff;border:none;border-radius:50px;padding:14px 28px;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-primary:hover{background:#79b32e;transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--dark);border:2px solid var(--dark);border-radius:50px;padding:12px 26px;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-secondary:hover{background:var(--dark);color:#fff}
+.hero-img{display:flex;align-items:flex-end;justify-content:center}
+.hero-img img{max-width:100%;height:380px;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(0,0,0,.15))}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.hero-pill{background:#fff;border-radius:50px;padding:6px 14px;font-size:.68rem;font-weight:600;color:var(--dark);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+
+/* PRODUCTS SECTION */
+.products-sec{padding:80px 20px}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec-header{margin-bottom:48px}
+.sec-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.sec-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:var(--dark)}
+.sec-title em{color:var(--green);font-style:normal}
+.sec-sub{font-size:.9rem;color:var(--gray);margin-top:8px}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:24px}
+.sec-cta{text-align:center;margin-top:56px}
+.btn-ver-todo{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;border-radius:50px;padding:16px 36px;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
+.btn-ver-todo:hover{background:#79b32e;transform:translateY(-2px)}
+
+/* BENEFITS BAR */
+.benefits{background:var(--dark);padding:40px 20px}
+.benefits-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.benefit-item{text-align:center}
+.benefit-icon{font-size:1.6rem;margin-bottom:8px}
+.benefit-title{font-size:.78rem;font-weight:700;color:#fff;margin-bottom:4px}
+.benefit-desc{font-size:.68rem;color:rgba(255,255,255,.5)}
+
+/* FOOTER */
+.footer{background:var(--green-bg);border-top:1px solid #ddd;padding:40px 20px;text-align:center}
+.footer-logo{font-size:1.2rem;font-weight:800;color:var(--green);margin-bottom:8px}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.footer-links a{font-size:.75rem;color:var(--gray);text-decoration:none}
+.footer-copy{font-size:.7rem;color:#aaa}
+
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-img{display:none}
+  .benefits-inner{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:600px){
-  .hero h1{font-size:2.8rem}
-  .hero-stats{gap:0;flex-wrap:wrap}
-  .h-stat{padding:12px 18px 12px 0;margin-right:18px}
-  .trust-sep{display:none}
-  .products-grid{grid-template-columns:1fr 1fr;gap:1px}
-  .pc-img-wrap{height:185px;padding:16px}
-  .pc-img-wrap img{width:148px;height:148px}
-  .pc-name{font-size:1.2rem}
-  .pc-body{padding:1rem 1rem 1.2rem}
-  .pc-cat-line{font-size:.55rem}
-  .pc-desc{-webkit-line-clamp:2;font-size:.75rem}
-  .pc-var-btn{padding:4px 8px;font-size:.62rem;letter-spacing:.3px}
-  .pc-price{font-size:1.5rem}
-  .pc-add{padding:8px 14px;font-size:.62rem}
-  .pc-footer{padding-top:.8rem}
-  .announce{display:none}
-  .sec{padding:50px 4%}
-  .products-sec{padding-left:0;padding-right:0}
-  .prod-toolbar{padding-left:4%;padding-right:4%}
-  .cats-grid{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .cats-grid::-webkit-scrollbar{display:none}
-  .cat-pill{flex-shrink:0}
+@media(max-width:480px){
+  .products-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .pc-info{padding:10px 2px 2px}
+  .pc-name{font-size:.82rem}
+  .pc-sub{display:none}
+  .pc-var-btn{padding:3px 8px;font-size:.58rem}
+  .pc-add{font-size:.62rem;padding:9px}
 }
-@media(max-width:420px){
-  .products-grid{grid-template-columns:1fr 1fr;gap:1px}
-  .pc-img-wrap{height:148px;padding:10px}
-  .pc-img-wrap img{width:120px;height:120px}
-  .pc-body{padding:.8rem .9rem 1rem}
-  .pc-name{font-size:1.1rem}
-  .pc-desc{display:none}
-  .pc-variants{display:flex;margin-bottom:.6rem}
-  .pc-price{font-size:1.4rem}
-  .pc-var-btn{padding:4px 7px;font-size:.6rem}
-  .pc-add{padding:8px 10px;font-size:.6rem}
-  .pc-footer{padding-top:.6rem;flex-direction:row;align-items:center}
-}
-
-/* ─── SCROLL REVEAL ──────────────────────── */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
-.reveal-delay-4{transition-delay:.4s}
-
-/* ─── SOBRE NOSOTROS ──────────────────── */
-.about-sec{background:var(--cream);padding:100px 5%}
-.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto}
-.about-imgs{position:relative;height:520px}
-.about-img-main{position:absolute;top:0;left:0;width:72%;height:420px;object-fit:cover;border-radius:4px;box-shadow:0 24px 60px rgba(0,0,0,.12)}
-.about-img-sec{position:absolute;bottom:0;right:0;width:55%;height:280px;object-fit:cover;border-radius:4px;border:5px solid var(--cream);box-shadow:0 12px 40px rgba(0,0,0,.1)}
-.about-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--g2);color:var(--white);border-radius:50%;width:90px;height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--ff-head);font-size:1.5rem;font-weight:700;z-index:2;box-shadow:0 8px 24px rgba(45,122,80,.4)}
-.about-badge span{font-family:var(--ff-sans);font-size:.55rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.8}
-.about-text .eyebrow{margin-bottom:1rem}
-.about-text h2{font-family:var(--ff-head);font-size:clamp(2.2rem,3.5vw,3rem);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:1.5rem;letter-spacing:-.5px}
-.about-text h2 em{font-style:italic;color:var(--g2)}
-.about-text p{font-size:.95rem;line-height:1.85;color:var(--fog);margin-bottom:1rem}
-.about-stats{display:flex;gap:2rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--mid)}
-.ab-stat-n{font-family:var(--ff-head);font-size:2rem;font-weight:700;color:var(--ink);line-height:1}
-.ab-stat-l{font-family:var(--ff-sans);font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--fog);margin-top:4px}
-.about-values{display:flex;flex-direction:column;gap:.8rem;margin-top:2rem}
-.av-item{display:flex;align-items:center;gap:12px;font-family:var(--ff-sans);font-size:.88rem;color:var(--ink);font-weight:500}
-.av-dot{width:8px;height:8px;background:var(--g3);border-radius:50%;flex-shrink:0}
-
-/* ─── RESEÑAS ─────────────────────────── */
-.reviews-sec{background:var(--white);padding:100px 5%}
-.reviews-head{text-align:center;max-width:600px;margin:0 auto 60px}
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1200px;margin:0 auto}
-.rv-card{background:var(--cream);border:1px solid var(--mid);border-radius:4px;padding:2rem;position:relative;transition:all .3s var(--ease)}
-.rv-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.07);transform:translateY(-4px)}
-.rv-card::before{content:'"';position:absolute;top:16px;right:24px;font-family:var(--ff-head);font-size:4rem;color:var(--gmint);line-height:1}
-.rv-stars{display:flex;gap:3px;margin-bottom:1rem}
-.rv-star{color:var(--gold2);font-size:1rem}
-.rv-text{font-size:.9rem;line-height:1.75;color:var(--fog);margin-bottom:1.5rem;font-style:italic}
-.rv-author{display:flex;align-items:center;gap:12px}
-.rv-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;background:var(--gmint);display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-size:1.1rem;color:var(--g2);font-weight:700;flex-shrink:0}
-.rv-name{font-family:var(--ff-sans);font-size:.85rem;font-weight:700;color:var(--ink)}
-.rv-pet{font-family:var(--ff-sans);font-size:.72rem;color:var(--fog);margin-top:2px}
-.rv-featured{grid-column:span 1;background:var(--g1);border-color:var(--g2)}
-.rv-featured .rv-card::before{color:rgba(255,255,255,.1)}
-.rv-featured .rv-text{color:rgba(255,255,255,.75)}
-.rv-featured .rv-name{color:var(--white)}
-.rv-featured .rv-pet{color:rgba(255,255,255,.5)}
-.rv-featured .rv-star{color:var(--gold3)}
-
-@media(max-width:900px){
-  .about-inner{grid-template-columns:1fr;gap:3rem}
-  .about-imgs{height:360px}
-  .about-img-main{width:68%;height:300px}
-  .about-img-sec{width:52%;height:200px}
-  .reviews-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
-  .about-imgs{height:280px}
-  .about-img-main{height:230px}
-  .about-img-sec{height:160px}
-  .about-stats{gap:1.2rem}
-  .reviews-grid{grid-template-columns:1fr}
-  .about-sec{padding:70px 5%}
-  .reviews-sec{padding:70px 5%}
-}
-
-
-.btn-all-prods{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--white);font-family:var(--ff-sans);font-size:.82rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;padding:16px 36px;border-radius:2px;transition:all .3s var(--ease)}
-.btn-all-prods:hover{background:var(--g2);transform:translateY(-2px)}
 </style>
 </head>
 <body>
-
-<!-- CURSOR -->
-<div class="cursor-dot" id="cdot"></div>
-<div class="cursor-ring" id="cring"></div>
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-paw">🐾</div>
-  <div class="loader-name">Happy &amp; <em>Healthy</em> Pets</div>
-  <div class="loader-bar"><div class="loader-fill"></div></div>
-</div>
-
-<!-- NAV -->
-<nav id="nav" class="top">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark">🐾</div>
-    <div class="nav-logo-text">
-      <span class="nav-logo-name">Happy &amp; Healthy</span>
-      <span class="nav-logo-sub">Pets · Suplementos</span>
+  
+<div class="announce">🚚 ENVÍOS GRATIS A TODO MÉXICO A PARTIR DE $599</div>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="https://cdn.shopify.com/s/files/1/0638/2390/4858/files/hh_logo.png" 
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" 
+           alt="Happy & Healthy Pets"/>
+      <div style="display:none;align-items:center;justify-content:center;width:40px;height:40px;background:#8CC63F;border-radius:50%;color:white;font-size:1.2rem;font-weight:900">h</div>
+      <span class="nav-logo-text">Happy &amp; Healthy Pets</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html" style="color:#8CC63F;font-weight:700">Suplementos</a>
+      <a href="index.html#nosotros">Nosotros</a>
     </div>
-  </a>
-  <div class="nav-links">
-    <a href="#productos">Productos</a>
-    <a href="#nosotros">Nosotros</a>
-          <a href="#resenas">Reseñas</a>
-    <a href="#contacto">Contacto</a>
-    <a href="#" class="nav-cta" onclick="openCart();return false">🛒 Carrito <span class="nav-cart-count" id="nav-count">0</span></a>
+    <button class="btn-cart" onclick="openCart()">🛒 <span id="cart-count">0</span></button>
   </div>
-  <button class="nav-burger" id="burger" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
-<!-- MOBILE MENU -->
-<div class="nav-mobile" id="mobile-menu">
-  <button class="nav-mobile-close" id="menu-close">✕</button>
-  <a href="#productos" onclick="closeMobile()">Productos</a>
-  <a href="#beneficios" onclick="closeMobile()">Beneficios</a>
-  <a href="#contacto" onclick="closeMobile()">Contacto</a>
-  <a href="#" onclick="closeMobile();openCart();return false" style="color:var(--g4)">🛒 Carrito</a>
-</div>
 
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="hero-left">
-    <div class="hero-kicker">
-      <div class="kicker-dot"></div>
-      <span class="kicker-txt">Suplementos 100% Naturales · México</span>
-    </div>
-    <h1>
-      <span class="hw" style="--i:0">La salud</span><span> </span>
-      <span class="hw" style="--i:1">de tu</span><span> </span>
-      <span class="hw" style="--i:2" class="accent"><em class="accent">mascota,</em></span><br>
-      <span class="hw" style="--i:3">en cada</span><span> </span>
-      <span class="hw" style="--i:4"><em class="gold">tableta.</em></span>
-    </h1>
-    <p class="hero-desc">Fórmulas veterinarias avanzadas con ingredientes naturales premium. Diseñadas con amor para perros y gatos que merecen lo mejor.</p>
-    <div class="hero-actions">
-      <a href="#productos" class="btn-fill"><span>Ver Productos</span><div class="arr">→</div></a>
-      <a href="#beneficios" class="btn-ghost"><span class="line"></span><span>¿Por qué elegirnos?</span></a>
-    </div>
-    <div class="hero-stats">
-      <div class="h-stat">
-        <span class="h-stat-num"><em>35</em>+</span>
-        <span class="h-stat-lbl">Productos</span>
-      </div>
-      <div class="h-stat">
-        <span class="h-stat-num"><em>100</em>%</span>
-        <span class="h-stat-lbl">Natural</span>
-      </div>
-      <div class="h-stat">
-        <span class="h-stat-num"><em>4.8</em>★</span>
-        <span class="h-stat-lbl">Valoración</span>
-      </div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&q=85&fit=crop" alt="Mascota feliz y saludable"/>
-    <div class="hero-pill">
-      <span class="hp-val">$599</span>
-      <span class="hp-lbl">Envío gratis desde</span>
-      <div class="hp-badge"><div class="hp-dot"></div> Todo México</div>
-    </div>
-  </div>
-</section>
-
-<!-- ANNOUNCE -->
-<div class="announce" style="background:var(--ink);border-bottom:1px solid rgba(255,255,255,.06)">
-  <span class="announce-badge">Oferta</span>
-  <span class="announce-text"><strong>20% de descuento</strong> en tu primera compra · Envíos gratis a partir de <strong>$599 MXN</strong></span>
-</div>
-
-<!-- TRUST BAR -->
-<div class="trust">
-  <div class="trust-inner">
-    <div class="trust-item"><span class="t-icon">🌿</span> Ingredientes Naturales</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item"><span class="t-icon">🔬</span> Fórmulas Veterinarias</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item"><span class="t-icon">🚚</span> Envío a Todo México</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item"><span class="t-icon">💊</span> 35+ Suplementos</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item"><span class="t-icon">⭐</span> 4.8/5 Valoración</div>
-  </div>
-</div>
-
-<!-- MARQUEE -->
-<div class="marquee-sec">
-  <div class="marquee-track" id="marquee">
-    <div class="marquee-item"><div class="mi-dot"></div>Digest +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Artro +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Vision +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Renal +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Bio +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Calm +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Senior +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Hepatic +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Bronqui +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Derma +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Gymgo +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Urinary +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Cardiac +</div>
-    <!-- Repeat -->
-    <div class="marquee-item"><div class="mi-dot"></div>Digest +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Artro +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Vision +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Renal +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Bio +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Calm +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Senior +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Hepatic +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Bronqui +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Derma +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Gymgo +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Urinary +</div>
-    <div class="marquee-item"><div class="mi-dot"></div>Cardiac +</div>
-  </div>
-</div>
-
-<!-- CATEGORIES -->
-<section class="sec cats-sec" id="categorias" style="padding:48px 5%">
-  <div class="sec-inner">
-    <div class="sec-head reveal">
-      <div class="eyebrow">35 Fórmulas · Colección Completa</div>
-      <h2 class="sec-title">Encuentra el suplemento <em>ideal</em></h2>
-      <p class="sec-sub">Desde digestión hasta articulaciones. Cada fórmula, diseñada con ingredientes naturales específicos para cada necesidad.</p>
-    </div>
-    <div class="cats-strip reveal reveal-delay-1" id="cats-strip">
-      <button class="cat-pill active" data-cat="all" onclick="filterCat('all',this)">
-        <span class="cp-icon">🐾</span> Todos <span class="cp-count">(35)</span>
-      </button>
-      <button class="cat-pill" data-cat="digestivo" onclick="filterCat('digestivo',this)">
-        <span class="cp-icon">🌿</span> Digestivo <span class="cp-count">(5)</span>
-      </button>
-      <button class="cat-pill" data-cat="articulaciones" onclick="filterCat('articulaciones',this)">
-        <span class="cp-icon">🦴</span> Articulaciones <span class="cp-count">(5)</span>
-      </button>
-      <button class="cat-pill" data-cat="piel" onclick="filterCat('piel',this)">
-        <span class="cp-icon">✨</span> Piel &amp; Pelaje <span class="cp-count">(3)</span>
-      </button>
-      <button class="cat-pill" data-cat="bienestar" onclick="filterCat('bienestar',this)">
-        <span class="cp-icon">😌</span> Bienestar <span class="cp-count">(3)</span>
-      </button>
-      <button class="cat-pill" data-cat="renal" onclick="filterCat('renal',this)">
-        <span class="cp-icon">💧</span> Renal <span class="cp-count">(2)</span>
-      </button>
-      <button class="cat-pill" data-cat="senior" onclick="filterCat('senior',this)">
-        <span class="cp-icon">🐕</span> Senior <span class="cp-count">(3)</span>
-      </button>
-      <button class="cat-pill" data-cat="vitaminas" onclick="filterCat('vitaminas',this)">
-        <span class="cp-icon">💊</span> Vitaminas <span class="cp-count">(9)</span>
-      </button>
-      <button class="cat-pill" data-cat="packs" onclick="filterCat('packs',this)">
-        <span class="cp-icon">📦</span> Packs <span class="cp-count">(5)</span>
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section class="sec products-sec" id="productos" style="padding-top:40px">
-  <div class="sec-inner">
-    <div class="prod-toolbar">
-      <p class="prod-count-label"><strong id="prod-count">35</strong> suplementos · Todos los productos</p>
-    </div>
-    <div class="products-grid" id="products-grid"></div>
-  </div>
-  <div style="text-align:center;margin-top:3rem;padding-bottom:1rem">
-    <a href="catalogo.html" class="btn-all-prods">
-      Ver catálogo completo &mdash; 35 productos &rarr;
-    </a>
-  </div>
-</section>
-
-
-<!-- SOBRE NOSOTROS -->
-<section class="about-sec" id="nosotros">
-  <div class="about-inner">
-    <div class="about-imgs reveal">
-      <img class="about-img-main" 
-        src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80&auto=format&fit=crop" 
-        alt="Perros felices con Happy & Healthy Pets"/>
-      <img class="about-img-sec" 
-        src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80&auto=format&fit=crop" 
-        alt="Suplementos naturales para mascotas"/>
-      <div class="about-badge">7<span>años</span></div>
-    </div>
-    <div class="about-text reveal">
-      <div class="eyebrow">Nuestra Historia</div>
-      <h2>Ciencia y amor en <em>cada fórmula</em></h2>
-      <p>Somos un equipo de veterinarios y nutricionistas apasionados por el bienestar animal. Nacimos en México con una misión clara: ofrecer suplementos 100% naturales que realmente funcionen.</p>
-      <p>Cada producto es desarrollado con ingredientes premium, respaldados por evidencia científica y probados bajo los más altos estándares de calidad. Porque tu mascota merece lo mejor.</p>
-      <div class="about-values">
-        <div class="av-item"><div class="av-dot"></div>Ingredientes 100% naturales y libres de químicos</div>
-        <div class="av-item"><div class="av-dot"></div>Formulados por veterinarios certificados</div>
-        <div class="av-item"><div class="av-dot"></div>Sin gluten, sin colorantes artificiales</div>
-        <div class="av-item"><div class="av-dot"></div>Envío rápido a toda la República Mexicana</div>
-      </div>
-      <div class="about-stats">
-        <div>
-          <div class="ab-stat-n">35+</div>
-          <div class="ab-stat-l">Productos</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow">🐾 Suplementos Premium</div>
+        <h1 class="hero-title">Salud Natural<br/>para tu <em>Mascota</em></h1>
+        <p class="hero-sub">Formulados con ingredientes 100% naturales. Mejora la calidad de vida de tu peludo con suplementos que realmente funcionan.</p>
+        <div class="hero-btns">
+          <a href="#productos" class="btn-primary">Ver suplementos →</a>
+          <a href="catalogo.html" class="btn-secondary">Catálogo completo</a>
         </div>
-        <div>
-          <div class="ab-stat-n">8K+</div>
-          <div class="ab-stat-l">Mascotas felices</div>
-        </div>
-        <div>
-          <div class="ab-stat-n">4.8★</div>
-          <div class="ab-stat-l">Valoración media</div>
+        <div class="hero-pills">
+          <span class="hero-pill">✅ 100% Naturales</span>
+          <span class="hero-pill">🚚 Envío gratis +$599</span>
+          <span class="hero-pill">⭐ +1,000 mascotas felices</span>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- RESEÑAS -->
-<section class="reviews-sec" id="resenas">
-  <div class="reviews-head reveal">
-    <div class="eyebrow">Lo que dicen nuestros clientes</div>
-    <h2 class="sec-title">Familias que <em>confían</em> en nosotros</h2>
-  </div>
-  <div class="reviews-grid">
-
-    <div class="rv-card reveal">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"Mi perra Luna llevaba meses con problemas digestivos. A las dos semanas de empezar con Digest+ noté la diferencia. Ahora come feliz y sin molestias."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#d4ecd4">M</div>
-        <div>
-          <div class="rv-name">Mariana García</div>
-          <div class="rv-pet">🐕 Luna, Golden Retriever · Digest+</div>
-        </div>
+      <div class="hero-img">
+        <img src="https://cdn.shopify.com/s/files/1/0638/2390/4858/files/hero_pet.png" 
+             onerror="this.src='https://cdn.shopify.com/s/files/1/0638/2390/4858/files/465.png'"
+             alt="Happy & Healthy Pets"/>
       </div>
     </div>
+  </section>
 
-    <div class="rv-card reveal" style="background:var(--g1);border-color:var(--g2)">
-      <div class="rv-stars" style="color:var(--gold3)">★★★★★</div>
-      <p class="rv-text" style="color:rgba(255,255,255,.75)">"Increíble producto. Mi gato Milo tiene artritis y con Artro+ se mueve mucho mejor. Ya no le duele saltar y está más activo que nunca. 100% recomendado."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:rgba(255,255,255,.15);color:white">R</div>
-        <div>
-          <div class="rv-name" style="color:white">Roberto Sánchez</div>
-          <div class="rv-pet" style="color:rgba(255,255,255,.5)">🐱 Milo, Gato persa · Artro+</div>
-        </div>
+  <!-- BENEFITS BAR -->
+  <div class="benefits">
+    <div class="benefits-inner">
+      <div class="benefit-item">
+        <div class="benefit-icon">🌿</div>
+        <div class="benefit-title">100% Naturales</div>
+        <div class="benefit-desc">Sin químicos dañinos</div>
       </div>
-    </div>
-
-    <div class="rv-card reveal">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"Llevo 3 meses dándole Bio+ a mis dos labradores y la diferencia es notable. Pelaje brillante, más energía y sin problemas estomacales. Vale cada centavo."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#fde8c8">C</div>
-        <div>
-          <div class="rv-name">Claudia Reyes</div>
-          <div class="rv-pet">🐕 Max y Thor, Labradores · Bio+</div>
-        </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🔬</div>
+        <div class="benefit-title">Respaldado</div>
+        <div class="benefit-desc">Fórmulas verificadas</div>
       </div>
-    </div>
-
-    <div class="rv-card reveal">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"El envío llegó súper rápido y bien empacado. Empecé a darle Vision+ a mi Yorkie y en un mes el veterinario notó mejoría en sus ojos. Seguiré comprando."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#e8d4ec">A</div>
-        <div>
-          <div class="rv-name">Alejandro Torres</div>
-          <div class="rv-pet">🐕 Coco, Yorkshire Terrier · Vision+</div>
-        </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🚚</div>
+        <div class="benefit-title">Envío Gratis</div>
+        <div class="benefit-desc">En pedidos +$599</div>
       </div>
-    </div>
-
-    <div class="rv-card reveal">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"Mi gata tiene problemas renales y Renal+ ha sido un cambio de vida para ella. Está más hidratada, activa y sus análisis mejoraron mucho. El veterinario quedó sorprendido."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#d4e8f0">P</div>
-        <div>
-          <div class="rv-name">Patricia Morales</div>
-          <div class="rv-pet">🐱 Kitty, Gata doméstica · Renal+</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="rv-card reveal">
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">"Probé Calm+ con mi Beagle que sufría de ansiedad en tormentas. Funciona de verdad. Ya no tiembla ni ladra horas. Lo recomendaré a todos mis conocidos con mascotas."</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#d4ecdc">J</div>
-        <div>
-          <div class="rv-name">Jorge Méndez</div>
-          <div class="rv-pet">🐕 Kira, Beagle · Calm+</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- WHY -->
-<section class="sec why-sec" id="beneficios">
-  <div class="sec-inner">
-    <div class="sec-head reveal">
-      <div class="eyebrow">Nuestro compromiso</div>
-      <h2 class="sec-title">¿Por qué <em>Happy &amp; Healthy?</em></h2>
-      <p class="sec-sub">Cada suplemento es el resultado de investigación veterinaria y el amor por los animales.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card reveal reveal-delay-1">
-        <span class="why-icon">🌿</span>
-        <div class="why-title">Ingredientes Naturales</div>
-        <p class="why-desc">Formulados con extractos botánicos premium, sin aditivos artificiales ni conservadores dañinos para tu mascota.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-2">
-        <span class="why-icon">🔬</span>
-        <div class="why-title">Respaldo Científico</div>
-        <p class="why-desc">Cada fórmula está respaldada por investigación veterinaria y estudios clínicos que garantizan su eficacia.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-3">
-        <span class="why-icon">🐾</span>
-        <div class="why-title">Para Perros y Gatos</div>
-        <p class="why-desc">Suplementos diseñados específicamente para las necesidades únicas de cada especie y etapa de vida.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-4">
-        <span class="why-icon">🚚</span>
-        <div class="why-title">Envío a Todo México</div>
-        <p class="why-desc">Recibe tu pedido en casa. Envíos rápidos y seguros a toda la república. Gratis a partir de $599 MXN.</p>
+      <div class="benefit-item">
+        <div class="benefit-icon">💳</div>
+        <div class="benefit-title">Pago Seguro</div>
+        <div class="benefit-desc">Múltiples métodos</div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- FOOTER CTA -->
-<div class="footer-cta" id="contacto">
-  <h2 class="fc-title">¿Listo para <em>transformar</em><br>la salud de tu mascota?</h2>
-  <p class="fc-desc">35 suplementos naturales. Fórmulas veterinarias. Envío a todo México.<br>Empieza hoy con 20% de descuento en tu primera compra.</p>
-  <div class="fc-actions">
-    <a href="#productos" class="btn-fill"><span>Ver Todos los Productos</span><div class="arr">→</div></a>
-    <a href="https://wa.me/521XXXXXXXXXX?text=Hola!%20Me%20interesa%20un%20suplemento%20para%20mi%20mascota" target="_blank" class="btn-ghost"><span class="line"></span><span>WhatsApp</span></a>
-  </div>
-</div>
+  <!-- PRODUCTOS DESTACADOS -->
+  <section class="products-sec" id="productos">
+    <div class="sec-inner">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Más Vendidos</div>
+        <h2 class="sec-title">Nuestros <em>favoritos</em></h2>
+        <p class="sec-sub">Encuentra el suplemento ideal para tu peludo 🐾</p>
+      </div>
+      <div class="products-grid" id="featured-grid"></div>
+      <div class="sec-cta">
+        <a href="catalogo.html" class="btn-ver-todo">Ver todos los suplementos → 35 productos</a>
+      </div>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">Happy &amp; <em>Healthy</em> Pets</div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">Happy & Healthy Pets 🐾</div>
     <div class="footer-links">
-      <a href="#productos">Productos</a>
-      <a href="#nosotros">Nosotros</a>
-          <a href="#resenas">Reseñas</a>
-      <a href="https://happyandhealthypets.myshopify.com" target="_blank">Tienda Oficial</a>
+      <a href="#">Instagram</a>
+      <a href="#">WhatsApp</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="#">Contacto</a>
     </div>
-    <div class="footer-copy">© 2026 Happy &amp; Healthy Pets · Suplementos 100% Naturales</div>
+    <div class="footer-copy">© 2024 Happy & Healthy Pets. Todos los derechos reservados.</div>
+  </footer>
+
+  
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cart-drawer">
+  <div class="cart-head">
+    <h3>🛒 Mi carrito</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
   </div>
-</footer>
-
-<!-- CART -->
-<div class="cart-overlay" id="cart-overlay" onclick="closeCartOutside(event)">
-  <div class="cart-panel">
-    <div class="cart-head">
-      <h3>Tu Carrito</h3>
-      <button class="cart-close" onclick="closeCart()">✕</button>
-    </div>
-    <div class="cart-items" id="cart-items">
-      <div class="cart-empty">
-        <span class="ce-icon">🛒</span>
-        Tu carrito está vacío
-      </div>
-    </div>
-    <div class="cart-foot">
-      <div class="cart-total-row">
-        <span class="ct-label">Total</span>
-        <span class="ct-total" id="cart-total">$0 MXN</span>
-      </div>
-      <p class="ct-shipping" id="cart-shipping">Agrega $599 más para envío gratis 🚚</p>
-      <button class="btn-checkout" onclick="checkout()">Finalizar Compra →</button>
-    </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">Tu carrito está vacío 🛒</div>
   </div>
-</div>
+  <div class="cart-foot">
+    <div class="cart-total-row"><span>Total</span><span class="cart-total" id="cart-total">$0</span></div>
+    <button class="btn-checkout" onclick="alert('Redirigiendo a pago... 🚀')">Continuar al pago →</button>
+  </div>
+</aside>
 
-<script>
-// ─── PRODUCTS DATA ───
-</script>
-<script>
-// Inject products
-</script>
 
-<script>
-// ─── PRODUCTS ───
-const PRODUCTS = [
-  {id:'bio',name:'Bio +',desc:'Suplemento probiótico diseñado para fortalecer el sistema inmunológico y mejorar la salud digestiva. Estimula la eliminación de bacterias dañinas en el intestino.',price:250,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/465.png?v=1775336188',cat:'vitaminas',featured:true,variants:[{t:'30',p:250,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/465.png?v=1775336188'},{t:'60',p:290,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/464.png?v=1775336299'},{t:'100',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/463.png?v=1775336299'}]},
-  {id:'digest',name:'Digest +',desc:'Formulado con alcachofa y jengibre para el bienestar digestivo. Facilita la eliminación de residuos, mejora la funcionalidad hepática y alivia síntomas de colon irritable.',price:290,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/451.png?v=1775335394',cat:'digestivo',featured:true,variants:[{t:'30',p:290,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/451.png?v=1775335394'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/450.png?v=1775336323'},{t:'100',p:390,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/449.png?v=1775336323'}]},
-  {id:'gastric',name:'Gastric +',desc:'Suplemento natural para apoyar la salud digestiva de tus mascotas. Ideal como auxiliar durante procesos de gastritis y úlceras gástricas.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/437.png?v=1775336145',cat:'digestivo',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/437.png?v=1775336145'},{t:'60',p:330,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/436.png?v=1775336290'},{t:'100',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/435.png?v=1775336290'}]},
-  {id:'blood',name:'Blood +',desc:'Suplemento natural para fortalecer la salud integral. Actúa como preventivo contra la anemia y mejora la circulación sanguínea de tu mascota.',price:300,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/414.png?v=1775336139',cat:'vitaminas',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/414.png?v=1775336139'},{t:'60',p:360,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/413.png?v=1775336287'},{t:'100',p:420,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/412.png?v=1775336287'}]},
-  {id:'relax',name:'Relax +',desc:'Suplemento natural para calmar a tu mascota. Contiene lavanda y una combinación de ingredientes que relajan el sistema nervioso de forma natural y segura.',price:260,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/400.png?v=1775336131',cat:'bienestar',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/400.png?v=1775336131'},{t:'60',p:320,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/399.png?v=1775336285'},{t:'100',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/398.png?v=1775336285'}]},
-  {id:'anti-stress',name:'Anti Stress +',desc:'Formulado para mascotas que sufren de estrés e insomnio. Contiene Pasiflora y Valeriana que regulan el sistema nervioso y reducen la ansiedad.',price:250,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/386.png?v=1775336125',cat:'bienestar',featured:true,variants:[{t:'30',p:250,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/386.png?v=1775336125'},{t:'60',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/385.png?v=1775336282'},{t:'100',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/384.png?v=1775336282'}]},
-  {id:'silimarina',name:'Silimarina +',desc:'Protege y fortalece la función hepática de tu mascota. Actúa como hepatoprotector, antioxidante y estimula la regeneración de las células del hígado.',price:290,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/372.png?v=1775336118',cat:'digestivo',featured:false,variants:[{t:'30',p:290,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/372.png?v=1775336118'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/371.png?v=1775336280'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/370.png?v=1775336280'}]},
-  {id:'biliar',name:'Biliar +',desc:'Formulado para apoyar la salud hepática y biliar. Contiene Cardo Mariano y Alcachofa que favorecen la eliminación de toxinas y mejoran la función biliar.',price:300,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/359.png?v=1775336111',cat:'digestivo',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/359.png?v=1775336111'},{t:'60',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/358.png?v=1775336278'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/357.png?v=1775336278'}]},
-  {id:'renal',name:'Renal +',desc:'Formulado para apoyar la salud renal y urinaria. Su combinación única de ingredientes naturales apoya la función de los riñones y reduce el riesgo de cálculos.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/346.png?v=1775336104',cat:'renal',featured:true,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/346.png?v=1775336104'},{t:'60',p:330,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/345.png?v=1775336276'},{t:'100',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/344.png?v=1775336276'}]},
-  {id:'colagen-articular',name:'Colagen + Articular',desc:'Suplemento especializado para fortalecer y proteger las articulaciones. Con propiedades antiinflamatorias que reducen el dolor y mejoran la movilidad.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/333.png?v=1775336097',cat:'articulaciones',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/333.png?v=1775336097'},{t:'60',p:320,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/332.png?v=1775336273'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/331.png?v=1775336273'}]},
-  {id:'glucosamine',name:'Glucosamine +',desc:'Suplemento natural para fortalecer articulaciones. Ayuda a mantener el cartílago y los tejidos conectivos en óptimas condiciones para mayor movilidad.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/320.png?v=1775336090',cat:'articulaciones',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/320.png?v=1775336090'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/319.png?v=1775336271'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/318.png?v=1775336271'}]},
-  {id:'artro',name:'Artro +',desc:'Suplemento natural para el bienestar articular. Formulado para mantener la salud de huesos y articulaciones, ideal para mascotas activas y de edad media.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/68.png?v=1775334942',cat:'articulaciones',featured:true,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/68.png?v=1775334942'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/69.png?v=1775336265'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/70.png?v=1775336265'}]},
-  {id:'pack-rinones',name:'Pack Riñones Sanos +',desc:'Conjunto de suplementos naturales para mejorar la salud renal. Combinación sinérgica de fórmulas que protegen y regeneran la función de los riñones.',price:650,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/140_9cdc0e20-ba2f-4863-9f06-a3e5adc58e84.png?v=1739533871',cat:'packs',featured:false,variants:[{t:'30',p:650,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/140_9cdc0e20-ba2f-4863-9f06-a3e5adc58e84.png?v=1739533871'},{t:'60',p:950,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/140_9cdc0e20-ba2f-4863-9f06-a3e5adc58e84.png?v=1739533871'}]},
-  {id:'pack-senior',name:'Pack Senior +',desc:'Pack diseñado para mascotas de edad avanzada. Combinación de suplementos que mejoran la calidad de vida, movilidad y bienestar en la etapa senior.',price:650,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/142_e1eca7c5-6ed5-45cc-b3ff-b88917dd0fe4.png?v=1739533871',cat:'packs',featured:false,variants:[{t:'30',p:650,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/142_e1eca7c5-6ed5-45cc-b3ff-b88917dd0fe4.png?v=1739533871'},{t:'60',p:950,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/142_e1eca7c5-6ed5-45cc-b3ff-b88917dd0fe4.png?v=1739533871'}]},
-  {id:'pack-hepato',name:'Pack Hepatoprotector +',desc:'Conjunto de suplementos para proteger el hígado. Ideal para mascotas con problemas hepáticos o en tratamientos que afectan la función del hígado.',price:650,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/141.png?v=1775336026',cat:'packs',featured:false,variants:[{t:'30',p:650,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/141.png?v=1775336026'},{t:'60',p:950,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/141.png?v=1775336026'}]},
-  {id:'pack-derma',name:'Pack Dermatológico +',desc:'Pack para la salud de la piel y el pelaje. Combinación de suplementos que reducen alergias, mejoran el brillo del pelo y fortalecen la piel de tu mascota.',price:650,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/139_5aeaa356-a3a5-4784-99cc-c77b40278eb8.png?v=1739533871',cat:'packs',featured:false,variants:[{t:'30',p:650,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/139_5aeaa356-a3a5-4784-99cc-c77b40278eb8.png?v=1739533871'},{t:'60',p:950,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/139_5aeaa356-a3a5-4784-99cc-c77b40278eb8.png?v=1739533871'}]},
-  {id:'pack-gastro',name:'Pack Gastrointestinal +',desc:'Conjunto de suplementos para mejorar la salud gastrointestinal. Regula la flora intestinal, mejora la digestión y reduce problemas estomacales crónicos.',price:650,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/137_b5bb732e-9d14-477a-998e-cd5e679c92b2.png?v=1739487080',cat:'packs',featured:false,variants:[{t:'30',p:650,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/137_b5bb732e-9d14-477a-998e-cd5e679c92b2.png?v=1739487080'},{t:'60',p:950,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/137_b5bb732e-9d14-477a-998e-cd5e679c92b2.png?v=1739487080'}]},
-  {id:'alergy',name:'Alergy +',desc:'Reduce significativamente el umbral del prurito en animales con piel hipersensible. Formulado para mascotas con alergias cutáneas y ambientales crónicas.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/145_c3cb78b8-2abb-45dc-9525-9d8722eccfad.png?v=1774493990',cat:'piel',featured:true,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/145_c3cb78b8-2abb-45dc-9525-9d8722eccfad.png?v=1774493990'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/145_c3cb78b8-2abb-45dc-9525-9d8722eccfad.png?v=1774493990'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/145_c3cb78b8-2abb-45dc-9525-9d8722eccfad.png?v=1774493990'}]},
-  {id:'curcu',name:'Curcu +',desc:'Con propiedades quimiopreventivas, alivia el dolor articular y muscular. La curcumina actúa como antiinflamatorio natural y antioxidante potente.',price:300,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/279.png?v=1775336073',cat:'articulaciones',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/279.png?v=1775336073'},{t:'60',p:360,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/278.png?v=1775336263'},{t:'100',p:420,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/277.png?v=1775336263'}]},
-  {id:'hepatic',name:'Hepatic +',desc:'Protege las funciones enzimáticas del hígado. Con efectos hepatoprotectores, antioxidantes y antiinflamatorios que mantienen el hígado de tu mascota saludable.',price:300,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/126_a0600595-d722-49fb-8fc7-efa76587545d.png?v=1774492421',cat:'digestivo',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/126_a0600595-d722-49fb-8fc7-efa76587545d.png?v=1774492421'},{t:'60',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/126_a0600595-d722-49fb-8fc7-efa76587545d.png?v=1774492421'},{t:'100',p:440,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/126_a0600595-d722-49fb-8fc7-efa76587545d.png?v=1774492421'}]},
-  {id:'bronqui',name:'Bronqui +',desc:'Disminuye la inflamación en las vías respiratorias y tiene efecto broncodilatador. Ideal para mascotas con tos crónica, bronquitis o problemas respiratorios.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/227.png?v=1775336053',cat:'vitaminas',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/227.png?v=1775336053'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/226.png?v=1775336254'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/225.png?v=1775336254'}]},
-  {id:'derma',name:'Derma +',desc:'Actúa como antioxidante, previniendo problemas cardiovasculares y fortaleciendo la piel. Mejora el brillo del pelaje y reduce la caída excesiva de pelo.',price:260,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/86.png?v=1775334960',cat:'piel',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/86.png?v=1775334960'},{t:'60',p:320,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/87.png?v=1775336247'},{t:'100',p:360,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/88.png?v=1775336247'}]},
-  {id:'life-quality',name:'Life Quality +',desc:'Fortalece la salud física al proporcionar vitaminas y minerales esenciales. Mejora la vitalidad, el ánimo y la calidad de vida en mascotas mayores.',price:260,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/240.png?v=1775336060',cat:'senior',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/240.png?v=1775336060'},{t:'60',p:310,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/239.png?v=1775336257'},{t:'100',p:360,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/238.png?v=1775336257'}]},
-  {id:'gymgo',name:'Gymgo +',desc:'Ayuda a mejorar la circulación, el cerebro y las funciones respiratorias. El Ginkgo Biloba mejora la memoria y la función cognitiva en mascotas adultas.',price:320,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/266.png?v=1775336067',cat:'vitaminas',featured:false,variants:[{t:'30',p:320,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/266.png?v=1775336067'},{t:'60',p:370,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/265.png?v=1775336260'},{t:'100',p:420,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/264.png?v=1775336260'}]},
-  {id:'cel-protect',name:'Cel Protect +',desc:'Auxiliar en tratamientos contra el cáncer, quistes y tumores. Actúa como antioxidante celular, protegiendo las células del daño oxidativo.',price:300,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/305.png?v=1775336083',cat:'vitaminas',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/305.png?v=1775336083'},{t:'60',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/304.png?v=1775336268'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/303.png?v=1775336268'}]},
-  {id:'colagen-prot',name:'Colagen + Proteína',desc:'Suplemento natural que proporciona proteína de fácil absorción para mantener la salud muscular, articular y la firmeza de la piel de tu mascota.',price:260,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/292.png?v=1775336078',cat:'articulaciones',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/292.png?v=1775336078'},{t:'60',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/291.png?v=1775336265'},{t:'100',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/290.png?v=1775336265'}]},
-  {id:'senior',name:'Senior +',desc:'Diseñado para mascotas de edad adulta. Ayuda a eliminar líquidos retenidos y brinda efecto diurético suave, mejorando el bienestar en la etapa senior.',price:260,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/164.png?v=1775336046',cat:'senior',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/164.png?v=1775336046'},{t:'60',p:320,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/163.png?v=1775336244'},{t:'100',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/162.png?v=1775336244'}]},
-  {id:'omegas',name:'Omegas +',desc:'Actúa como antioxidante, previniendo problemas cardiovasculares y mejorando la salud de la piel. Los omegas 3, 6 y 9 favorecen el brillo del pelaje.',price:250,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/201_a2fe1e82-370c-4244-bb95-2dfe1df8be42.png?v=1774579891',cat:'piel',featured:false,variants:[{t:'30',p:250,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/201_a2fe1e82-370c-4244-bb95-2dfe1df8be42.png?v=1774579891'},{t:'60',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/201_a2fe1e82-370c-4244-bb95-2dfe1df8be42.png?v=1774579891'},{t:'100',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/201_a2fe1e82-370c-4244-bb95-2dfe1df8be42.png?v=1774579891'}]},
-  {id:'diab',name:'Diab +',desc:'Potencializa la regulación de la glucosa en sangre y reduce el riesgo de complicaciones diabéticas. Ideal como complemento en tratamientos de diabetes.',price:300,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/26_84672f18-4c7d-4b54-8ccb-7a651ebd28f4.png?v=1774487647',cat:'vitaminas',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/26_84672f18-4c7d-4b54-8ccb-7a651ebd28f4.png?v=1774487647'},{t:'60',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/26_84672f18-4c7d-4b54-8ccb-7a651ebd28f4.png?v=1774487647'},{t:'100',p:450,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/26_84672f18-4c7d-4b54-8ccb-7a651ebd28f4.png?v=1774487647'}]},
-  {id:'cardiac',name:'Cardiac +',desc:'Gran antioxidante que inhibe la síntesis de radicales libres. Tonifica el músculo cardíaco y mejora la función cardiovascular de tu mascota.',price:330,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/188_6571de57-e6da-4a9c-9f5c-bb557b6a21eb.png?v=1774570113',cat:'vitaminas',featured:false,variants:[{t:'30',p:330,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/188_6571de57-e6da-4a9c-9f5c-bb557b6a21eb.png?v=1774570113'},{t:'60',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/188_6571de57-e6da-4a9c-9f5c-bb557b6a21eb.png?v=1774570113'},{t:'100',p:480,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/188_6571de57-e6da-4a9c-9f5c-bb557b6a21eb.png?v=1774570113'}]},
-  {id:'calm',name:'Calm +',desc:'Actúa como tranquilizante, calmante y relajante. Formulado para aliviar la ansiedad por separación, miedos y comportamientos agresivos en mascotas.',price:250,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/47_2d97d30e-746b-4937-9abf-81458ebd3270.png?v=1774488631',cat:'bienestar',featured:false,variants:[{t:'30',p:250,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/47_2d97d30e-746b-4937-9abf-81458ebd3270.png?v=1774488631'},{t:'60',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/47_2d97d30e-746b-4937-9abf-81458ebd3270.png?v=1774488631'},{t:'100',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/47_2d97d30e-746b-4937-9abf-81458ebd3270.png?v=1774488631'}]},
-  {id:'vision',name:'Vision +',desc:'Protege contra cataratas y pérdida de visión. Mejora la salud ocular de tu mascota con una fórmula antioxidante que fortalece la retina y el nervio óptico.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/107.png?v=1775334971',cat:'vitaminas',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/107.png?v=1775334971'},{t:'60',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/108.png?v=1775336233'},{t:'100',p:420,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/109.png?v=1775336233'}]},
-  {id:'valp',name:'Valp +',desc:'Ayuda en el crecimiento y desarrollo de la médula ósea y el tejido nervioso. Ideal para cachorros y mascotas jóvenes en etapa de crecimiento.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/253.png?v=1775336063',cat:'senior',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/253.png?v=1775336063'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/252.png?v=1775336258'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/251.png?v=1775336258'}]},
-  {id:'mobility',name:'Mobility +',desc:'Ayuda a reducir el dolor de las articulaciones y promueve una mayor flexibilidad. Ideal para mascotas con artritis, displasia o problemas de movilidad.',price:260,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/214.png?v=1775336051',cat:'articulaciones',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/214.png?v=1775336051'},{t:'60',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/213.png?v=1775336251'},{t:'100',p:440,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/212.png?v=1775336251'}]},
-  {id:'urinary',name:'Urinary +',desc:'Auxilia en infecciones urinarias, cistitis y urolitiasis. Mantiene el tracto urinario saludable con una fórmula 100% natural a base de D-Manosa y arándano.',price:280,img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/346.png?v=1775336104',cat:'renal',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/346.png?v=1775336104'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/345.png?v=1775336276'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/344.png?v=1775336276'}]}
+  <script>
+  const PRODUCTS = [
+  {id:'bio',name:"Bio +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/465.png?v=1775336188',price:250,cat:'vitaminas',color:'#66BB6A',featured:true,variants:[{t:'30',p:250,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/465.png?v=1775336188'},{t:'60',p:290,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/464.png?v=1775336299'},{t:'100',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/463.png?v=1775336299'}]},
+  {id:'digest',name:"Digest +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/451.png?v=1775335394',price:290,cat:'digestivo',color:'#43A047',featured:true,variants:[{t:'30',p:290,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/451.png?v=1775335394'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/450.png?v=1775336323'},{t:'100',p:390,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/449.png?v=1775336323'}]},
+  {id:'gastric',name:"Gastric +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/437.png?v=1775334661',price:280,cat:'digestivo',color:'#546E7A',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/437.png?v=1775334661'},{t:'60',p:330,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/436.png?v=1775334660'},{t:'100',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/435.png?v=1775334661'}]},
+  {id:'blood',name:"Blood +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/414.png?v=1775249647',price:300,cat:'cardiovascular',color:'#EF5350',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/414.png?v=1775249647'},{t:'60',p:360,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/413.png?v=1775336374'},{t:'100',p:420,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/412.png?v=1775336374'}]},
+  {id:'relax',name:"Relax +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/400.png?v=1775248509',price:260,cat:'bienestar',color:'#5E35B1',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/400.png?v=1775248509'},{t:'60',p:320,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/399.png?v=1775336399'},{t:'100',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/398.png?v=1775336399'}]},
+  {id:'anti-stress',name:"Anti Stress +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/386.png?v=1774831115',price:250,cat:'bienestar',color:'#9575CD',featured:true,variants:[{t:'30',p:250,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/386.png?v=1774831115'},{t:'60',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/385.png?v=1774831115'},{t:'100',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/384.png?v=1774831116'}]},
+  {id:'silimarina',name:"Silimarina +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/372.png?v=1774757780',price:290,cat:'digestivo',color:'#388E3C',featured:false,variants:[{t:'30',p:290,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/372.png?v=1774757780'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/371.png?v=1774757780'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/370.png?v=1774757780'}]},
+  {id:'biliar',name:"Biliar +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/359.png?v=1774755749',price:300,cat:'digestivo',color:'#795548',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/359.png?v=1774755749'},{t:'60',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/358.png?v=1774755749'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/357.png?v=1774755749'}]},
+  {id:'renal',name:"Renal +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/346.png?v=1774754980',price:280,cat:'digestivo',color:'#1565C0',featured:true,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/346.png?v=1774754980'},{t:'60',p:330,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/345.png?v=1774754980'},{t:'100',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/344.png?v=1774754980'}]},
+  {id:'colagen-1',name:"Colagen +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/333.png?v=1774754400',price:280,cat:'articular',color:'#FF7043',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/333.png?v=1774754400'},{t:'60',p:320,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/332.png?v=1774754400'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/331.png?v=1774754400'}]},
+  {id:'glucosamine',name:"Glucosamine +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/320.png?v=1774753341',price:280,cat:'articular',color:'#FF7043',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/320.png?v=1774753341'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/319.png?v=1774753552'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/318.png?v=1774753552'}]},
+  {id:'artro',name:"Artro +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/68.png?v=1774489856',price:280,cat:'articular',color:'#212121',featured:true,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/68.png?v=1774489856'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/67.png?v=1774663785'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/66.png?v=1774663785'}]},
+  {id:'pack-rinones-sanos',name:"Pack Ri\u00f1ones Sanos +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/140_9cdc0e20-ba2f-4863-9f06-a3e5adc58e84.png?v=1739533871',price:650,cat:'packs',color:'#1565C0',featured:false,variants:[{t:'30',p:650,i:''},{t:'60',p:950,i:''}]},
+  {id:'pack-senior',name:"Pack Senior +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/142_e1eca7c5-6ed5-45cc-b3ff-b88917dd0fe4.png?v=1739533871',price:650,cat:'packs',color:'#7B1FA2',featured:false,variants:[{t:'30',p:650,i:''},{t:'60',p:950,i:''}]},
+  {id:'pack-hepatoprotector',name:"Pack Hepatoprotector +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/141.png?v=1739533871',price:650,cat:'packs',color:'#5D4037',featured:false,variants:[{t:'30',p:650,i:''},{t:'60',p:950,i:''}]},
+  {id:'pack-dermatologico',name:"Pack Dermatol\u00f3gico +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/139_5aeaa356-a3a5-4784-99cc-c77b40278eb8.png?v=1739533871',price:650,cat:'packs',color:'#C2185B',featured:false,variants:[{t:'30',p:650,i:''},{t:'60',p:950,i:''}]},
+  {id:'pack-gastrointestinal',name:"Pack Gastrointestinal +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/137_b5bb732e-9d14-477a-998e-cd5e679c92b2.png?v=1739487080',price:650,cat:'packs',color:'#2E7D32',featured:false,variants:[{t:'30',p:650,i:''},{t:'60',p:950,i:''}]},
+  {id:'alergy',name:"Alergy +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/147.png?v=1774664366',price:280,cat:'dermatologico',color:'#E91E8C',featured:true,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/147.png?v=1774664366'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/146.png?v=1774664366'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/145_c3cb78b8-2abb-45dc-9525-9d8722eccfad.png?v=1774493990'}]},
+  {id:'curcu',name:"Curcu +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/281.png?v=1774666286',price:300,cat:'articular',color:'#FFA000',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/281.png?v=1774666286'},{t:'60',p:360,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/280.png?v=1774666286'},{t:'100',p:420,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/279.png?v=1774666286'}]},
+  {id:'hepatic',name:"Hepatic +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/128_81a805eb-6deb-4aab-aa5a-e82df453e5ea.png?v=1774664273',price:300,cat:'digestivo',color:'#6D4C41',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/128_81a805eb-6deb-4aab-aa5a-e82df453e5ea.png?v=1774664273'},{t:'60',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/127_a894b275-1d03-429f-9514-6b2c8e48ddd5.png?v=1774664273'},{t:'100',p:440,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/126_a0600595-d722-49fb-8fc7-efa76587545d.png?v=1774492421'}]},
+  {id:'bronqui',name:"Bronqui +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/229.png?v=1774664995',price:280,cat:'respiratorio',color:'#29B6F6',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/229.png?v=1774664995'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/228.png?v=1774664995'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/227.png?v=1774581708'}]},
+  {id:'derma',name:"Derma +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/88.png?v=1774663840',price:260,cat:'dermatologico',color:'#EC407A',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/88.png?v=1774663840'},{t:'60',p:320,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/87.png?v=1774663840'},{t:'100',p:360,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/86.png?v=1774491148'}]},
+  {id:'life-quality',name:"Life Quality +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/242.png?v=1774585037',price:260,cat:'bienestar',color:'#7E57C2',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/242.png?v=1774585037'},{t:'60',p:310,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/241.png?v=1774585037'},{t:'100',p:360,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/240.png?v=1774585037'}]},
+  {id:'gymgo',name:"Gymgo +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/268.png?v=1774665697',price:320,cat:'bienestar',color:'#1E88E5',featured:false,variants:[{t:'30',p:320,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/268.png?v=1774665697'},{t:'60',p:370,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/267.png?v=1774665697'},{t:'100',p:420,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/266.png?v=1774665614'}]},
+  {id:'cel-protect',name:"Cel Protect +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/307.png?v=1774745927',price:300,cat:'vitaminas',color:'#26A69A',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/307.png?v=1774745927'},{t:'60',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/306.png?v=1774745927'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/305.png?v=1774745927'}]},
+  {id:'colagen',name:"Colagen +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/294.png?v=1774746191',price:260,cat:'articular',color:'#FFA726',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/294.png?v=1774746191'},{t:'60',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/293.png?v=1774746191'},{t:'100',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/292.png?v=1774746330'}]},
+  {id:'senior',name:"Senior +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/166_a73e1539-290a-440a-a638-dd11b16b3a45.png?v=1774664474',price:260,cat:'bienestar',color:'#7B5EA7',featured:false,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/166_a73e1539-290a-440a-a638-dd11b16b3a45.png?v=1774664474'},{t:'60',p:320,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/165_b971b1c5-b6bd-441b-a075-87dfd84ec8ba.png?v=1774664474'},{t:'100',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/164.png?v=1774495003'}]},
+  {id:'omegas',name:"Omegas +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/203.png?v=1774665138',price:250,cat:'cardiovascular',color:'#039BE5',featured:false,variants:[{t:'30',p:250,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/203.png?v=1774665138'},{t:'60',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/202_0ba9913a-548c-4660-9f2e-dfb514a41bb1.png?v=1774665138'},{t:'100',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/201_a2fe1e82-370c-4244-bb95-2dfe1df8be42.png?v=1774579891'}]},
+  {id:'diab',name:"Diab +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/28_e2d64493-918c-4749-aae5-8dafbbcb5949.png?v=1774663436',price:300,cat:'vitaminas',color:'#66BB6A',featured:false,variants:[{t:'30',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/28_e2d64493-918c-4749-aae5-8dafbbcb5949.png?v=1774663436'},{t:'60',p:380,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/27_816f8592-3b54-41ef-85bd-a32a87025a24.png?v=1774663436'},{t:'100',p:450,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/26_84672f18-4c7d-4b54-8ccb-7a651ebd28f4.png?v=1774487647'}]},
+  {id:'cardiac',name:"Cardiac +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/190_7d9c1e2a-8155-4a5c-a37b-640fbacf33cd.png?v=1774664544',price:330,cat:'cardiovascular',color:'#EF5350',featured:false,variants:[{t:'30',p:330,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/190_7d9c1e2a-8155-4a5c-a37b-640fbacf33cd.png?v=1774664544'},{t:'60',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/189.png?v=1774664544'},{t:'100',p:480,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/188_6571de57-e6da-4a9c-9f5c-bb557b6a21eb.png?v=1774570113'}]},
+  {id:'calm',name:"Calm +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/47_2d97d30e-746b-4937-9abf-81458ebd3270.png?v=1774488631',price:250,cat:'bienestar',color:'#AB47BC',featured:false,variants:[{t:'30',p:250,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/47_2d97d30e-746b-4937-9abf-81458ebd3270.png?v=1774488631'},{t:'60',p:300,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/46_6e3dcdd8-2582-471f-b50d-acf5d45618f8.png?v=1774663726'},{t:'100',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/45_b2010bb0-29c3-45b6-bb92-77ede184c5fa.png?v=1774663726'}]},
+  {id:'vision',name:"Vision +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/109.png?v=1774663921',price:280,cat:'vitaminas',color:'#F57C00',featured:true,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/109.png?v=1774663921'},{t:'60',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/108.png?v=1774663921'},{t:'100',p:420,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/107.png?v=1774491754'}]},
+  {id:'valp',name:"Valp +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/255.png?v=1774665060',price:280,cat:'bienestar',color:'#BF360C',featured:false,variants:[{t:'30',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/255.png?v=1774665060'},{t:'60',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/254.png?v=1774665060'},{t:'100',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/253.png?v=1774585403'}]},
+  {id:'mobility',name:"Mobility +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/216.png?v=1774664909',price:260,cat:'articular',color:'#388E3C',featured:true,variants:[{t:'30',p:260,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/216.png?v=1774664909'},{t:'60',p:350,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/215.png?v=1774664909'},{t:'100',p:440,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/214.png?v=1774581014'}]},
+  {id:'urinary',name:"Urinary +",img:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/21.png?v=1774746307',price:280,cat:'digestivo',color:'#039BE5',featured:false,variants:[{t:'30 tabletas',p:280,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/21.png?v=1774746307'},{t:'60 tabletas',p:340,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/15_4eab37dd-d8b6-4fd0-9bea-c26274531c13.png?v=1774663230'},{t:'100 tabletas',p:400,i:'https://cdn.shopify.com/s/files/1/0638/2390/4858/files/3_5fe57913-f026-446d-ab2e-3b4cee6b1092.png?v=1774663230'}]}
 ];
 
-// ─── CART STATE ───
+  
 let cart = [];
-let activeFilter = 'all';
-
-// ─── RENDER PRODUCTS ───
-function renderProducts() {
-  const grid = document.getElementById('products-grid');
-  const filtered = activeFilter === 'all' ? PRODUCTS.filter(p => p.featured).slice(0,8) : PRODUCTS.filter(p => p.cat === activeFilter).slice(0,8);
-  document.getElementById('prod-count').textContent = PRODUCTS.filter(p=>p.featured).length;
-
-  grid.innerHTML = filtered.map(p => {
-    const mainImg = p.img || '';
-    const firstPrice = p.variants && p.variants.length ? p.variants[0].p : p.price;
-    const badgeHtml = p.featured
-      ? `<div class="pc-badge gold">Destacado</div>`
-      : '';
-    const varHtml = p.variants && p.variants.length > 1
-      ? `<div class="pc-variants" id="vars-${p.id}">` +
-        p.variants.map((v,i) => `<button class="pc-var-btn${i===0?' sel':''}" onclick="selVar('${p.id}',${i},this)" data-p="${v.p}" data-i="${v.i}">${v.t} tab</button>`).join('') +
-        `</div>`
-      : '';
-    return `
-    <div class="product-card">
-      <div class="pc-img-wrap">
-        ${mainImg ? `<img src="${mainImg}" alt="${p.name}" loading="lazy" id="img-${p.id}">` : `<div class="pc-no-img">🐾</div>`}
-        ${badgeHtml}
-      </div>
-      <div class="pc-body">
-        <div class="pc-cat-line">${catLabel(p.cat)}</div>
-        <div class="pc-name">${p.name}</div>
-        <div class="pc-desc">${p.desc}</div>
-        ${varHtml}
-        <div class="pc-footer">
-          <div class="pc-price" id="price-${p.id}">$${firstPrice} <span>MXN</span></div>
-          <button class="pc-add" onclick="addToCart('${p.id}')">Agregar</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function catLabel(cat) {
-  const m = {digestivo:'Digestivo',articulaciones:'Articulaciones',piel:'Piel & Pelaje',bienestar:'Bienestar',renal:'Renal',senior:'Senior',vitaminas:'Vitaminas',packs:'Pack'};
-  return m[cat] || cat;
-}
 
 function selVar(pid, idx, btn) {
   btn.closest('.pc-variants').querySelectorAll('.pc-var-btn').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
   const priceEl = document.getElementById('price-' + pid);
-  if (priceEl) priceEl.innerHTML = `$${btn.dataset.p} <span>MXN</span>`;
+  if (priceEl) priceEl.innerHTML = '$' + btn.dataset.p + ' <span>MXN</span>';
   const imgEl = document.getElementById('img-' + pid);
   if (imgEl && btn.dataset.i) imgEl.src = btn.dataset.i;
 }
 
-function filterCat(cat, el) {
-  activeFilter = cat;
-  document.querySelectorAll('.cat-pill').forEach(e => e.classList.remove('active'));
-  if (el) el.classList.add('active');
-  renderProducts();
-  document.getElementById('productos').scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-// ─── CART ───
 function addToCart(pid) {
   const p = PRODUCTS.find(x => x.id === pid);
   if (!p) return;
-  // Leer variante seleccionada
-  const varBtns = document.querySelectorAll(`#vars-${pid} .pc-var-btn.sel`);
-  const selTab = varBtns.length ? varBtns[0].textContent.trim() : (p.variants ? p.variants[0].t + ' tab' : '30 tab');
-  const selPrice = varBtns.length ? parseInt(varBtns[0].dataset.p) : p.price;
-
-  const key = pid + '-' + selTab;
-  const existing = cart.find(c => c.key === key);
-  if (existing) { existing.qty++; }
-  else { cart.push({key, id:pid, name:p.name, tab:selTab, price:selPrice, img:p.img, qty:1}); }
-
-  updateCartUI();
+  const varBtn = document.querySelector(`#vars-${pid} .pc-var-btn.sel`) || document.querySelector(`[id^="vars-${pid}"] .pc-var-btn`);
+  const price = varBtn ? parseFloat(varBtn.dataset.p) : p.price;
+  const variant = varBtn ? varBtn.textContent.trim() : '';
+  const existing = cart.find(c => c.id === pid && c.variant === variant);
+  if (existing) { existing.qty++; } else { cart.push({...p, price, variant, qty: 1}); }
+  updateCart();
   openCart();
 }
 
-function removeFromCart(key) {
-  cart = cart.filter(c => c.key !== key);
-  updateCartUI();
+function removeFromCart(pid, variant) {
+  cart = cart.filter(c => !(c.id === pid && c.variant === variant));
+  updateCart();
 }
 
-function changeQty(key, delta) {
-  const item = cart.find(c => c.key === key);
-  if (!item) return;
-  item.qty += delta;
-  if (item.qty <= 0) cart = cart.filter(c => c.key !== key);
-  updateCartUI();
-}
-
-function updateCartUI() {
-  const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+function updateCart() {
   const count = cart.reduce((s, c) => s + c.qty, 0);
-  document.getElementById('nav-count').textContent = count;
-  document.getElementById('cart-total').textContent = `$${total.toLocaleString()} MXN`;
-  const shippingEl = document.getElementById('cart-shipping');
-  if (total >= 599) {
-    shippingEl.innerHTML = '✅ ¡Tienes envío gratis!';
-    shippingEl.style.color = 'var(--g3)';
-  } else {
-    const falta = 599 - total;
-    shippingEl.innerHTML = `Agrega $${falta} más para envío gratis 🚚`;
-    shippingEl.style.color = 'var(--g3)';
-  }
-
-  const cartItems = document.getElementById('cart-items');
-  if (cart.length === 0) {
-    cartItems.innerHTML = `<div class="cart-empty"><span class="ce-icon">🛒</span>Tu carrito está vacío</div>`;
+  document.querySelectorAll('#cart-count').forEach(el => el.textContent = count);
+  const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+  document.querySelectorAll('#cart-total').forEach(el => el.textContent = '$' + total.toLocaleString('es-MX'));
+  const itemsEl = document.getElementById('cart-items');
+  if (!itemsEl) return;
+  if (!cart.length) {
+    itemsEl.innerHTML = '<div class="cart-empty">Tu carrito está vacío 🛒</div>';
     return;
   }
-  cartItems.innerHTML = cart.map(c => `
+  itemsEl.innerHTML = cart.map(c => `
     <div class="cart-item">
-      <img class="ci-img" src="${c.img||''}" alt="${c.name}" onerror="this.style.background='var(--cream)'">
-      <div class="ci-info">
-        <div class="ci-name">${c.name}</div>
-        <div class="ci-sub">${c.tab}</div>
-        <div class="ci-row">
-          <div class="ci-qty">
-            <button onclick="changeQty('${c.key}',-1)">−</button>
-            <span>${c.qty}</span>
-            <button onclick="changeQty('${c.key}',1)">+</button>
-          </div>
-          <span class="ci-price">$${(c.price * c.qty).toLocaleString()}</span>
-          <button class="ci-remove" onclick="removeFromCart('${c.key}')">✕</button>
-        </div>
+      <img class="cart-item-img" src="${c.img}" alt="${c.name}"/>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${c.name} ${c.variant ? '· '+c.variant+' tab' : ''}</div>
+        <div class="cart-item-price">$${c.price} × ${c.qty} = $${(c.price*c.qty).toLocaleString('es-MX')} MXN</div>
       </div>
+      <button class="cart-item-remove" onclick="removeFromCart('${c.id}','${c.variant}')">✕</button>
     </div>`).join('');
 }
 
 function openCart() {
   document.getElementById('cart-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.getElementById('cart-drawer').classList.add('open');
 }
+
 function closeCart() {
   document.getElementById('cart-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeCartOutside(e) {
-  if (e.target === document.getElementById('cart-overlay')) closeCart();
-}
-function checkout() {
-  if (cart.length === 0) return;
-  const lines = cart.map(c => `${c.name} (${c.tab}) x${c.qty} = $${c.price*c.qty}`).join('%0A');
-  const total = cart.reduce((s,c) => s+c.price*c.qty, 0);
-  const msg = `Hola! Quiero ordenar:%0A${lines}%0A%0ATotal: $${total} MXN`;
-  window.open(`https://wa.me/521XXXXXXXXXX?text=${msg}`, '_blank');
+  document.getElementById('cart-drawer').classList.remove('open');
 }
 
-// ─── NAV SCROLL ───
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  nav.className = y < 80 ? 'top' : (y < 600 ? 'solid' : 'light');
-}, {passive:true});
-
-// ─── MOBILE MENU ───
-document.getElementById('burger').onclick = () => document.getElementById('mobile-menu').classList.add('open');
-document.getElementById('menu-close').onclick = () => closeMobile();
-function closeMobile() { document.getElementById('mobile-menu').classList.remove('open'); }
-
-// ─── CURSOR ───
-const dot = document.getElementById('cdot');
-const ring = document.getElementById('cring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; }, {passive:true});
-function animRing() {
-  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-  ring.style.left = rx+'px'; ring.style.top = ry+'px';
-  requestAnimationFrame(animRing);
+function cardHtml(p) {
+  const badge = p.featured ? '<div class="pc-badge">⭐ Destacado</div>' : '';
+  const firstPrice = p.variants && p.variants.length ? p.variants[0].p : p.price;
+  const varHtml = p.variants && p.variants.length > 1
+    ? `<div class="pc-variants" id="vars-${p.id}">` +
+      p.variants.map((v,i) => `<button class="pc-var-btn${i===0?' sel':''}" onclick="selVar('${p.id}',${i},this)" data-p="${v.p}" data-i="${v.i||''}">${v.t} tab</button>`).join('') +
+      `</div>` : '';
+  return `<div class="product-card">
+    <div class="pc-img-wrap" style="background:${p.color}">
+      ${badge}
+      <img id="img-${p.id}" src="${p.img}" alt="${p.name}" loading="lazy"/>
+    </div>
+    <div class="pc-info">
+      <div class="pc-name">${p.name}</div>
+      <div class="pc-sub">A partir de</div>
+      ${varHtml}
+      <div class="pc-price-row">
+        <div class="pc-price" id="price-${p.id}">$${firstPrice} <span>MXN</span></div>
+        <button class="pc-add" onclick="addToCart('${p.id}')">+ Agregar</button>
+      </div>
+    </div>
+  </div>`;
 }
-animRing();
 
-// ─── LOADER ───
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('out');
-  }, 1400);
-});
 
-// ─── SCROLL REVEAL ───
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
-}, {threshold:0.12});
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// ─── INIT ───
-renderProducts();
-</script>
+  // Render featured
+  document.addEventListener('DOMContentLoaded', () => {
+    const featured = PRODUCTS.filter(p => p.featured);
+    document.getElementById('featured-grid').innerHTML = featured.map(p => cardHtml(p)).join('');
+  });
+  </script>
 </body>
 </html>
