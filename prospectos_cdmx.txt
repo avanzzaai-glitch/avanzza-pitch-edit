@@ -1,0 +1,106 @@
+# 📊 ANÁLISIS DE PROSPECTOS — AVANZZA AI AGENCY
+## CDMX Sur | Mayo 2025
+
+---
+
+## 🏥 CLÍNICAS / CONSULTORIOS MÉDICOS — COYOACÁN
+
+| Negocio | Contacto | Rating | Servicio Avanzza | Pitch de 1 línea | Prioridad |
+|---------|----------|--------|------------------|------------------|-----------|
+| **Coyoacán Medical Center** | Calz. de las Bombas 128 | ⭐ 3.8 | Superagente WhatsApp 24/7 | "Con rating 3.8 están perdiendo pacientes por mala atención inicial—un agente IA 24/7 contesta y agenda sin errores humanos" | 🔴 **ALTA** |
+| **Médica Taxqueña** | Tel: 55 5689 8900 | ⭐ 4.3 | Superagente WhatsApp + Invoice OS | "Automaticen citas y facturación en un solo flujo—0 llamadas perdidas, 0 facturas atrasadas" | 🔴 **ALTA** |
+| **Clínica Coyoacán** | Tel: 55 3535 6195 | ⭐ 4.4 | Superagente WhatsApp 24/7 | "Cierran a las 8PM pero sus pacientes buscan citas a las 10PM—un agente IA nunca cierra" | 🟡 MEDIA |
+| **Integral Medical Coyoacan** | Tel: 55 5544 7206 | ⭐ 4.4 | Superagente WhatsApp 24/7 | "Mismo horario, mismo problema: 14 horas sin contestar = citas que se van a la competencia" | 🟡 MEDIA |
+| **COYOACAN MEDICAL GROUP** | Tel: 55 7708 0092 | ⭐ 4.5 | Invoice OS | "Automaticen la facturación del grupo completo—un solo sistema para todas las especialidades" | 🟡 MEDIA |
+| **Médica Coyoacan** | Tel: 55 5678 5908 | ⭐ 4.6 | Superagente WhatsApp | "Su rating es excelente—escalen sin contratar más recepcionistas con IA" | 🟢 BAJA |
+
+### 📋 Estrategia de Acercamiento — Clínicas
+
+> **Gancho principal:** "Las clínicas pierden 23% de citas potenciales fuera de horario"
+> 
+> **Contacto ideal:** Llamada directa al consultorio preguntando por "el encargado de atención al paciente o el administrador"
+> 
+> **Timing:** Martes-Jueves 11AM-1PM (después del rush matutino)
+> 
+> **Oferta de entrada:** Prueba de 7 días del Superagente contestando WhatsApp en horario nocturno
+
+---
+
+## 🦷 CONSULTORIOS DENTALES — SAN ÁNGEL
+
+| Negocio | Contacto | Rating | Servicio Avanzza | Pitch de 1 línea | Prioridad |
+|---------|----------|--------|------------------|------------------|-----------|
+| **Dental Inn San Ángel** | Tel: 55 3441 0219 | ⭐ 4.3 (194) | Superagente WhatsApp + Web IA | "194 reseñas = alto volumen. Con 4.3 hay quejas de servicio—un agente IA nunca tiene 'mal día'" | 🔴 **ALTA** |
+| **Clínica Odontológica de Especialidades** | Tel: 55 5616 7521 | ⭐ 4.5 (22) | Superagente WhatsApp 24/7 | "Especialidades = múltiples doctores que coordinar. Un agente IA maneja agendas cruzadas sin errores" | 🔴 **ALTA** |
+| **Dentimp** | Tel: 55 6437 4084 | ⭐ 4.8 (49) | Videos de productos IA | "Su calidad ya está probada—ahora muéstrenla con videos de antes/después que venden solos" | 🟡 MEDIA |
+| **CM Clínica Dental** | Tel: 55 4548 8169 | ⭐ 5.0 (20) | Superagente WhatsApp + Videos IA | "5 estrellas con pocas reseñas = joya escondida. Escalen con IA antes de que crezcan los problemas" | 🟡 MEDIA |
+| **Promédica San Ángel** | Tel: 55 6586 2888 | ⭐ 5.0 (8) | Web IA + Videos productos | "Están en Insurgentes Sur—ubicación premium necesita presencia digital premium" | 🟢 BAJA |
+
+### 📋 Estrategia de Acercamiento — Dentistas
+
+> **Gancho principal:** "El 67% de pacientes dentales abandonan si no les contestan en <5 minutos"
+> 
+> **Contacto ideal:** WhatsApp directo (ellos mismos usan WhatsApp para agendar)
+> 
+> **Timing:** Lunes 9AM (planifican la semana) o Viernes 3PM (revisan qué no funcionó)
+> 
+> **Oferta de entrada:** Demo de 15 min mostrando cómo el agente agenda una cita real en vivo
+
+---
+
+## 🏠 INMOBILIARIAS — DEL VALLE
+
+| Negocio | Contacto | Rating | Servicio Avanzza | Pitch de 1 línea | Prioridad |
+|---------|----------|--------|------------------|------------------|-----------|
+| **RE/MAX Metropoli** | Tel: 55 5524 4748 | ⭐ 4.6 (394) | Superagente WhatsApp + CRM Automatizado | "394 leads que contactar = asesores saturados. Un agente IA califica y agenda, ustedes solo cierran" | 🔴 **ALTA** |
+| **Caselin** | Tel: 55 6934 4490 | ⭐ 4.8 (267) | Superagente WhatsApp + Videos IA | "267 reseñas y 4.8 estrellas—están listos para escalar. Videos IA de propiedades cierran desde WhatsApp" | 🔴 **ALTA** |
+| **Century 21 AMICI** | Tel: 55 2455 1166 | ⭐ 4.6 (79) | CRM Automatizado + Superagente | "Franquicia = procesos estrictos. Automaticen seguimiento sin perder el toque Century 21" | 🟡 MEDIA |
+| **Punto del Valle** | Tel: 55 6827 8543 | ⭐ 4.7 (13) | Videos IA + Sitio Web IA | "Desarrollo nuevo = necesitan generar confianza rápido. Videos de renders y recorridos virtuales IA" | 🟡 MEDIA |
+| **Tecnocasa Del Valle Sur** | Tel: 55 5559 5062 | ⭐ 4.3 (34) | Superagente WhatsApp 24/7 | "4.3 en franquicia de renombre = problemas de atención. Arreglen eso antes de que Corporativo pregunte" | 🟡 MEDIA |
+| **Supply Inmobiliaria** | Tel: 55 8998 2185 | ⭐ 4.5 (4) | Sitio Web IA + Videos | "Solo 4 reseñas = nadie los conoce. Necesitan presencia digital antes de prospectar" | 🟢 BAJA |
+
+### 📋 Estrategia de Acercamiento — Inmobiliarias
+
+> **Gancho principal:** "El comprador promedio contacta 5 inmobiliarias—gana el que contesta primero"
+> 
+> **Contacto ideal:** Pedir hablar con "el director comercial o broker principal"
+> 
+> **Timing:** Miércoles 10AM (mitad de semana, evaluando pipeline)
+> 
+> **Oferta de entrada:** Análisis gratuito de su tiempo de respuesta actual en WhatsApp vs. competencia
+
+---
+
+## 🍽️ RESTAURANTES — NARVARTE / INSURGENTES SUR
+
+| Negocio | Contacto | Rating | Servicio Avanzza | Pitch de 1 línea | Prioridad |
+|---------|----------|--------|------------------|------------------|-----------|
+| **Carnal Insurgentes** | Insurgentes 1352 | ⭐ 4.8 (2,389) | Superagente WhatsApp + Invoice OS | "Sin delivery + alto ticket = dependen de reservaciones. Un agente IA nunca pierde una reserva de $2,000" | 🔴 **ALTA** |
+| **Villa Casona** | Uxmal 303 | ⭐ 4.3 (3,782) | Superagente WhatsApp 24/7 | "3,782 reseñas y solo 4.3 = alto volumen con quejas de servicio. Automaticen reservas y preguntas" | 🔴 **ALTA** |
+| **Casa Prime Insurgentes** | Insurgentes 1458 | ⭐ 4.6 (6,151) | Invoice OS + Videos IA | "6,151 reseñas, ticket +$1,000. ¿Cuántas facturas manuales al mes? Automatícenlo" | 🔴 **ALTA** |
+| **Campomar Insurgentes** | Parroquia 194 | ⭐ 4.7 (3,335) | Superagente WhatsApp | "Marisquería popular = teléfono saturado. Un agente IA toma reservas mientras atienden mesas" | 🟡 MEDIA |
+| **La Famiglia** | Insurgentes 1581 | ⭐ 4.7 (2,335) | Videos IA + Superagente | "Italiano en zona premium—videos de platillos con IA llenan mesas entre semana" | 🟡 MEDIA |
+| **Cambalache** | Insurgentes 1384 | ⭐ 4.5 (4,504) | Invoice OS | "Ticket +$1,000 = facturación compleja. Automaticen y eliminen errores de IVA" | 🟡 MEDIA |
+| **Germina Narvarte** | Torres Adalid 1112 | ⭐ 4.5 (410) | Superagente WhatsApp | "Cafetería con buen volumen—automaticen pedidos para llevar y reservas de brunch" | 🟢 BAJA |
+| **Finca Narvarte** | Av. Universidad 520 | ⭐ 4.9 (74) | Videos IA | "Charcutería gourmet + 4.9 estrellas = contenido que se vende solo. Hacemos videos de productos IA" | 🟢 BAJA |
+| **Tusta Cocina Selecta** | La Morena 1054 | ⭐ 4.6 (406) | Sitio Web IA | "Cocina selecta necesita presencia selecta—landing con menú y reservas IA" | 🟢 BAJA |
+| **La Celostina** | Matías Romero 1454 | ⭐ 4.5 (530) | Superagente WhatsApp | "530 reseñas = flujo constante. Liberen tiempo del staff de contestar WhatsApp" | 🟢 BAJA |
+
+### 📋 Estrategia de Acercamiento — Restaurantes
+
+> **Gancho principal:** "Cada mensaje de WhatsApp no contestado son $800 pesos promedio que no entraron"
+> 
+> **Contacto ideal:** Ir presencialmente entre 3-5PM (después de comida, antes de cena). Pedir al gerente.
+> 
+> **Timing:** Martes o Miércoles (días más tranquilos)
+> 
+> **Oferta de entrada:** "¿Puedo enseñarles cómo funciona en 10 minutos mientras toman un café?"
+
+---
+
+## 🛡️ AGENCIAS DE SEGUROS — TLALPAN
+
+| Negocio | Contacto | Rating | Servicio Avanzza | Pitch de 1 línea | Prioridad |
+|---------|----------|--------|------------------|------------------|-----------|
+| **Orihuela Agente de Seguros** | Tel: 55 5544 3795 | ⭐ 4.1 (82) | Insur Recruit OS + Superagente | "82 reseñas con 4.1 = volumen alto pero servicio irregular. Recluten mejores agentes con IA + atención 24/7" | 🔴 **ALTA** |
+| **Alex Vielma V. Agencia** | Tel: 55 3147 3374 | ⭐ 5.0 (42) | Insur Recruit OS | "5 estrellas = ya dominan ventas. Ahora escalen reclutando
