@@ -191,9 +191,9 @@ nav.light .nav-burger span{background:var(--ink)}
 .product-card:hover::after{transform:scaleX(1)}
 .product-card.hidden{display:none}
 
-.pc-img-wrap{position:relative;background:#e8f0ea;height:220px;overflow:hidden;flex-shrink:0}
-.pc-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s var(--ease)}
-.product-card:hover .pc-img-wrap img{transform:scale(1.07) translateY(-4px)}
+.pc-img-wrap{position:relative;background:#e8f0ea;height:220px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:20px}
+.pc-img-wrap img{width:160px;height:160px;object-fit:cover;object-position:center;border-radius:50%;transition:transform .6s var(--ease);box-shadow:0 8px 32px rgba(0,0,0,.18);flex-shrink:0}
+.product-card:hover .pc-img-wrap img{transform:scale(1.1)}
 .pc-no-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3.5rem;background:linear-gradient(135deg,var(--cream),var(--gmint))}
 
 .pc-badge{position:absolute;top:12px;left:12px;font-family:var(--ff-sans);font-size:.58rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:4px 9px;border-radius:2px;background:rgba(13,13,13,.85);color:var(--white);backdrop-filter:blur(4px)}
@@ -325,8 +325,8 @@ footer{background:var(--ink2);padding:32px 5%;border-top:1px solid rgba(255,255,
   .h-stat{padding:12px 18px 12px 0;margin-right:18px}
   .trust-sep{display:none}
   .products-grid{grid-template-columns:1fr 1fr;gap:1px}
-  .pc-img-wrap{height:190px}
-  .pc-img-wrap img{object-fit:cover}
+  .pc-img-wrap{height:185px;padding:16px}
+  .pc-img-wrap img{width:140px;height:140px}
   .pc-name{font-size:1.2rem}
   .pc-body{padding:1rem 1rem 1.2rem}
   .pc-cat-line{font-size:.55rem}
@@ -345,8 +345,8 @@ footer{background:var(--ink2);padding:32px 5%;border-top:1px solid rgba(255,255,
 }
 @media(max-width:420px){
   .products-grid{grid-template-columns:1fr 1fr;gap:1px}
-  .pc-img-wrap{height:160px}
-  .pc-img-wrap img{object-fit:cover}
+  .pc-img-wrap{height:150px;padding:12px}
+  .pc-img-wrap img{width:115px;height:115px}
   .pc-body{padding:.8rem .9rem 1rem}
   .pc-name{font-size:1.1rem}
   .pc-desc{display:none}
@@ -364,6 +364,64 @@ footer{background:var(--ink2);padding:32px 5%;border-top:1px solid rgba(255,255,
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
 .reveal-delay-4{transition-delay:.4s}
+
+/* ─── SOBRE NOSOTROS ──────────────────── */
+.about-sec{background:var(--cream);padding:100px 5%}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto}
+.about-imgs{position:relative;height:520px}
+.about-img-main{position:absolute;top:0;left:0;width:72%;height:420px;object-fit:cover;border-radius:4px;box-shadow:0 24px 60px rgba(0,0,0,.12)}
+.about-img-sec{position:absolute;bottom:0;right:0;width:55%;height:280px;object-fit:cover;border-radius:4px;border:5px solid var(--cream);box-shadow:0 12px 40px rgba(0,0,0,.1)}
+.about-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--g2);color:var(--white);border-radius:50%;width:90px;height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--ff-head);font-size:1.5rem;font-weight:700;z-index:2;box-shadow:0 8px 24px rgba(45,122,80,.4)}
+.about-badge span{font-family:var(--ff-sans);font-size:.55rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.8}
+.about-text .eyebrow{margin-bottom:1rem}
+.about-text h2{font-family:var(--ff-head);font-size:clamp(2.2rem,3.5vw,3rem);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:1.5rem;letter-spacing:-.5px}
+.about-text h2 em{font-style:italic;color:var(--g2)}
+.about-text p{font-size:.95rem;line-height:1.85;color:var(--fog);margin-bottom:1rem}
+.about-stats{display:flex;gap:2rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--mid)}
+.ab-stat-n{font-family:var(--ff-head);font-size:2rem;font-weight:700;color:var(--ink);line-height:1}
+.ab-stat-l{font-family:var(--ff-sans);font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--fog);margin-top:4px}
+.about-values{display:flex;flex-direction:column;gap:.8rem;margin-top:2rem}
+.av-item{display:flex;align-items:center;gap:12px;font-family:var(--ff-sans);font-size:.88rem;color:var(--ink);font-weight:500}
+.av-dot{width:8px;height:8px;background:var(--g3);border-radius:50%;flex-shrink:0}
+
+/* ─── RESEÑAS ─────────────────────────── */
+.reviews-sec{background:var(--white);padding:100px 5%}
+.reviews-head{text-align:center;max-width:600px;margin:0 auto 60px}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1200px;margin:0 auto}
+.rv-card{background:var(--cream);border:1px solid var(--mid);border-radius:4px;padding:2rem;position:relative;transition:all .3s var(--ease)}
+.rv-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.07);transform:translateY(-4px)}
+.rv-card::before{content:'"';position:absolute;top:16px;right:24px;font-family:var(--ff-head);font-size:4rem;color:var(--gmint);line-height:1}
+.rv-stars{display:flex;gap:3px;margin-bottom:1rem}
+.rv-star{color:var(--gold2);font-size:1rem}
+.rv-text{font-size:.9rem;line-height:1.75;color:var(--fog);margin-bottom:1.5rem;font-style:italic}
+.rv-author{display:flex;align-items:center;gap:12px}
+.rv-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;background:var(--gmint);display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-size:1.1rem;color:var(--g2);font-weight:700;flex-shrink:0}
+.rv-name{font-family:var(--ff-sans);font-size:.85rem;font-weight:700;color:var(--ink)}
+.rv-pet{font-family:var(--ff-sans);font-size:.72rem;color:var(--fog);margin-top:2px}
+.rv-featured{grid-column:span 1;background:var(--g1);border-color:var(--g2)}
+.rv-featured .rv-card::before{color:rgba(255,255,255,.1)}
+.rv-featured .rv-text{color:rgba(255,255,255,.75)}
+.rv-featured .rv-name{color:var(--white)}
+.rv-featured .rv-pet{color:rgba(255,255,255,.5)}
+.rv-featured .rv-star{color:var(--gold3)}
+
+@media(max-width:900px){
+  .about-inner{grid-template-columns:1fr;gap:3rem}
+  .about-imgs{height:360px}
+  .about-img-main{width:68%;height:300px}
+  .about-img-sec{width:52%;height:200px}
+  .reviews-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .about-imgs{height:280px}
+  .about-img-main{height:230px}
+  .about-img-sec{height:160px}
+  .about-stats{gap:1.2rem}
+  .reviews-grid{grid-template-columns:1fr}
+  .about-sec{padding:70px 5%}
+  .reviews-sec{padding:70px 5%}
+}
+
 </style>
 </head>
 <body>
@@ -390,7 +448,8 @@ footer{background:var(--ink2);padding:32px 5%;border-top:1px solid rgba(255,255,
   </a>
   <div class="nav-links">
     <a href="#productos">Productos</a>
-    <a href="#beneficios">Beneficios</a>
+    <a href="#nosotros">Nosotros</a>
+          <a href="#resenas">Reseñas</a>
     <a href="#contacto">Contacto</a>
     <a href="#" class="nav-cta" onclick="openCart();return false">🛒 Carrito <span class="nav-cart-count" id="nav-count">0</span></a>
   </div>
@@ -556,6 +615,132 @@ footer{background:var(--ink2);padding:32px 5%;border-top:1px solid rgba(255,255,
   </div>
 </section>
 
+
+<!-- SOBRE NOSOTROS -->
+<section class="about-sec" id="nosotros">
+  <div class="about-inner">
+    <div class="about-imgs reveal">
+      <img class="about-img-main" 
+        src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80&auto=format&fit=crop" 
+        alt="Perros felices con Happy & Healthy Pets"/>
+      <img class="about-img-sec" 
+        src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80&auto=format&fit=crop" 
+        alt="Suplementos naturales para mascotas"/>
+      <div class="about-badge">7<span>años</span></div>
+    </div>
+    <div class="about-text reveal">
+      <div class="eyebrow">Nuestra Historia</div>
+      <h2>Ciencia y amor en <em>cada fórmula</em></h2>
+      <p>Somos un equipo de veterinarios y nutricionistas apasionados por el bienestar animal. Nacimos en México con una misión clara: ofrecer suplementos 100% naturales que realmente funcionen.</p>
+      <p>Cada producto es desarrollado con ingredientes premium, respaldados por evidencia científica y probados bajo los más altos estándares de calidad. Porque tu mascota merece lo mejor.</p>
+      <div class="about-values">
+        <div class="av-item"><div class="av-dot"></div>Ingredientes 100% naturales y libres de químicos</div>
+        <div class="av-item"><div class="av-dot"></div>Formulados por veterinarios certificados</div>
+        <div class="av-item"><div class="av-dot"></div>Sin gluten, sin colorantes artificiales</div>
+        <div class="av-item"><div class="av-dot"></div>Envío rápido a toda la República Mexicana</div>
+      </div>
+      <div class="about-stats">
+        <div>
+          <div class="ab-stat-n">35+</div>
+          <div class="ab-stat-l">Productos</div>
+        </div>
+        <div>
+          <div class="ab-stat-n">8K+</div>
+          <div class="ab-stat-l">Mascotas felices</div>
+        </div>
+        <div>
+          <div class="ab-stat-n">4.8★</div>
+          <div class="ab-stat-l">Valoración media</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- RESEÑAS -->
+<section class="reviews-sec" id="resenas">
+  <div class="reviews-head reveal">
+    <div class="eyebrow">Lo que dicen nuestros clientes</div>
+    <h2 class="sec-title">Familias que <em>confían</em> en nosotros</h2>
+  </div>
+  <div class="reviews-grid">
+
+    <div class="rv-card reveal">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-text">"Mi perra Luna llevaba meses con problemas digestivos. A las dos semanas de empezar con Digest+ noté la diferencia. Ahora come feliz y sin molestias."</p>
+      <div class="rv-author">
+        <div class="rv-avatar" style="background:#d4ecd4">M</div>
+        <div>
+          <div class="rv-name">Mariana García</div>
+          <div class="rv-pet">🐕 Luna, Golden Retriever · Digest+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv-card reveal" style="background:var(--g1);border-color:var(--g2)">
+      <div class="rv-stars" style="color:var(--gold3)">★★★★★</div>
+      <p class="rv-text" style="color:rgba(255,255,255,.75)">"Increíble producto. Mi gato Milo tiene artritis y con Artro+ se mueve mucho mejor. Ya no le duele saltar y está más activo que nunca. 100% recomendado."</p>
+      <div class="rv-author">
+        <div class="rv-avatar" style="background:rgba(255,255,255,.15);color:white">R</div>
+        <div>
+          <div class="rv-name" style="color:white">Roberto Sánchez</div>
+          <div class="rv-pet" style="color:rgba(255,255,255,.5)">🐱 Milo, Gato persa · Artro+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv-card reveal">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-text">"Llevo 3 meses dándole Bio+ a mis dos labradores y la diferencia es notable. Pelaje brillante, más energía y sin problemas estomacales. Vale cada centavo."</p>
+      <div class="rv-author">
+        <div class="rv-avatar" style="background:#fde8c8">C</div>
+        <div>
+          <div class="rv-name">Claudia Reyes</div>
+          <div class="rv-pet">🐕 Max y Thor, Labradores · Bio+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv-card reveal">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-text">"El envío llegó súper rápido y bien empacado. Empecé a darle Vision+ a mi Yorkie y en un mes el veterinario notó mejoría en sus ojos. Seguiré comprando."</p>
+      <div class="rv-author">
+        <div class="rv-avatar" style="background:#e8d4ec">A</div>
+        <div>
+          <div class="rv-name">Alejandro Torres</div>
+          <div class="rv-pet">🐕 Coco, Yorkshire Terrier · Vision+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv-card reveal">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-text">"Mi gata tiene problemas renales y Renal+ ha sido un cambio de vida para ella. Está más hidratada, activa y sus análisis mejoraron mucho. El veterinario quedó sorprendido."</p>
+      <div class="rv-author">
+        <div class="rv-avatar" style="background:#d4e8f0">P</div>
+        <div>
+          <div class="rv-name">Patricia Morales</div>
+          <div class="rv-pet">🐱 Kitty, Gata doméstica · Renal+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv-card reveal">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-text">"Probé Calm+ con mi Beagle que sufría de ansiedad en tormentas. Funciona de verdad. Ya no tiembla ni ladra horas. Lo recomendaré a todos mis conocidos con mascotas."</p>
+      <div class="rv-author">
+        <div class="rv-avatar" style="background:#d4ecdc">J</div>
+        <div>
+          <div class="rv-name">Jorge Méndez</div>
+          <div class="rv-pet">🐕 Kira, Beagle · Calm+</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- WHY -->
 <section class="sec why-sec" id="beneficios">
   <div class="sec-inner">
@@ -605,7 +790,8 @@ footer{background:var(--ink2);padding:32px 5%;border-top:1px solid rgba(255,255,
     <div class="footer-brand">Happy &amp; <em>Healthy</em> Pets</div>
     <div class="footer-links">
       <a href="#productos">Productos</a>
-      <a href="#beneficios">Beneficios</a>
+      <a href="#nosotros">Nosotros</a>
+          <a href="#resenas">Reseñas</a>
       <a href="https://happyandhealthypets.myshopify.com" target="_blank">Tienda Oficial</a>
     </div>
     <div class="footer-copy">© 2026 Happy &amp; Healthy Pets · Suplementos 100% Naturales</div>
