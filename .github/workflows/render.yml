@@ -8,40 +8,52 @@ on:
 jobs:
   render:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '18'
 
       - name: Install dependencies
-        run: npm ci
-
-      - name: Install Remotion globally
-        run: npm install -g @remotion/cli
+        run: |
+          npm install --legacy-peer-deps
+          npx remotion install
 
       - name: Create output directory
         run: mkdir -p out
 
-      - name: Render video with Remotion
+      - name: Render video
         run: |
           npx remotion render src/index.ts PitchVideo out/avanzza_pitch_final.mp4 \
             --codec=h264 \
-            --fps=50 \
-            --quality=95 \
-            --browser-executable=/usr/bin/google-chrome
-        timeout-minutes: 30
+            --jpeg-quality=90 \
+            --concurrency=4
+
+      - name: Check output
+        run: ls -lh out/
 
       - name: Upload rendered video
-        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: avanzza-pitch-final
           path: out/avanzza_pitch_final.mp4
           retention-days: 7
 
-      - name: Log failure
-        if: failure()
-        run: echo "Render failed" && exit 1
+      - name: Create Release
+        if: success()
+        uses: softprops/action-gh-release@v1
+        with:
+          files: out/avanzza_pitch_final.mp4
+          tag_name: render-${{ github.run_number }}
+          body: |
+            🎬 Avanzza Pitch Video — Renderizado exitoso
+            - Duración: 63.2 segundos
+            - Resolución: 464x832 (9:16)
+            - Codec: H.264
+            - Captions: 25 frases sincronizadas
+            - Branding: Logo, watermark, lower thirds, CTA
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
