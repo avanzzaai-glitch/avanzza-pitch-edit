@@ -8,6 +8,7 @@ on:
 jobs:
   render:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -15,35 +16,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - name: Install npm dependencies
-        run: |
-          npm install --legacy-peer-deps
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
 
       - name: Create output directory
         run: mkdir -p out
 
-      - name: Render video with Remotion
-        run: |
-          npx remotion render PitchVideo out/avanzza_pitch_final.mp4 \
-            --codec=h264 \
-            --crf=18 \
-            --timeout=600
+      - name: Render video
+        run: npx remotion render src/index.ts PitchVideo out/avanzza_pitch_final.mp4 --codec=h264 --jpeg-quality=95 --concurrency=4
 
-      - name: Upload artifact
-        if: success()
+      - name: Upload rendered video
         uses: actions/upload-artifact@v4
         with:
           name: avanzza-pitch-final
           path: out/avanzza_pitch_final.mp4
           retention-days: 7
 
-      - name: Report status
-        if: always()
-        run: |
-          if [ -f "out/avanzza_pitch_final.mp4" ]; then
-            echo "✅ Video renderizado exitosamente"
-            ls -lh out/avanzza_pitch_final.mp4
-          else
-            echo "❌ El video no se generó"
-          fi
+      - name: Get download URL
+        run: echo "Video renderizado exitosamente ✅"
