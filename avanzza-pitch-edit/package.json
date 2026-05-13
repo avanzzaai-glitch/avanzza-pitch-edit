@@ -1,0 +1,9 @@
+{
+  "name": "avanzza-pitch-edit",
+  "version": "1.0.0",
+  "description": "Avanzza pitch video edit with captions and branding",
+  "type": "module",
+  "scripts": {
+    "render": "npx remotion render src/index.ts PitchVideo out/avanzza_pitch_final.mp4 --codec=h264"
+  }
+}
