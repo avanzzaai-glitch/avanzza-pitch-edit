@@ -1,0 +1,21 @@
+{
+  "name": "avanzza-pitch-edit",
+  "version": "1.0.0",
+  "description": "Avanzza pitch video edit with captions and branding",
+  "scripts": {
+    "start": "remotion studio",
+    "render": "remotion render PitchVideo out/avanzza_pitch_final.mp4 --codec=h264"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.237",
+    "@remotion/player": "4.0.237",
+    "remotion": "4.0.237"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "remotion": {
+    "entryPoint": "src/index.ts"
+  }
+}
